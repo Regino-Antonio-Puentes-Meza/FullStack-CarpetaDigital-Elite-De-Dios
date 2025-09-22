@@ -482,7 +482,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -513,6 +513,11 @@ body {
 .view-schedule-pdf.completed {
   background: linear-gradient(135deg, #10b981, #059669);
   border: 2px solid rgba(16, 185, 129, 0.3);
+}
+
+.view-schedule-pdf.certifications {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border: 2px solid rgba(139, 92, 246, 0.3);
 }
 
 .view-schedule-pdf::before {
@@ -553,6 +558,14 @@ body {
   border-color: rgba(16, 185, 129, 0.5);
   box-shadow: 
     0 15px 40px rgba(16, 185, 129, 0.4),
+    0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.view-schedule-pdf.certifications:hover {
+  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 
+    0 15px 40px rgba(139, 92, 246, 0.4),
     0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
