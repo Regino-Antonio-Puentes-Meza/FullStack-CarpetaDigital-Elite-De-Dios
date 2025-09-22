@@ -2,31 +2,66 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Museo Élite de Dios</title>
+  <title>Carpeta Club Sear Jasub</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <!-- Íconos de redes sociales desde Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Google Fonts para tipografía profesional -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- Pantalla de bienvenida (Splash Screen) -->
   <div id="splash-screen" class="splash-screen">
     <div class="splash-content">
+      
+      <!-- Mensaje de bienvenida profesional -->
+      <div class="welcome-message">
+        <div class="welcome-header">
+          <h1 class="welcome-title">¡Bienvenidos Aventureros!</h1>
+          <div class="welcome-subtitle" data-text="Club de Aventuras Sear Jasub">
+            Club de Aventuras Sear Jasub
+          </div>
+        </div>
+        <div class="welcome-body">
+          <p class="welcome-text">
+            Has iniciado una <span class="highlight">extraordinaria experiencia</span> de navegación 
+            por las <span class="highlight">fascinantes historias</span> y aventuras que nos esperan.
+          </p>
+          <p class="welcome-subtext">
+            Prepárate para descubrir relatos únicos, vivir emociones inolvidables 
+            y formar parte de nuestra gran familia de exploradores.
+          </p>
+        </div>
+        <div class="adventure-badge">
+          <i class="fas fa-compass"></i>
+          <span>Tu aventura comienza aquí</span>
+        </div>
+      </div>
+
       <!-- Botón con icono de puerta y animación -->
       <button id="enter-museum-btn" class="enter-btn">
-        <span class="door-text">👆</span>
+        <span class="door-text">⚓ Zarpar</span>
       </button>
     </div>
 
-<!-- Botones de Redes Sociales -->
-<div class="social-icons">
-  <a href="https://web.facebook.com/ElitedeDios/" target="_blank" class="social-icon facebook" aria-label="Facebook">
-    <i class="fab fa-facebook-f"></i>
-  </a>
-  <a href="https://www.instagram.com/club_elitededios/" target="_blank" class="social-icon instagram" aria-label="Instagram">
-    <i class="fab fa-instagram"></i>
-  </a>
-</div>
+    <!-- Botones de Redes Sociales Reubicados -->
+    <div class="social-icons">
+      <a href="https://web.facebook.com/ElitedeDios/" target="_blank" 
+         class="social-icon facebook" 
+         aria-label="Facebook"
+         title="Visita nuestro Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://www.instagram.com/club_elitededios/" target="_blank" 
+         class="social-icon instagram" 
+         aria-label="Instagram"
+         title="Visita nuestro Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+  </div>
+
   <!-- Script principal -->
   <script src="assets/js/script.js"></script>
 </body>

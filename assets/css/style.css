@@ -1,4 +1,6 @@
-/* --- RESET / BASICS --- */
+/* =====================================================
+   RESET Y CONFIGURACIÓN BÁSICA
+   ===================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -13,8 +15,11 @@ body, html {
   display: none;
 }
 
-/* 
+/* =====================================================
    PANTALLA DE BIENVENIDA (SPLASH SCREEN)
+   ===================================================== */
+/* 
+   Configuración principal del fondo animado
    - Ajustamos para que la imagen se adapte al alto
 */
 .splash-screen {
@@ -22,7 +27,7 @@ body, html {
   width: 100%;
   min-height: 100vh; /* Mantener en móvil */
   height: -webkit-fill-available;
-  background: url('../img/museo_elite_animated.jpeg') center center no-repeat;
+  background: url('../img/fondo_Inicio.svg') center center no-repeat;
   background-size: cover;
   background-position: center;
 
@@ -30,7 +35,7 @@ body, html {
   animation: backgroundFloat 12s ease-in-out infinite;
 }
 
-/* Contenedor con leve filtro (overlay) y centrado */
+/* Contenedor principal con centrado */
 .splash-content {
   position: fixed;
   top: 0; left: 0;
@@ -43,164 +48,1416 @@ body, html {
   /* background: rgba(159, 49, 49, 0.3); // opcional overlay rojizo */
 }
 
-/* BOTÓN: la puerta con sombreado y animación */
+/* =====================================================
+   BOTÓN DE ENTRADA PRINCIPAL
+   ===================================================== */
+/* Botón principal con diseño profesional y alta visibilidad */
 .enter-btn {
   position: fixed;
-  width: 160px;     /* Más ancho */
-  height: 250px;    /* Más alto */
-  bottom: 6%;     /* Subimos la puerta */
-  left: 65%;        /* Más a la izquierda */
-  transform: translateX(0); /* No centrado -50% */
+  width: 200px;
+  height: 280px;
+  bottom: 8%;
+  right: 8%; /* Movido a la derecha para evitar solapamiento */
+  /* Removido el transform para evitar centrado */
   border: none;
   cursor: pointer;
   outline: none;
-  box-shadow: 0 40px 465px rgba(67, 229, 3, 0.957);
-  animation: doorFloat 3s ease-in-out infinite alternate;
+  border-radius: 20px;
+  background: linear-gradient(145deg, 
+    rgba(255, 255, 255, 0.95) 0%, 
+    rgba(248, 250, 252, 0.98) 30%, 
+    rgba(236, 254, 255, 1) 70%, 
+    rgba(219, 234, 254, 1) 100%);
+  backdrop-filter: blur(15px);
+  box-shadow: 
+    0 0 50px rgba(255, 255, 255, 0.8),
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    0 0 0 3px rgba(59, 130, 246, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -2px 0 rgba(59, 130, 246, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: enhancedFloat 5s ease-in-out infinite alternate;
+  overflow: hidden;
+  border: 4px solid rgba(59, 130, 246, 0.4);
 }
 
-/* Texto en la puerta */
-.door-text {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2.6rem;
-  animation: pulseLight 1.5s infinite;
-  color: #fff;
-  text-align: center;
-  text-shadow:
-    0 0 5px rgba(255, 255, 255, 0.7),
-    0 0 10px rgba(255, 255, 255, 0.6),
-    0 0 20px rgba(255, 255, 200, 0.5),
-    0 0 30px rgba(255, 255, 100, 0.4);
+/* Estados del botón: hover y active */
+.enter-btn:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 
+    0 0 70px rgba(255, 255, 255, 1),
+    0 25px 80px rgba(0, 0, 0, 0.2),
+    0 0 0 5px rgba(59, 130, 246, 0.5),
+    inset 0 2px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -2px 0 rgba(59, 130, 246, 0.3);
+  background: linear-gradient(145deg, 
+    rgba(255, 255, 255, 1) 0%, 
+    rgba(252, 254, 255, 1) 30%, 
+    rgba(240, 249, 255, 1) 70%, 
+    rgba(224, 242, 254, 1) 100%);
+  border-color: rgba(59, 130, 246, 0.6);
 }
 
-/* Pseudo-elemento para el marco */
+.enter-btn:active {
+  transform: translateY(-4px) scale(1.02);
+  transition: all 0.15s ease;
+}
+
+/* =====================================================
+   ELEMENTOS DECORATIVOS DEL BOTÓN
+   ===================================================== */
+/* Marco del icono del barco mejorado */
 .enter-btn::before {
   content: "";
   position: absolute;
-  top: -15px;
-  left: -15px;
-  width: calc(100% + 30px);
-  height: calc(100% + 30px);
-  background: url('../img/Puerta_museo.png') no-repeat center center;
-  background-size: cover;
-  border: 6px solid #5a3e1b;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
-  z-index: -1;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  background: url('../img/boton_inicio_arca.svg') no-repeat center center;
+  background-size: contain;
+  border: 3px solid rgba(59, 130, 246, 0.3);
+  border-radius: 20px;
+  z-index: 1;
   pointer-events: none;
+  filter: drop-shadow(0 6px 16px rgba(59, 130, 246, 0.3));
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
 }
 
-/* ANIMACIONES */
-@keyframes doorFloat {
-  0%   { transform: translateY(0);   }
-  100% { transform: translateY(-8px); }
+/* Efecto de ondas de agua en la base del botón */
+.enter-btn::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: -20px;
+  width: calc(100% + 40px);
+  height: 60px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(59, 130, 246, 0.1) 25%,
+    rgba(59, 130, 246, 0.2) 50%,
+    rgba(59, 130, 246, 0.1) 75%,
+    transparent 100%);
+  border-radius: 50%;
+  animation: waterWave 3s ease-in-out infinite;
+  z-index: 0;
 }
+
+/* Texto del botón con alta legibilidad */
+.door-text {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e40af;
+  text-align: center;
+  text-shadow: 
+    0 2px 4px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.6);
+  letter-spacing: 1px;
+  animation: textGlow 2.5s ease-in-out infinite;
+  z-index: 2;
+  text-transform: uppercase;
+  font-family: 'Arial Black', Arial, sans-serif;
+}
+
+/* =====================================================
+   MENSAJE DE BIENVENIDA PROFESIONAL
+   ===================================================== */
+/* Contenedor principal del mensaje de bienvenida */
+.welcome-message {
+  position: fixed;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 800px;
+  text-align: center;
+  z-index: 1001;
+  animation: welcomeAppear 2s ease-out;
+}
+
+/* Encabezado del mensaje de bienvenida */
+.welcome-header {
+  margin-bottom: 2rem;
+}
+
+/* Título principal del mensaje */
+.welcome-title {
+  font-family: 'Cinzel', serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #1a365d;
+  text-shadow: 
+    0 4px 8px rgba(255, 255, 255, 0.9),
+    0 0 30px rgba(255, 255, 255, 0.8),
+    0 0 50px rgba(59, 130, 246, 0.3);
+  margin-bottom: 0.5rem;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+  letter-spacing: 2px;
+}
+
+/* Subtítulo del club con efectos de iluminación profesional */
+.welcome-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600; /* Incrementado para mayor prominencia */
+  color: #1e40af;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+  
+  /* Efectos de iluminación múltiples */
+  text-shadow: 
+    0 0 10px rgba(59, 130, 246, 0.8),
+    0 0 20px rgba(59, 130, 246, 0.6),
+    0 0 30px rgba(59, 130, 246, 0.4),
+    0 0 40px rgba(59, 130, 246, 0.3),
+    0 2px 4px rgba(255, 255, 255, 0.8),
+    0 4px 8px rgba(0, 0, 0, 0.2);
+  
+  /* Borde luminoso sutil */
+  position: relative;
+  
+  /* Animación de pulsación luminosa */
+  animation: clubGlow 4s ease-in-out infinite alternate;
+  
+  /* Borde dorado como el título principal */
+  border: 3px solid transparent;
+  background: 
+    linear-gradient(135deg, 
+      #3b82f6 0%, 
+      #1d4ed8 25%, 
+      #1e40af 50%, 
+      #3730a3 75%, 
+      #312e81 100%),
+    linear-gradient(135deg, 
+      #fbbf24 0%, 
+      #f59e0b 25%, 
+      #d9770688 50%, 
+      #806c5d6f 75%, 
+      #cbc3bf 100%);
+  background-clip: text, border-box;
+  -webkit-background-clip: text, border-box;
+  
+  /* Padding interno para que el texto no toque el borde */
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  
+  /* Efecto de resplandor dorado en el borde */
+  box-shadow: 
+    0 0 15px rgba(251, 191, 36, 0.4),
+    0 0 30px rgba(251, 191, 36, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Efecto de resplandor adicional para el subtítulo */
+.welcome-subtitle::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  
+  /* Mismo estilo base */
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: 0.5rem 1rem;
+  
+  /* Efectos de resplandor de fondo */
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  filter: blur(2px);
+  opacity: 0.6;
+  
+  /* Animación de resplandor de fondo */
+  animation: backgroundGlow 3s ease-in-out infinite alternate;
+}
+
+/* Efecto de marco luminoso dorado alrededor del subtítulo
+.welcome-subtitle::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(251, 191, 36, 0.3) 20%,
+    rgba(251, 191, 36, 0.6) 50%,
+    rgba(251, 191, 36, 0.3) 80%,
+    transparent 100%);
+  border-radius: 20px;
+  z-index: -2;
+  opacity: 0.7;
+  animation: frameGlowGold 5s ease-in-out infinite;
+} */
+
+/* Cuerpo del mensaje con fondo translúcido */
+.welcome-body {
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 2rem 2.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 
+    0 0 40px rgba(144, 26, 26, 0.8),
+    0 15px 50px rgb(0, 0, 0),
+    inset 0 1px 0 rgb(255, 255, 255);
+  border: 2px solid rgba(187, 48, 5, 0.2);
+}
+
+/* Texto principal del mensaje */
+.welcome-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #1e40af;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Texto secundario del mensaje */
+.welcome-subtext {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #3730a3;
+  line-height: 1.5;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* Texto destacado dentro del mensaje */
+.highlight {
+  font-weight: 600;
+  color: #1d4ed8;
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+/* Insignia de aventura con brújula */
+.adventure-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  box-shadow: 
+    0 8px 25px rgba(245, 158, 11, 0.4),
+    0 0 20px rgba(255, 255, 255, 0.3);
+  animation: badgePulse 2s ease-in-out infinite alternate;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Icono de brújula en la insignia */
+.adventure-badge i {
+  font-size: 1.3rem;
+  animation: compassSpin 4s linear infinite;
+}
+
+/* =====================================================
+   ANIMACIONES PRINCIPALES
+   ===================================================== */
+/* Animación de flotación mejorada para el botón */
+@keyframes enhancedFloat {
+  0%   { 
+    transform: translateY(0) rotate(-0.5deg);
+    box-shadow: 
+      0 0 50px rgba(255, 255, 255, 0.8),
+      0 20px 60px rgba(0, 0, 0, 0.15);
+  }
+  100% { 
+    transform: translateY(-10px) rotate(0.5deg);
+    box-shadow: 
+      0 0 60px rgba(255, 255, 255, 0.9),
+      0 25px 70px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Animación de brillo para el texto del botón */
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 
+      0 2px 4px rgba(255, 255, 255, 0.8),
+      0 0 20px rgba(255, 255, 255, 0.6);
+  }
+  50% {
+    text-shadow: 
+      0 2px 4px rgba(255, 255, 255, 1),
+      0 0 30px rgba(255, 255, 255, 0.8),
+      0 0 40px rgba(59, 130, 246, 0.4);
+  }
+}
+
+/* Animación de ondas de agua */
+@keyframes waterWave {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scaleX(1.1);
+  }
+}
+
+/* =====================================================
+   ANIMACIONES DEL MENSAJE DE BIENVENIDA
+   ===================================================== */
+/* Aparición del mensaje de bienvenida */
+@keyframes welcomeAppear {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Brillo del título principal */
+@keyframes titleGlow {
+  0% {
+    text-shadow: 
+      0 4px 8px rgba(255, 255, 255, 0.9),
+      0 0 30px rgba(255, 255, 255, 0.8),
+      0 0 50px rgba(59, 130, 246, 0.3);
+  }
+  100% {
+    text-shadow: 
+      0 4px 8px rgba(255, 255, 255, 1),
+      0 0 40px rgba(255, 255, 255, 0.9),
+      0 0 60px rgba(59, 130, 246, 0.5);
+  }
+}
+
+/* Pulsación de la insignia de aventura */
+@keyframes badgePulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 
+      0 8px 25px rgba(245, 158, 11, 0.4),
+      0 0 20px rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    transform: scale(1.05);
+    box-shadow: 
+      0 12px 35px rgba(245, 158, 11, 0.6),
+      0 0 30px rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Rotación de la brújula */
+@keyframes compassSpin {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(90deg); }
+  50% { transform: rotate(180deg); }
+  75% { transform: rotate(270deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Animación de fondo */
 @keyframes backgroundFloat {
   0%, 100% { background-position: center; }
   50%      { background-position: center 52%; }
 }
-@keyframes pulseLight {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.2) rotate(-5deg);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-}
 
-/* Para pantallas “laptop” (max ~1200px) */
-@media (max-width: 1200px) {
-  .enter-btn {
-    width: 200px;     /* Más ancho */
-    height: 300px;    /* Más alto */
-    bottom: 10%;     /* Subimos la puerta */
-    left: 10%;        /* Más a la izquierda */
-    transform: translateX(0); /* No centrado -50% */
-  }
-  .door-text {
-    font-size: 2.4rem;
-  }
-}
-
-/* Para pantallas “tablet” (max ~768px) */
-@media (max-width: 768px) {
-  .enter-btn {
-    width: 200px;     /* Más ancho */
-    height: 300px;    /* Más alto */
-    bottom: 10%;     /* Subimos la puerta */
-    left: 10%;        /* Más a la izquierda */
-    transform: translateX(0); /* No centrado -50% */
-  }
-  .door-text {
-    font-size: 2rem;
-  }
-}
-
-/* Para pantallas pequeñas (max ~480px, móviles) */
-@media (max-width: 480px) {
-  .enter-btn {
-    width: 380px;     /* Más ancho */
-    height:550px;    /* Más alto */
-    bottom: 10%;     /* Subimos la puerta */
-    left: 25%;        /* Más a la izquierda */
-    transform: translateX(0); /* No centrado -50% */
-  }
-  .door-text {
-    font-size: 1.8rem;
-  }
-  .splash-screen {
-    /* Forzamos la altura al 100% del viewport */
-    height: 100vh;
-    min-height: 100vh;
-    /* background-size: cover se encarga de cubrir el área sin dejar espacios */
-    background-size: cover;
-    background-position: center center;
-  }
-}
-
-
-/* ÍCONOS SOCIALES (por ejemplo) */
+/* =====================================================
+   ÍCONOS DE REDES SOCIALES - REUBICADOS PROFESIONALMENTE
+   ===================================================== */
+/* Contenedor de íconos sociales reubicado */
 .social-icons {
   position: fixed;
-  bottom: 40px; 
-  left: 50%;
-  transform: translateX(-50%);
+  top: 2rem;
+  right: 2rem;
   display: flex;
-  gap: 40px;
+  flex-direction: column;
+  gap: 1rem;
   z-index: 9999;
 }
+
+/* Estilos base para íconos sociales mejorados */
 .social-icon {
-  width: 65px;
-  height: 65px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
   color: #333;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   text-decoration: none;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 3px solid #fff;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(255, 255, 255, 0.8);
   cursor: pointer;
+  backdrop-filter: blur(10px);
 }
+
+/* Estado hover para íconos sociales mejorado */
 .social-icon:hover {
-  transform: scale(1.2);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+  transform: scale(1.15) translateY(-2px);
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.25),
+    0 6px 16px rgba(0, 0, 0, 0.15);
 }
+
+/* Estilo específico para Facebook mejorado */
 .social-icon.facebook {
-  background: linear-gradient(to top, #3b5998, #4a69ad);
+  background: linear-gradient(135deg, #3b5998, #4a69ad);
   color: #fff;
+  border-color: rgba(59, 89, 152, 0.3);
 }
+
+.social-icon.facebook:hover {
+  background: linear-gradient(135deg, #4a69ad, #5a79bd);
+  box-shadow: 
+    0 12px 35px rgba(59, 89, 152, 0.4),
+    0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo específico para Instagram mejorado */
 .social-icon.instagram {
-  background: radial-gradient(circle at 30% 30%, #fdf497, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  background: radial-gradient(circle at 30% 30%, 
+    #fdf497, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
   color: #fff;
+  border-color: rgba(220, 39, 67, 0.3);
+}
+
+.social-icon.instagram:hover {
+  background: radial-gradient(circle at 30% 30%, 
+    #fff8a7, #f1a443, #e7784c, #dd3753, #cd3376, #bd2898);
+  box-shadow: 
+    0 12px 35px rgba(220, 39, 67, 0.4),
+    0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Etiquetas descriptivas opcionales */
+.social-icon::after {
+  content: attr(aria-label);
+  position: absolute;
+  right: 70px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(30, 41, 59, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+
+.social-icon:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(-5px);
+}
+
+/* =====================================================
+   RESPONSIVE PARA ÍCONOS SOCIALES REUBICADOS
+   ===================================================== */
+@media (max-width: 768px) {
+  .social-icons {
+    top: 1.5rem;
+    right: 1.5rem;
+    gap: 0.75rem;
+  }
+
+  .social-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+  }
+
+  /* Ocultar etiquetas en móviles para evitar problemas de espacio */
+  .social-icon::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-icons {
+    top: 1rem;
+    right: 1rem;
+    gap: 0.5rem;
+  }
+
+  .social-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+}
+
+/* Modo landscape en móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+  .social-icons {
+    flex-direction: row;
+    top: 1rem;
+    right: 1rem;
+    gap: 0.75rem;
+  }
+}
+
+/* =====================================================
+   AJUSTES PARA MAYOR PROFESIONALISMO
+   ===================================================== */
+/* Indicador visual sutil para las redes sociales */
+.social-icons::before {
+  content: "Síguenos";
+  position: absolute;
+  top: -2rem;
+  right: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.75rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  opacity: 0.7;
+}
+
+/* Animación suave de entrada para los íconos */
+.social-icon {
+  animation: socialIconsAppear 0.8s ease-out;
+  animation-delay: 2s;
+  animation-fill-mode: both;
+}
+
+.social-icon.facebook {
+  animation-delay: 2.2s;
+}
+
+.social-icon.instagram {
+  animation-delay: 2.4s;
+}
+
+@keyframes socialIconsAppear {
+  0% {
+    opacity: 0;
+    transform: translateX(100px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Ocultar indicador "Síguenos" en móviles */
+@media (max-width: 768px) {
+  .social-icons::before {
+    display: none;
+  }
+}
+
+/* =====================================================
+   DISEÑO RESPONSIVE - TABLETS GRANDES Y LAPTOPS
+   ===================================================== */
+/* Tablets grandes y laptops pequeñas (max 1200px) */
+@media (max-width: 1200px) {
+  /* Ajustes del botón principal */
+  .enter-btn {
+    width: 180px;
+    height: 250px;
+    bottom: 6%;
+    right: 5%;
+  }
+  .door-text {
+    font-size: 1.6rem;
+    bottom: 35px;
+  }
+  .enter-btn::before {
+    width: 100px;
+    height: 100px;
+    top: 18px;
+  }
+  
+  /* Ajustes del mensaje de bienvenida */
+  .welcome-message {
+    top: 5%;
+    width: 85%;
+    max-width: 650px; /* Reducido para dar más espacio al botón */
+  }
+  .welcome-title {
+    font-size: 2.8rem;
+  }
+  .welcome-subtitle {
+    font-size: 1.2rem;
+  }
+  .welcome-text {
+    font-size: 1.1rem;
+  }
+}
+
+/* =====================================================
+   DISEÑO RESPONSIVE - TABLETS
+   ===================================================== */
+/* Tablets (max 768px) */
+@media (max-width: 768px) {
+  /* Ajustes del botón principal */
+  .enter-btn {
+    width: 160px;
+    height: 220px;
+    bottom: 8%;
+    left: 50%;
+    right: auto; /* Reset para volver al centrado en móviles */
+    transform: translateX(-50%);
+  }
+  .door-text {
+    font-size: 1.4rem;
+    bottom: 30px;
+  }
+  .enter-btn::before {
+    width: 80px;
+    height: 80px;
+    top: 15px;
+  }
+  
+  /* Estados hover y active para tablets */
+  .enter-btn:hover {
+    transform: translateX(-50%) translateY(-6px) scale(1.03);
+  }
+  
+  .enter-btn:active {
+    transform: translateX(-50%) translateY(-3px) scale(1.01);
+  }
+  
+  /* Ajustes del mensaje de bienvenida */
+  .welcome-message {
+    top: 3%;
+    width: 90%;
+    max-width: 800px; /* Restaurar tamaño completo en móviles */
+  }
+  .welcome-title {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+  }
+  .welcome-subtitle {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    padding: 0.4rem 0.8rem;
+  }
+  .welcome_body {
+    padding: 1.5rem 2rem;
+  }
+  .welcome-text {
+    font-size: 1rem;
+  }
+  .welcome-subtext {
+    font-size: 0.9rem;
+  }
+  .adventure-badge {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+  
+  /* Ajustar pseudo-elementos para responsive */
+  .welcome-subtitle::before {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* =====================================================
+   DISEÑO RESPONSIVE - MÓVILES GRANDES
+   ===================================================== */
+/* Móviles grandes (max 480px) */
+@media (max-width: 480px) {
+  /* Ajustes del botón principal */
+  .enter-btn {
+    width: 200px;
+    height: 280px;
+    bottom: 12%;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+  .door-text {
+    font-size: 1.2rem;
+    bottom: 40px;
+    letter-spacing: 0.5px;
+  }
+  .enter-btn::before {
+    width: 100px;
+    height: 100px;
+    top: 20px;
+  }
+  
+  /* Ajustes del mensaje de bienvenida */
+  .welcome-message {
+    top: 2%;
+    width: 95%;
+  }
+  .welcome-title {
+    font-size: 1.8rem;
+  }
+  .welcome-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    padding: 0.3rem 0.6rem;
+  }
+  .welcome-body {
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .welcome-text {
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+  }
+  .welcome-subtext {
+    font-size: 0.85rem;
+  }
+  .adventure-badge {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* =====================================================
+   DISEÑO RESPONSIVE - MÓVILES PEQUEÑOS
+   ===================================================== */
+/* Móviles pequeños (max 320px) */
+@media (max-width: 320px) {
+  /* Ajustes del botón principal */
+  .enter-btn {
+    width: 160px;
+    height: 220px;
+    bottom: 15%;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+  .door-text {
+    font-size: 1rem;
+    bottom: 30px;
+  }
+  .enter-btn::before {
+    width: 80px;
+    height: 80px;
+    top: 15px;
+  }
+  
+  /* Ajustes del mensaje de bienvenida */
+  .welcome-message {
+    top: 1%;
+  }
+  .welcome-title {
+    font-size: 1.5rem;
+  }
+  .welcome-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    padding: 0.2rem 0.4rem;
+  }
+  .welcome-body {
+    padding: 1rem;
+  }
+  .welcome-text {
+    font-size: 0.9rem;
+  }
+  .welcome-subtext {
+    font-size: 0.8rem;
+  }
+  .adventure-badge {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Animación de brillo dorado para el subtítulo del club */
+@keyframes clubGlow {
+  0% {
+    text-shadow: 
+      0 0 10px rgba(59, 130, 246, 0.8),
+      0 0 20px rgba(59, 130, 246, 0.6),
+      0 0 30px rgba(59, 130, 246, 0.4),
+      0 2px 4px rgba(255, 255, 255, 0.8);
+    filter: brightness(1);
+    box-shadow: 
+      0 0 15px rgba(251, 191, 36, 0.4),
+      0 0 30px rgba(251, 191, 36, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    text-shadow: 
+      0 0 15px rgba(59, 130, 246, 1),
+      0 0 30px rgba(59, 130, 246, 0.8),
+      0 0 45px rgba(59, 130, 246, 0.6),
+      0 0 60px rgba(59, 130, 246, 0.4),
+      0 2px 4px rgba(255, 255, 255, 1),
+      0 4px 8px rgba(59, 130, 246, 0.3);
+    filter: brightness(1.2);
+    box-shadow: 
+      0 0 25px rgba(251, 191, 36, 0.6),
+      0 0 40px rgba(251, 191, 36, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Animación del resplandor de fondo */
+@keyframes backgroundGlow {
+  0% {
+    opacity: 0.4;
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 0.8;
+    filter: blur(1px);
+  }
+}
+
+/* Animación del marco luminoso dorado */
+@keyframes frameGlowGold {
+  0% {
+    opacity: 0.4;
+    background: linear-gradient(90deg, 
+      transparent 0%,
+      rgba(251, 191, 36, 0.3) 20%,
+      rgba(251, 191, 36, 0.6) 50%,
+      rgba(251, 191, 36, 0.3) 80%,
+      transparent 100%);
+  }
+  50% {
+    opacity: 0.9;
+    background: linear-gradient(90deg, 
+      transparent 0%,
+      rgba(251, 191, 36, 0.5) 20%,
+      rgba(251, 191, 36, 0.8) 50%,
+      rgba(251, 191, 36, 0.5) 80%,
+      transparent 100%);
+  }
+  100% {
+    opacity: 0.4;
+    background: linear-gradient(90deg, 
+      transparent 0%,
+      rgba(251, 191, 36, 0.3) 20%,
+      rgba(251, 191, 36, 0.6) 50%,
+      rgba(251, 191, 36, 0.3) 80%,
+      transparent 100%);
+  }
+}
+
+/* =====================================================
+   DISEÑO RESPONSIVE - TABLETS
+   ===================================================== */
+/* Tablets (max 768px) */
+@media (max-width: 768px) {
+  /* Ajustes del botón principal */
+  .enter-btn {
+    width: 160px;
+    height: 220px;
+    bottom: 8%;
+    left: 50%;
+    right: auto; /* Reset para volver al centrado en móviles */
+    transform: translateX(-50%);
+  }
+  .door-text {
+    font-size: 1.4rem;
+    bottom: 30px;
+  }
+  .enter-btn::before {
+    width: 80px;
+    height: 80px;
+    top: 15px;
+  }
+  
+  /* Estados hover y active para tablets */
+  .enter-btn:hover {
+    transform: translateX(-50%) translateY(-6px) scale(1.03);
+  }
+  
+  .enter-btn:active {
+    transform: translateX(-50%) translateY(-3px) scale(1.01);
+  }
+  
+  /* Ajustes del mensaje de bienvenida */
+  .welcome-message {
+    top: 3%;
+    width: 90%;
+    max-width: 800px; /* Restaurar tamaño completo en móviles */
+  }
+  .welcome-title {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+  }
+  .welcome-subtitle {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    padding: 0.4rem 0.8rem;
+  }
+  .welcome_body {
+    padding: 1.5rem 2rem;
+  }
+  .welcome-text {
+    font-size: 1rem;
+  }
+  .welcome-subtext {
+    font-size: 0.9rem;
+  }
+  .adventure-badge {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+/* =====================================================
+   DISEÑO RESPONSIVE - MÓVILES GRANDES
+   ===================================================== */
+/* Móviles grandes (max 480px) */
+@media (max-width: 480px) {
+  /* Ajustes del botón principal */
+  .enter-btn {
+    width: 200px;
+    height: 280px;
+    bottom: 12%;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+  .door-text {
+    font-size: 1.2rem;
+    bottom: 40px;
+    letter-spacing: 0.5px;
+  }
+  .enter-btn::before {
+    width: 100px;
+    height: 100px;
+    top: 20px;
+  }
+  
+  /* Ajustes del mensaje de bienvenida */
+  .welcome-message {
+    top: 2%;
+    width: 95%;
+  }
+  .welcome-title {
+    font-size: 1.8rem;
+  }
+  .welcome-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    padding: 0.3rem 0.6rem;
+  }
+  .welcome-body {
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .welcome-text {
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+  }
+  .welcome-subtext {
+    font-size: 0.85rem;
+  }
+  .adventure-badge {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* =====================================================
+   DISEÑO RESPONSIVE - MÓVILES PEQUEÑOS
+   ===================================================== */
+/* Móviles pequeños (max 320px) */
+@media (max-width: 320px) {
+  /* Ajustes del botón principal */
+  .enter-btn {
+    width: 160px;
+    height: 220px;
+    bottom: 15%;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+  .door-text {
+    font-size: 1rem;
+    bottom: 30px;
+  }
+  .enter-btn::before {
+    width: 80px;
+    height: 80px;
+    top: 15px;
+  }
+  
+  /* Ajustes del mensaje de bienvenida */
+  .welcome-message {
+    top: 1%;
+  }
+  .welcome-title {
+    font-size: 1.5rem;
+  }
+  .welcome-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    padding: 0.2rem 0.4rem;
+  }
+  .welcome-body {
+    padding: 1rem;
+  }
+  .welcome-text {
+    font-size: 0.9rem;
+  }
+  .welcome-subtext {
+    font-size: 0.8rem;
+  }
+  .adventure-badge {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Animación de brillo dorado para el subtítulo del club */
+@keyframes clubGlow {
+  0% {
+    text-shadow: 
+      0 0 10px rgba(59, 130, 246, 0.8),
+      0 0 20px rgba(59, 130, 246, 0.6),
+      0 0 30px rgba(59, 130, 246, 0.4),
+      0 2px 4px rgba(255, 255, 255, 0.8);
+    filter: brightness(1);
+    box-shadow: 
+      0 0 15px rgba(251, 191, 36, 0.4),
+      0 0 30px rgba(251, 191, 36, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    text-shadow: 
+      0 0 15px rgba(59, 130, 246, 1),
+      0 0 30px rgba(59, 130, 246, 0.8),
+      0 0 45px rgba(59, 130, 246, 0.6),
+      0 0 60px rgba(59, 130, 246, 0.4),
+      0 2px 4px rgba(255, 255, 255, 1),
+      0 4px 8px rgba(59, 130, 246, 0.3);
+    filter: brightness(1.2);
+    box-shadow: 
+      0 0 25px rgba(251, 191, 36, 0.6),
+      0 0 40px rgba(251, 191, 36, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Animación del resplandor de fondo */
+@keyframes backgroundGlow {
+  0% {
+    opacity: 0.4;
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 0.8;
+    filter: blur(1px);
+  }
+}
+
+/* Animación del marco luminoso dorado */
+@keyframes frameGlowGold {
+  0% {
+    opacity: 0.4;
+    background: linear-gradient(90deg, 
+      transparent 0%,
+      rgba(251, 191, 36, 0.3) 20%,
+      rgba(251, 191, 36, 0.6) 50%,
+      rgba(251, 191, 36, 0.3) 80%,
+      transparent 100%);
+  }
+  50% {
+    opacity: 0.9;
+    background: linear-gradient(90deg, 
+      transparent 0%,
+      rgba(251, 191, 36, 0.5) 20%,
+      rgba(251, 191, 36, 0.8) 50%,
+      rgba(251, 191, 36, 0.5) 80%,
+      transparent 100%);
+  }
+  100% {
+    opacity: 0.4;
+    background: linear-gradient(90deg, 
+      transparent 0%,
+      rgba(251, 191, 36, 0.3) 20%,
+      rgba(251, 191, 36, 0.6) 50%,
+      rgba(251, 191, 36, 0.3) 80%,
+      transparent 100%);
+  }
+}
+
+/* =====================================================
+   DISEÑO RESPONSIVE - TABLETS
+   ===================================================== */
+/* Tablets (max 768px) */
+@media (max-width: 768px) {
+  /* Ajustes del botón principal */
+  .enter-btn {
+    width: 160px;
+    height: 220px;
+    bottom: 8%;
+    left: 50%;
+    right: auto; /* Reset para volver al centrado en móviles */
+    transform: translateX(-50%);
+  }
+  .door-text {
+    font-size: 1.4rem;
+    bottom: 30px;
+  }
+  .enter-btn::before {
+    width: 80px;
+    height: 80px;
+    top: 15px;
+  }
+  
+  /* Estados hover y active para tablets */
+  .enter-btn:hover {
+    transform: translateX(-50%) translateY(-6px) scale(1.03);
+  }
+  
+  .enter-btn:active {
+    transform: translateX(-50%) translateY(-3px) scale(1.01);
+  }
+  
+  /* Ajustes del mensaje de bienvenida */
+  .welcome-message {
+    top: 3%;
+    width: 90%;
+    max-width: 800px; /* Restaurar tamaño completo en móviles */
+  }
+  .welcome-title {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+  }
+  .welcome-subtitle {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    padding: 0.4rem 0.8rem;
+  }
+  .welcome_body {
+    padding: 1.5rem 2rem;
+  }
+  .welcome-text {
+    font-size: 1rem;
+  }
+  .welcome-subtext {
+    font-size: 0.9rem;
+  }
+  .adventure-badge {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+  
+  /* Ajustar pseudo-elementos para responsive */
+  .welcome-subtitle::before {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* =====================================================
+   DISEÑO RESPONSIVE - MÓVILES GRANDES
+   ===================================================== */
+/* Móviles grandes (max 480px) */
+@media (max-width: 480px) {
+  /* Ajustes del botón principal */
+  .enter-btn {
+    width: 200px;
+    height: 280px;
+    bottom: 12%;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+  .door-text {
+    font-size: 1.2rem;
+    bottom: 40px;
+    letter-spacing: 0.5px;
+  }
+  .enter-btn::before {
+    width: 100px;
+    height: 100px;
+    top: 20px;
+  }
+  
+  /* Ajustes del mensaje de bienvenida */
+  .welcome-message {
+    top: 2%;
+    width: 95%;
+  }
+  .welcome-title {
+    font-size: 1.8rem;
+  }
+  .welcome-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    padding: 0.3rem 0.6rem;
+  }
+  .welcome-body {
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .welcome-text {
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+  }
+  .welcome-subtext {
+    font-size: 0.85rem;
+  }
+  .adventure-badge {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* =====================================================
+   DISEÑO RESPONSIVE - MÓVILES PEQUEÑOS
+   ===================================================== */
+/* Móviles pequeños (max 320px) */
+@media (max-width: 320px) {
+  /* Ajustes del botón principal */
+  .enter-btn {
+    width: 160px;
+    height: 220px;
+    bottom: 15%;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+  .door-text {
+    font-size: 1rem;
+    bottom: 30px;
+  }
+  .enter-btn::before {
+    width: 80px;
+    height: 80px;
+    top: 15px;
+  }
+  
+  /* Ajustes del mensaje de bienvenida */
+  .welcome-message {
+    top: 1%;
+  }
+  .welcome-title {
+    font-size: 1.5rem;
+  }
+  .welcome-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    padding: 0.2rem 0.4rem;
+  }
+  .welcome-body {
+    padding: 1rem;
+  }
+  .welcome-text {
+    font-size: 0.9rem;
+  }
+  .welcome-subtext {
+    font-size: 0.8rem;
+  }
+  .adventure-badge {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Animación de brillo dorado para el subtítulo del club */
+@keyframes clubGlow {
+  0% {
+    text-shadow: 
+      0 0 10px rgba(59, 130, 246, 0.8),
+      0 0 20px rgba(59, 130, 246, 0.6),
+      0 0 30px rgba(59, 130, 246, 0.4),
+      0 2px 4px rgba(255, 255, 255, 0.8);
+    filter: brightness(1);
+    box-shadow: 
+      0 0 15px rgba(251, 191, 36, 0.4),
+      0 0 30px rgba(251, 191, 36, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    text-shadow: 
+      0 0 15px rgba(59, 130, 246, 1),
+      0 0 30px rgba(59, 130, 246, 0.8),
+      0 0 45px rgba(59, 130, 246, 0.6),
+      0 0 60px rgba(59, 130, 246, 0.4),
+      0 2px 4px rgba(255, 255, 255, 1),
+      0 4px 8px rgba(59, 130, 246, 0.3);
+    filter: brightness(1.2);
+    box-shadow: 
+      0 0 25px rgba(251, 191, 36, 0.6),
+      0 0 40px rgba(251, 191, 36, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Animación del resplandor de fondo */
+@keyframes backgroundGlow {
+  0% {
+    opacity: 0.4;
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 0.8;
+    filter: blur(1px);
+  }
+}
+
+/* Animación del marco luminoso dorado */
+@keyframes frameGlowGold {
+  0% {
+    opacity: 0.4;
+    background: linear-gradient(90deg, 
+      transparent 0%,
+      rgba(251, 191, 36, 0.3) 20%,
+      rgba(251, 191, 36, 0.6) 50%,
+      rgba(251, 191, 36, 0.3) 80%,
+      transparent 100%);
+  }
+  50% {
+    opacity: 0.9;
+    background: linear-gradient(90deg, 
+      transparent 0%,
+      rgba(251, 191, 36, 0.5) 20%,
+      rgba(251, 191, 36, 0.8) 50%,
+      rgba(251, 191, 36, 0.5) 80%,
+      transparent 100%);
+  }
+  100% {
+    opacity: 0.4;
+    background: linear-gradient(90deg, 
+      transparent 0%,
+      rgba(251, 191, 36, 0.3) 20%,
+      rgba(251, 191, 36, 0.6) 50%,
+      rgba(251, 191, 36, 0.3) 80%,
+      transparent 100%);
+  }
 }

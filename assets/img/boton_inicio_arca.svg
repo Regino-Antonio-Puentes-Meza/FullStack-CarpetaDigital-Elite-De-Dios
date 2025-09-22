@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 192" role="img" aria-label="Arca de Noé (estática)">
+  <title>Arca de Noé</title>
+  <desc>Ilustración infantil del arca con casco curvo de madera, cabina y ventanillas redondas, sin animación.</desc>
+
+  <defs>
+    <!-- Colores (modifica si deseas) -->
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#8D5A2B"/>
+      <stop offset="100%" stop-color="#6C401F"/>
+    </linearGradient>
+    <linearGradient id="cabin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#7A4A23"/>
+      <stop offset="100%" stop-color="#5C341A"/>
+    </linearGradient>
+    <linearGradient id="highlight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="rgba(255,255,255,0.55)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Agrupación general para aplicar estilos comunes -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Casco del arca -->
+    <path d="M40 112
+             Q128 164 216 112
+             L196 76 L60 76 Z"
+          fill="url(#wood)" stroke="#4E2F14" stroke-width="4"/>
+
+    <!-- Listones de madera -->
+    <g stroke="#4E2F14" stroke-width="3" opacity="0.35">
+      <line x1="64" y1="84"  x2="192" y2="84"/>
+      <line x1="56" y1="94"  x2="200" y2="94"/>
+      <line x1="48" y1="104" x2="208" y2="104"/>
+    </g>
+
+    <!-- Brillo suave en el borde superior del casco -->
+    <path d="M60 76
+             L196 76
+             Q128 100 60 76 Z"
+          fill="url(#highlight)" stroke="none" opacity="0.35"/>
+
+    <!-- Cabina -->
+    <rect x="96" y="32" width="64" height="42" rx="8"
+          fill="url(#cabin)" stroke="#4E2F14" stroke-width="4"/>
+
+    <!-- Techo simple -->
+    <path d="M88 32 L128 18 L168 32"
+          fill="none" stroke="#4E2F14" stroke-width="4"/>
+    <path d="M92 32 H164" stroke="#4E2F14" stroke-width="3" opacity="0.6"/>
+
+    <!-- Ventanillas -->
+    <g fill="#FFE08A" stroke="#795548" stroke-width="4">
+      <circle cx="112" cy="53" r="7"/>
+      <circle cx="128" cy="53" r="7"/>
+      <circle cx="144" cy="53" r="7"/>
+    </g>
+
+    <!-- Detalle de proa y popa (refuerzo) -->
+    <g stroke="#4E2F14" stroke-width="4" opacity="0.6">
+      <path d="M60 76 L54 96"/>
+      <path d="M196 76 L202 96"/>
+    </g>
+  </g>
+</svg>

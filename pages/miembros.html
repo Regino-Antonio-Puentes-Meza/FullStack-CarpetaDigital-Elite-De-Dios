@@ -2,79 +2,172 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>Miembros - Museo Élite de Dios</title>
+    <title>Tripulación - Club Sear Jasub</title>
     <link rel="stylesheet" href="../assets/css/miembros.css" />
+    <!-- Font Awesome para iconos náuticos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Google Fonts para mejor tipografía -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<!-- Visor PDF tipo museo -->
-<div id="pdfModal" class="pdf-modal">
-    <div class="pdf-content">
-        <button class="close-pdf" onclick="cerrarPDF()">✖</button>
-        <iframe id="pdfViewer" src="" allowfullscreen></iframe>
+<body class="fade-out">
+    <!-- Logo del Club reubicado a la derecha -->
+    <div class="club-logo-container">
+        <img src="../assets/img/LOGO-CLUB-SEAR-JASUB.png" alt="Logo Club Sear Jasub" class="club-logo">
     </div>
-</div>
 
-<body>
-    <header class="page-header">
-        <a href="./museum.html" class="back-link">⬅ Volver al Museo Principal</a>
-        <h1>Museo Élite de Dios</h1>
-        <h2>Exposición de Miembros del Club Élite de Dios</h2>
-    </header>
-    <div class="page-content">
-        <div class="intro">
-            <h2>Conozcamos a los miembros que conforman la Directiva y los integrantes del Club Élite de Dios.</h2>
-            <!-- Nuevo botón para visualizar biografías -->
-            <button class="view-bios" onclick="abrirPDF('../assets/pdfs/Biografia_integrantes_Elite.pdf')">Visualizar Biografías</button>
+    <!-- Visor PDF tipo museo náutico -->
+    <div id="pdfModal" class="pdf-modal">
+        <div class="pdf-content">
+            <button class="close-pdf" onclick="cerrarPDF()">
+                <i class="fas fa-times"></i>
+            </button>
+            <iframe id="pdfViewer" src="" allowfullscreen></iframe>
         </div>
-        <div class="buscador-container">
-            <input type="text" id="buscador" placeholder="🔍 Buscar miembro por nombre..." />
-            <div class="contador-container">
-                <div id="contador-miembros">Total: 0 miembros</div>
+    </div>
+
+    <!-- Encabezado náutico principal -->
+    <header class="crew-header">
+        <div class="header-content">
+            <h1 class="crew-title">
+                <i class="fas fa-anchor"></i>
+                Tripulación del Arca
+            </h1>
+            <p class="crew-subtitle">Club de Aventuras Sear Jasub</p>
+            <div class="crew-motto">
+                <i class="fas fa-users"></i>
+                <span>Conoce a nuestros valientes navegantes</span>
+                <i class="fas fa-ship"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Botón de regreso mejorado -->
+    <button class="back-button" onclick="window.location.href='pag-menu-principal.html'">
+        <i class="fas fa-arrow-left"></i>
+        <span>Regresar al Arca</span>
+    </button>
+
+    <!-- Contenido principal -->
+    <div class="page-content">
+        <!-- Introducción náutica -->
+        <div class="crew-intro">
+            <div class="intro-container">
+                <h2 class="intro-title">
+                    <i class="fas fa-compass"></i>
+                    Nuestra Valiente Tripulación
+                </h2>
+                <p class="intro-text">
+                    Descubre a los <span class="highlight">intrépidos aventureros</span> que conforman 
+                    nuestra tripulación, desde los oficiales de la directiva hasta cada valioso 
+                    miembro de nuestra gran familia náutica.
+                </p>
+                <p class="intro-subtext">
+                    Cada tripulante aporta su experiencia única a bordo del Arca Sear Jasub, 
+                    navegando juntos hacia nuevos horizontes de aventuras y compañerismo.
+                </p>
+                
+                <!-- Botón para visualizar biografías -->
+                <button class="view-bios" onclick="abrirPDF('../assets/pdfs/Biografia_integrantes_Elite.pdf')">
+                    <i class="fas fa-book-open"></i>
+                    <span>Bitácoras Personales</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Buscador náutico -->
+        <div class="search-container">
+            <div class="search-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="buscador" placeholder="Buscar tripulante por nombre..." />
+            </div>
+            <div class="crew-counter">
+                <i class="fas fa-users"></i>
+                <span id="contador-miembros">Total: 0 tripulantes</span>
             </div>              
         </div>
-        <section class="seccion-miembros">
-            <h2 class="titulo-directiva">Miembros de la Directiva</h2>
-            <div id="directiva-container" class="miembros-container"></div>
+        
+        <!-- Sección Oficiales (Directiva) -->
+        <section class="crew-section">
+            <h2 class="section-title officers">
+                <i class="fas fa-star"></i>
+                Oficiales del Arca
+                <i class="fas fa-anchor"></i>
+            </h2>
+            <div id="directiva-container" class="crew-grid"></div>
         </section>
 
-        <section class="seccion-miembros">
-            <h2 class="titulo-club">Miembros del Club</h2>
-            <div id="club-container" class="miembros-container"></div>
+        <!-- Sección Tripulación General -->
+        <section class="crew-section">
+            <h2 class="section-title crew">
+                <i class="fas fa-users"></i>
+                Tripulación General
+                <i class="fas fa-ship"></i>
+            </h2>
+            <div id="club-container" class="crew-grid"></div>
         </section>
     </div>
+
+    <!-- Decoración náutica de fondo -->
+    <div class="background-decoration">
+        <div class="floating-icon icon-1"><i class="fas fa-anchor"></i></div>
+        <div class="floating-icon icon-2"><i class="fas fa-ship"></i></div>
+        <div class="floating-icon icon-3"><i class="fas fa-life-ring"></i></div>
+        <div class="floating-icon icon-4"><i class="fas fa-compass"></i></div>
+        <div class="floating-icon icon-5"><i class="fas fa-fish"></i></div>
+    </div>
+    
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            // Animación de entrada
+            document.body.classList.remove("fade-out");
+            document.body.classList.add("fade-in");
+
             fetch("../assets/data/miembros.json")
                 .then(res => res.json())
                 .then(data => {
                     const directiva = document.getElementById('directiva-container');
                     const club = document.getElementById('club-container');
                     let rolDirectiva = "DIRECTIVA";
+                    
                     data.forEach(persona => {
                         const div = document.createElement('div');
-                        div.classList.add('miembro-card');
+                        div.classList.add('crew-card');
                         if (persona.rol.toLocaleUpperCase() === rolDirectiva) {
-                            div.classList.add('directiva');
+                            div.classList.add('officer');
                         }
+                        
                         div.innerHTML = `
-  <div class="icono-user">👤</div>
-  <h3>${persona.nombre.replaceAll('_', ' ')}</h3>
-  <a style="" class="ver-pdf" onclick="abrirPDF('../assets/pdfs/${persona.nombre}.pdf')">Ver Hoja de Vida</a>
-`;
+                            <div class="card-header">
+                                <div class="member-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="rank-badge ${persona.rol.toLocaleUpperCase() === rolDirectiva ? 'officer-rank' : 'crew-rank'}">
+                                    <i class="fas ${persona.rol.toLocaleUpperCase() === rolDirectiva ? 'fa-star' : 'fa-anchor'}"></i>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="member-name">${persona.nombre.replaceAll('_', ' ')}</h3>
+                                <p class="member-role">${persona.rol.toLocaleUpperCase() === rolDirectiva ? 'Oficial del Arca' : 'Tripulante'}</p>
+                                <button class="view-profile" onclick="abrirPDF('../assets/pdfs/${persona.nombre}.pdf')">
+                                    <i class="fas fa-scroll"></i>
+                                    <span>Ver Bitácora</span>
+                                </button>
+                            </div>
+                        `;
+                        
                         if (persona.rol.toLocaleUpperCase() === rolDirectiva) {
                             directiva.appendChild(div);
                         } else {
                             club.appendChild(div);
                         }
-                        let nombrePersona = persona.nombre.replaceAll('_', ' ')
-                        // console.log(nombrePersona);
-                        if (nombrePersona.includes("Mejia")) {
-                            div.classList.add('saraDirectora');
-                            console.log(nombrePersona);
-                            
-                        }
                         
+                        // Efecto especial para Sara (directora)
+                        let nombrePersona = persona.nombre.replaceAll('_', ' ');
+                        if (nombrePersona.includes("Mejia")) {
+                            div.classList.add('captain');
+                        }
                     });
-                    actualizarContador(); // Actualiza el contador de miembros visibles
+                    actualizarContador();
                 });
 
             const filtroInput = document.getElementById("buscador");
@@ -82,19 +175,24 @@
 
             filtroInput.addEventListener("input", () => {
                 const filtro = filtroInput.value.toLowerCase();
-                const tarjetas = document.querySelectorAll(".miembro-card");
+                const tarjetas = document.querySelectorAll(".crew-card");
 
                 tarjetas.forEach(card => {
-                    const nombre = card.querySelector("h3").textContent.toLowerCase();
-                    card.style.display = nombre.includes(filtro) ? "block" : "none";
+                    const nombre = card.querySelector(".member-name").textContent.toLowerCase();
+                    if (nombre.includes(filtro)) {
+                        card.style.display = "block";
+                        card.style.animation = "fadeInUp 0.5s ease";
+                    } else {
+                        card.style.display = "none";
+                    }
                 });
 
                 actualizarContador();
             });
 
             function actualizarContador() {
-                const visibles = document.querySelectorAll(".miembro-card:not([style*='display: none'])");
-                contador.textContent = `Total: ${visibles.length} miembro${visibles.length === 1 ? '' : 's'}`;
+                const visibles = document.querySelectorAll(".crew-card:not([style*='display: none'])");
+                contador.textContent = `Total: ${visibles.length} tripulante${visibles.length === 1 ? '' : 's'}`;
             }
         });
 
