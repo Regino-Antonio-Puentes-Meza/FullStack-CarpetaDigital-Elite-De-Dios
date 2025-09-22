@@ -1,155 +1,772 @@
-body {
-    margin: 0;
-    padding: 0;
-    background: url('../img/fondo_Inicio.svg') no-repeat center center fixed;
-    background-size: cover;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  body.fade-out {
+/* =====================================================
+   RESET Y CONFIGURACIÓN BÁSICA
+   ===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+/* =====================================================
+   TRANSICIONES DE PÁGINA
+   ===================================================== */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out;
+}
+
+/* =====================================================
+   PANTALLA PRINCIPAL DEL ARCA
+   ===================================================== */
+.ark-screen {
+  min-height: 100vh;
+  background: linear-gradient(135deg, 
+    #0f172a 0%, 
+    #1e293b 25%, 
+    #2563eb 50%, 
+    #3b82f6 75%, 
+    #60a5fa 100%);
+  background-size: 400% 400%;
+  animation: arkGradient 25s ease infinite;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 2rem;
+}
+
+@keyframes arkGradient {
+  0%, 100% { background-position: 0% 50%; }
+  33% { background-position: 50% 25%; }
+  66% { background-position: 100% 75%; }
+}
+
+/* =====================================================
+   LOGO DEL CLUB REUBICADO A LA DERECHA
+   ===================================================== */
+.club-logo {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1001;
+  animation: logoAppear 1s ease-out 0.5s both;
+}
+
+.logo-image {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 8px;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(59, 130, 246, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-image:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 
+    0 12px 35px rgba(59, 130, 246, 0.25),
+    0 6px 16px rgba(0, 0, 0, 0.15);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+@keyframes logoAppear {
+  0% {
     opacity: 0;
-    transition: opacity 0.8s ease-in-out;
+    transform: translateX(100px) scale(0.8);
   }
-  body.fade-in {
+  100% {
     opacity: 1;
-  }  
-  
-  .museum-screen {
-    background: rgba(0, 0, 0, 0.2);
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+    transform: translateX(0) scale(1);
   }
-  
-  .museum-header {
-    display: none;
+}
+
+/* =====================================================
+   ENCABEZADO DEL ARCA OPTIMIZADO
+   ===================================================== */
+.ark-header {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  position: relative;
+  z-index: 10;
+}
+
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ark-title {
+  font-family: 'Cinzel', serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(255, 255, 255, 0.3);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ark-icon {
+  color: #fbbf24;
+  animation: shipFloat 3s ease-in-out infinite;
+}
+
+@keyframes shipFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-5px) rotate(2deg); }
+}
+
+.ark-subtitle {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.ark-motto {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #e2e8f0;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ark-motto i {
+  color: #fbbf24;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+/* =====================================================
+   BOTÓN DE REGRESO MEJORADO
+   ===================================================== */
+.back-button {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(251, 191, 36, 0.5);
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: #1e293b;
+  text-decoration: none;
+  z-index: 1000;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 25px rgba(30, 41, 59, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: rgba(251, 191, 36, 0.8);
+}
+
+.back-button i {
+  font-size: 1.2rem;
+  color: #0891b2;
+}
+
+/* =====================================================
+   MENSAJE DE NAVEGACIÓN OPTIMIZADO
+   ===================================================== */
+.navigation-message {
+  text-align: center;
+  padding: 1rem 1rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.message-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 1.5rem 2rem;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.08);
+  border: 2px solid rgba(251, 191, 36, 0.3);
+}
+
+.message-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.message-title i {
+  color: #0891b2;
+}
+
+.message-text {
+  font-size: 1rem;
+  color: #334155;
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+}
+
+.message-subtext {
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.5;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.highlight {
+  color: #0891b2;
+  font-weight: 600;
+  background: linear-gradient(135deg, #bae6fd, #7dd3fc);
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+}
+
+.adventure-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #0891b2;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.adventure-indicator i:last-child {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* =====================================================
+   NAVEGACIÓN DEL ARCA OPTIMIZADA PARA LAPTOP
+   ===================================================== */
+.ark-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 2rem;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(59, 130, 246, 0.2);
+  border-radius: 20px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    0 1px 8px rgba(0, 0, 0, 0.05);
+  animation: fadeInUp 0.6s ease;
+  min-height: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.4), 
+    transparent);
+  transition: left 0.6s ease;
+}
+
+.nav-btn:hover::before {
+  left: 100%;
+}
+
+.nav-btn:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.15),
+    0 10px 25px rgba(59, 130, 246, 0.1);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  
-  .museum-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    padding: 20px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
+}
+
+/* =====================================================
+   ICONOS DE BOTONES MEJORADOS Y PROFESIONALES
+   ===================================================== */
+.btn-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1.5rem;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid;
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.1),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-icon i {
+  font-size: 2rem;
+  color: white;
+  z-index: 2;
+  position: relative;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos específicos para cada botón */
+.historia-btn .btn-icon {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.historia-btn:hover .btn-icon {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  transform: scale(1.1);
+  box-shadow: 
+    0 12px 30px rgba(245, 158, 11, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.4);
+}
+
+.miembros-btn .btn-icon {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.miembros-btn:hover .btn-icon {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  transform: scale(1.1);
+  box-shadow: 
+    0 12px 30px rgba(16, 185, 129, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.4);
+}
+
+.fotos-btn .btn-icon {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+.fotos-btn:hover .btn-icon {
+  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+  transform: scale(1.1);
+  box-shadow: 
+    0 12px 30px rgba(139, 92, 246, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.4);
+}
+
+.actividades-btn .btn-icon {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.actividades-btn:hover .btn-icon {
+  background: linear-gradient(135deg, #f87171, #ef4444);
+  transform: scale(1.1);
+  box-shadow: 
+    0 12px 30px rgba(239, 68, 68, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* =====================================================
+   CONTENIDO DE BOTONES MEJORADO
+   ===================================================== */
+.btn-content {
+  flex: 1;
+  text-align: left;
+}
+
+.btn-content h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.btn-content p {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.btn-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-arrow i {
+  color: white;
+  font-size: 1.1rem;
+}
+
+.nav-btn:hover .btn-arrow {
+  transform: translateX(5px) scale(1.1);
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.4);
+}
+
+/* =====================================================
+   DECORACIÓN NÁUTICA DE FONDO
+   ===================================================== */
+.background-decoration {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-icon {
+  position: absolute;
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.1);
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-icon.icon-1 {
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.floating-icon.icon-2 {
+  top: 50%;
+  right: 15%;
+  animation-delay: 1s;
+}
+
+.floating-icon.icon-3 {
+  bottom: 25%;
+  left: 20%;
+  animation-delay: 2s;
+}
+
+.floating-icon.icon-4 {
+  top: 30%;
+  right: 25%;
+  animation-delay: 3s;
+}
+
+.floating-icon.icon-5 {
+  bottom: 15%;
+  right: 10%;
+  animation-delay: 4s;
+}
+
+.floating-icon.icon-6 {
+  top: 70%;
+  left: 15%;
+  animation-delay: 5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+  66% {
+    transform: translateY(-10px) rotate(-3deg);
+  }
+}
+
+/* =====================================================
+   RESPONSIVE PARA LAPTOP Y DESKTOP
+   ===================================================== */
+@media (min-width: 769px) and (max-width: 1400px) {
+  .ark-header {
+    padding: 1.25rem 1rem;
+  }
+
+  .ark-title {
+    font-size: 3rem;
+  }
+
+  .navigation-message {
+    padding: 0.75rem 1rem 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .message-container {
+    padding: 1.25rem 1.75rem;
+  }
+
+  .message-title {
+    font-size: 1.8rem;
+  }
+
+  .ark-nav {
+    gap: 1.25rem;
+    padding: 0 1.5rem 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .nav-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    padding: 20px;
-    width: 220px;
-    height: 220px;
-    backdrop-filter: blur(10px);
-    display: flex;
+    padding: 1.25rem;
+    min-height: 90px;
+  }
+
+  .btn-icon {
+    width: 60px;
+    height: 60px;
+    margin-right: 1.25rem;
+  }
+
+  .btn-icon i {
+    font-size: 1.75rem;
+  }
+
+  .btn-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .btn-content p {
+    font-size: 0.9rem;
+  }
+}
+
+/* =====================================================
+   RESPONSIVE PARA TABLETS
+   ===================================================== */
+@media (max-width: 768px) {
+  .club-logo {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .logo-image {
+    width: 70px;
+    height: 70px;
+    padding: 6px;
+  }
+
+  .ark-header {
+    padding: 1rem;
+  }
+
+  .ark-title {
+    font-size: 2.5rem;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.4s, background 0.4s, box-shadow 0.4s;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    animation: floatBtn 3s ease-in-out infinite alternate;
-    opacity: 1;
+    gap: 0.5rem;
   }
-  
-  .nav-btn:hover {
-    transform: scale(1.07);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+
+  .ark-subtitle {
+    font-size: 1.1rem;
   }
-  
-  .nav-btn img {
-    width: 100%;
-    max-width: 160px;
-    max-height: 160px;
-    height: auto;
-    object-fit: contain;
-    margin-bottom: 10px;
-    display: block;
+
+  .ark-motto {
+    font-size: 0.95rem;
   }
-  
-  /* Header y botón de regreso */
-.museum-header {
-    text-align: center;
-    color: #ffffff;
-    font-size: 2em;
-    font-weight: bold;
-    padding: 20px 0;
-    text-shadow: 0 0 8px #00ffe5, 0 0 16px #66ffff;
-    animation: fadeInDown 1s ease-out;
+
+  .navigation-message {
+    padding: 0.75rem 1rem 1rem;
   }
-  
+
+  .message-container {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .message-title {
+    font-size: 1.6rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .ark-nav {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 1rem 1rem;
+  }
+
+  .nav-btn {
+    padding: 1.25rem;
+  }
+
+  .btn-icon {
+    width: 60px;
+    height: 60px;
+    margin-right: 1rem;
+  }
+
+  .btn-icon i {
+    font-size: 1.6rem;
+  }
+
   .back-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 1em;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: background 0.3s;
-    backdrop-filter: blur(8px);
-    z-index: 100;
+    top: 1.5rem;
+    left: 1.5rem;
   }
-  
-  .back-button:hover {
-    background: rgba(255, 255, 255, 0.2);
+}
+
+/* =====================================================
+   RESPONSIVE PARA MÓVILES
+   ===================================================== */
+@media (max-width: 480px) {
+  .club-logo {
+    top: 1rem;
+    right: 1rem;
   }
-  
-  .back-button img {
-    width: 20px;
-    margin-right: 10px;
+
+  .logo-image {
+    width: 60px;
+    height: 60px;
+    padding: 5px;
   }
-  
-  @keyframes fadeInDown {
-    0% {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+
+  .ark-title {
+    font-size: 2rem;
   }
-  
-  
-  @keyframes floatBtn {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0);
-    }
+
+  .ark-subtitle {
+    font-size: 1rem;
   }
-  
-  @keyframes glowText {
-    0% {
-      text-shadow: 0 0 6px #ffffff, 0 0 12px #00ffe5, 0 0 20px #66ffff;
-    }
-    100% {
-      text-shadow: 0 0 10px #ffffff, 0 0 18px #33ffff, 0 0 30px #99ffff;
-    }
+
+  .ark-motto {
+    font-size: 0.85rem;
+    flex-direction: column;
+    gap: 0.5rem;
   }
-  
-  @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      transform: translateY(20px) scale(0.95);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
+
+  .message-container {
+    padding: 1rem;
   }
+
+  .message-title {
+    font-size: 1.4rem;
+  }
+
+  .message-text,
+  .message-subtext {
+    font-size: 0.9rem;
+  }
+
+  .nav-btn {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+    min-height: auto;
+  }
+
+  .btn-icon {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    width: 55px;
+    height: 55px;
+  }
+
+  .btn-icon i {
+    font-size: 1.4rem;
+  }
+
+  .btn-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .btn-content p {
+    font-size: 0.85rem;
+  }
+
+  .btn-arrow {
+    margin-top: 0.75rem;
+    width: 35px;
+    height: 35px;
+  }
+
+  .btn-arrow i {
+    font-size: 1rem;
+  }
+
+  .back-button {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .back-button span {
+    font-size: 0.85rem;
+  }
+}

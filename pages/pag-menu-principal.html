@@ -2,32 +2,129 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Pantalla Museo - Museo Élite de Dios</title>
+  <title>Arca de Noé - Club Sear Jasub</title>
   <link rel="stylesheet" href="../assets/css/menu-principal.css" />
+  <!-- Font Awesome para iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="fade-out">
-  <div id="museum-screen" class="museum-screen">
-    <header class="museum-header">Museo Élite de Dios</header>
+  <div id="ark-screen" class="ark-screen">
+    
+    <!-- Logo del Club reubicado a la derecha -->
+    <div class="club-logo">
+      <img src="../assets/img/LOGO-CLUB-SEAR-JASUB.png" alt="Logo Club Sear Jasub" class="logo-image">
+    </div>
+    
+    <!-- Encabezado del Arca optimizado -->
+    <header class="ark-header">
+      <div class="header-content">        
+        <h1 class="ark-title">
+          <i class="fas fa-ship ark-icon"></i>
+          Arca de Noé
+        </h1>
+        <p class="ark-subtitle">Club de Aventureros Sear Jasub</p>
+        <div class="ark-motto">
+          <i class="fas fa-anchor"></i>
+          <span>Navegando juntos hacia nuevas aventuras</span>
+          <i class="fas fa-anchor"></i>
+        </div>
+      </div>
+    </header>
 
+    <!-- Botón de regreso mejorado -->
     <button class="back-button" onclick="window.location.href='../index.html'">
-      <img src="../assets/img/ICONO_Home.png" alt="Volver al inicio">
-      Volver al inicio
+      <i class="fas fa-home"></i>
+      <span>Regresar a Puerto</span>
     </button>
 
-    <nav class="museum-nav">
-      <button class="nav-btn" onclick="window.location.href='nuestra-historia.html'">
-        <img src="../assets/img/ICONOS_PAG_Nuestra_historia.png" alt="Nuestra Historia">
-      </button>      
-      <button class="nav-btn" onclick="window.location.href='miembros.html'">
-        <img src="../assets/img/ICONOS_PAG_Miembros.png" alt="Miembros">
+    <!-- Mensaje de navegación -->
+    <div class="navigation-message">
+      <div class="message-container">
+        <h2 class="message-title">
+          <i class="fas fa-map-marked-alt"></i>
+          ¡Explora las Cubiertas del Arca!
+        </h2>
+        <p class="message-text">
+          Descubre cada rincón de nuestra embarcación y conoce las 
+          <span class="highlight">increíbles aventuras</span> de nuestros valientes tripulantes.
+        </p>
+        <p class="message-subtext">
+          Cada cubierta guarda historias únicas de nuestra travesía como familia de aventureros.
+        </p>
+        <div class="adventure-indicator">
+          <i class="fas fa-compass"></i>
+          <span>Elige tu destino en el arca</span>
+          <i class="fas fa-arrow-down"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navegación por cubiertas del arca -->
+    <nav class="ark-nav">
+      <button class="nav-btn historia-btn" onclick="window.location.href='nuestra-historia.html'">
+        <div class="btn-icon">
+          <i class="fas fa-scroll"></i>
+        </div>
+        <div class="btn-content">
+          <h3>Bitácora del Arca</h3>
+          <p>Nuestra travesía desde el inicio</p>
+        </div>
+        <div class="btn-arrow">
+          <i class="fas fa-chevron-right"></i>
+        </div>
       </button>
-      <button class="nav-btn" onclick="window.location.href='fotos.html'">
-        <img src="../assets/img/ICONOS_PAG_Fotos.png" alt="Fotos">
+      
+      <button class="nav-btn miembros-btn" onclick="window.location.href='miembros.html'">
+        <div class="btn-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="btn-content">
+          <h3>Tripulación</h3>
+          <p>Conoce a nuestros aventureros</p>
+        </div>
+        <div class="btn-arrow">
+          <i class="fas fa-chevron-right"></i>
+        </div>
       </button>
-      <button class="nav-btn" onclick="window.location.href='actividades.html'">
-        <img src="../assets/img/ICONOS_PAG_Actividades.png" alt="Actividades">
+      
+      <button class="nav-btn fotos-btn" onclick="window.location.href='fotos.html'">
+        <div class="btn-icon">
+          <i class="fas fa-camera-retro"></i>
+        </div>
+        <div class="btn-content">
+          <h3>Recuerdos de Viaje</h3>
+          <p>Momentos capturados en el mar</p>
+        </div>
+        <div class="btn-arrow">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </button>
+      
+      <button class="nav-btn actividades-btn" onclick="window.location.href='actividades.html'">
+        <div class="btn-icon">
+          <i class="fas fa-anchor"></i>
+        </div>
+        <div class="btn-content">
+          <h3>Aventuras Náuticas</h3>
+          <p>Nuestras expediciones épicas</p>
+        </div>
+        <div class="btn-arrow">
+          <i class="fas fa-chevron-right"></i>
+        </div>
       </button>
     </nav>
+
+    <!-- Decoración náutica de fondo -->
+    <div class="background-decoration">
+      <div class="floating-icon icon-1"><i class="fas fa-anchor"></i></div>
+      <div class="floating-icon icon-2"><i class="fas fa-ship"></i></div>
+      <div class="floating-icon icon-3"><i class="fas fa-life-ring"></i></div>
+      <div class="floating-icon icon-4"><i class="fas fa-compass"></i></div>
+      <div class="floating-icon icon-5"><i class="fas fa-fish"></i></div>
+      <div class="floating-icon icon-6"><i class="fas fa-whale"></i></div>
+    </div>
   </div>
 
   <script>
@@ -35,7 +132,6 @@
       document.body.classList.remove("fade-out");
       document.body.classList.add("fade-in");
     });
-  </script>  
-  <!-- <script src="../assets/js/museum-navigation.js"></script> -->
+  </script>
 </body>
 </html>

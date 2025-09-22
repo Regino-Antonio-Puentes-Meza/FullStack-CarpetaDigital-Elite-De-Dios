@@ -2,86 +2,392 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Galería Museo - Museo Élite de Dios</title>
+  <title>Recuerdos de Viaje - Club Sear Jasub</title>
   <link rel="stylesheet" href="../assets/css/fotos.css" />
+  <!-- Font Awesome para iconos náuticos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Google Fonts para mejor tipografía -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header class="gallery-header">
-    <a href="museum.html" class="back-button">← Regresar al Museo Principal</a>
-    <h1>Museo Élite de Dios</h1>
-    <h2>Exposición Fotográfica</h2>
-  </header>
-
-  <!-- Carrusel superior -->
-  <div class="carousel-container">
-    <img id="carousel-img" src="" alt="Carrusel" />
+<body class="fade-out">
+  <!-- Logo del Club reubicado a la derecha -->
+  <div class="club-logo-container">
+    <img src="../assets/img/LOGO-CLUB-SEAR-JASUB.png" alt="Logo Club Sear Jasub" class="club-logo">
   </div>
 
-  <!-- Galería tipo museo -->
-  <div class="gallery-museum">
-    <div class="gallery-grid" id="gallery">
-      <!-- Las fotos se insertan automáticamente -->
+  <!-- Encabezado náutico de la galería -->
+  <header class="gallery-header">
+    <div class="header-content">
+      <h1 class="gallery-title">
+        <i class="fas fa-camera-retro"></i>
+        Recuerdos de Viaje
+      </h1>
+      <p class="gallery-subtitle">Club de Aventuras Sear Jasub</p>
+      <div class="gallery-motto">
+        <i class="fas fa-images"></i>
+        <span>Momentos capturados en el mar</span>
+        <i class="fas fa-anchor"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Botón de regreso mejorado -->
+  <button class="back-button" onclick="window.location.href='pag-menu-principal.html'">
+    <i class="fas fa-arrow-left"></i>
+    <span>Regresar al Arca</span>
+  </button>
+
+  <!-- Introducción de la galería -->
+  <div class="gallery-intro">
+    <div class="intro-container">
+      <h2 class="intro-title">
+        <i class="fas fa-map-marked-alt"></i>
+        Galería de Aventuras
+      </h2>
+      <p class="intro-text">
+        Explora nuestra <span class="highlight">colección de recuerdos</span> capturados durante 
+        nuestras emocionantes travesías y aventuras como tripulación del Arca Sear Jasub.
+      </p>
+      <p class="intro-subtext">
+        Cada fotografía cuenta una historia única de compañerismo, descubrimiento 
+        y los momentos especiales que hemos vivido juntos en el mar.
+      </p>
+      <div class="photo-counter">
+        <i class="fas fa-camera"></i>
+        <span id="total-photos">Cargando aventuras...</span>
+      </div>
     </div>
   </div>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox">
-    <button id="prevBtn" class="nav-btn" onclick="showPrev()">❮</button>
-    <img id="lightbox-img" src="" alt="Imagen Ampliada">
-    <button id="nextBtn" class="nav-btn" onclick="showNext()">❯</button>
-    <button id="closeBtn" onclick="closeLightbox()">✕</button>
+  <!-- Slideshow principal -->
+  <div class="slideshow-section">
+    <div class="slideshow-header">
+      <h2 class="slideshow-title">
+        <i class="fas fa-play-circle"></i>
+        Presentación de Aventuras
+      </h2>
+      <p class="slideshow-subtitle">Disfruta de nuestros mejores momentos</p>
+      <div class="slideshow-controls">
+        <button class="control-btn" onclick="pauseSlideshow()">
+          <i class="fas fa-pause"></i>
+        </button>
+        <button class="control-btn" onclick="playSlideshow()">
+          <i class="fas fa-play"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="slideshow-container">
+      <div class="slideshow-wrapper">
+        <div class="slide active">
+          <img id="slideshow-img" src="" alt="Aventura" />
+        </div>
+      </div>
+      <div class="slideshow-indicators" id="slideshow-indicators">
+        <!-- Indicadores generados dinámicamente -->
+      </div>
+      <div class="slideshow-info">
+        <h4 id="slideshow-title">Aventura del Arca</h4>
+        <p id="slideshow-description">Momentos especiales de nuestra tripulación</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Galería principal -->
+  <div class="gallery-section">
+    <h2 class="gallery-section-title">
+      <i class="fas fa-images"></i>
+      Colección de Recuerdos
+    </h2>
+    <div class="photo-gallery" id="photo-gallery">
+      <!-- Fotos cargadas dinámicamente -->
+    </div>
+  </div>
+
+  <!-- Modal de foto ampliada -->
+  <div id="photo-modal" class="photo-modal">
+    <button class="nav-arrow nav-arrow-left" onclick="previousPhoto()">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="nav-arrow nav-arrow-right" onclick="nextPhoto()">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+    <div class="modal-close" onclick="closeModal()">
+      <i class="fas fa-times"></i>
+    </div>
+    
+    <div class="modal-content">
+      <div class="modal-image-container">
+        <img id="modalImage" src="" alt="Foto ampliada" />
+      </div>
+      <div class="modal-info">
+        <h3 id="modalTitle">Recuerdo de Aventura</h3>
+        <p id="modalDescription">Momento especial capturado durante nuestras travesías</p>
+        <div class="modal-meta">
+          <div id="modalDate">
+            <i class="fas fa-calendar"></i>
+            <span>Aventura memorable</span>
+          </div>
+          <div class="photo-counter-simple">
+            <span id="photoCounter">1 / 1</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="keyboard-hint">
+      <span>Usa ← → para navegar, ESC para cerrar</span>
+    </div>
+  </div>
+
+  <!-- Decoración náutica de fondo -->
+  <div class="background-decoration">
+    <div class="floating-icon icon-1"><i class="fas fa-anchor"></i></div>
+    <div class="floating-icon icon-2"><i class="fas fa-ship"></i></div>
+    <div class="floating-icon icon-3"><i class="fas fa-life-ring"></i></div>
+    <div class="floating-icon icon-4"><i class="fas fa-compass"></i></div>
+    <div class="floating-icon icon-5"><i class="fas fa-fish"></i></div>
+    <div class="floating-icon icon-6"><i class="fas fa-whale"></i></div>
   </div>
 
   <script>
-    let images = [];
-    let currentIndex = 0;
-    let carouselIndex = 0;
+    let photos = [];
+    let currentPhotoIndex = 0;
+    let slideshowInterval;
+    let isPlaying = true;
 
-    function openLightbox(img) {
-      document.getElementById("lightbox-img").src = img.src;
-      document.getElementById("lightbox").classList.add("visible");
-      currentIndex = images.indexOf(img.src);
-    }
+    document.addEventListener("DOMContentLoaded", () => {
+      // Animación de entrada
+      document.body.classList.remove("fade-out");
+      document.body.classList.add("fade-in");
 
-    function closeLightbox() {
-      document.getElementById("lightbox").classList.remove("visible");
-    }
+      loadPhotos();
+    });
 
-    function showNext() {
-      currentIndex = (currentIndex + 1) % images.length;
-      document.getElementById("lightbox-img").src = images[currentIndex];
-    }
-
-    function showPrev() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      document.getElementById("lightbox-img").src = images[currentIndex];
-    }
-
-    fetch('../assets/data/fotos.json')
-      .then(res => res.json())
-      .then(data => {
-        images = data;
-        const gallery = document.getElementById('gallery');
-        const carouselImg = document.getElementById('carousel-img');
-
-        data.forEach(src => {
-          const img = document.createElement('img');
-          img.src = src;
-          img.alt = "Foto";
-          img.classList.add('museum-frame');
-          img.onclick = () => openLightbox(img);
-          gallery.appendChild(img);
+    function loadPhotos() {
+      fetch('../assets/data/fotos.json')
+        .then(res => res.json())
+        .then(data => {
+          photos = data;
+          createGallery();
+          createSlideshow();
+          updatePhotoCounter();
+        })
+        .catch(error => {
+          console.error('Error cargando fotos:', error);
+          showErrorMessage();
         });
+    }
 
-        // Mostrar imagen inicial del carrusel
-        if (data.length > 0) {
-          carouselImg.src = data[0];
-          setInterval(() => {
-            carouselIndex = (carouselIndex + 1) % data.length;
-            carouselImg.src = data[carouselIndex];
-          }, 2000);
-        }
+    function createGallery() {
+      const gallery = document.getElementById('photo-gallery');
+      
+      if (photos.length === 0) {
+        showNoPhotosMessage();
+        return;
+      }
+
+      photos.forEach((photo, index) => {
+        const photoItem = document.createElement('div');
+        photoItem.className = 'photo-item';
+        photoItem.style.animationDelay = `${index * 0.1}s`;
+        
+        photoItem.innerHTML = `
+          <div class="photo-card" onclick="openModal(${index})">
+            <div class="photo-image-container">
+              <img src="${photo}" alt="Recuerdo ${index + 1}" loading="lazy" />
+              <div class="photo-overlay">
+                <div class="photo-info">
+                  <h3>Aventura Memorable</h3>
+                  <p>Momento especial de nuestra tripulación</p>
+                  <div class="photo-date">
+                    <i class="fas fa-calendar"></i>
+                    <span>Recuerdo del Arca</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="view-btn">
+              <i class="fas fa-search-plus"></i>
+            </button>
+          </div>
+        `;
+        
+        gallery.appendChild(photoItem);
       });
+    }
+
+    function createSlideshow() {
+      if (photos.length === 0) return;
+
+      const slideshowImg = document.getElementById('slideshow-img');
+      const indicators = document.getElementById('slideshow-indicators');
+      
+      // Mostrar primera imagen
+      slideshowImg.src = photos[0];
+      
+      // Crear indicadores
+      photos.forEach((_, index) => {
+        const indicator = document.createElement('button');
+        indicator.className = `indicator ${index === 0 ? 'active' : ''}`;
+        indicator.onclick = () => goToSlide(index);
+        indicators.appendChild(indicator);
+      });
+      
+      // Iniciar slideshow automático
+      startSlideshow();
+    }
+
+    function startSlideshow() {
+      slideshowInterval = setInterval(() => {
+        if (isPlaying) {
+          nextSlide();
+        }
+      }, 4000);
+    }
+
+    function nextSlide() {
+      currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+      updateSlideshow();
+    }
+
+    function goToSlide(index) {
+      currentPhotoIndex = index;
+      updateSlideshow();
+    }
+
+    function updateSlideshow() {
+      const slideshowImg = document.getElementById('slideshow-img');
+      const indicators = document.querySelectorAll('.indicator');
+      
+      slideshowImg.src = photos[currentPhotoIndex];
+      
+      indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentPhotoIndex);
+      });
+    }
+
+    function pauseSlideshow() {
+      isPlaying = false;
+    }
+
+    function playSlideshow() {
+      isPlaying = true;
+    }
+
+    function openModal(index) {
+      currentPhotoIndex = index;
+      const modal = document.getElementById('photo-modal');
+      const modalImage = document.getElementById('modalImage');
+      const photoCounter = document.getElementById('photoCounter');
+      
+      modalImage.src = photos[index];
+      photoCounter.textContent = `${index + 1} / ${photos.length}`;
+      
+      // Detectar orientación de imagen
+      const img = new Image();
+      img.onload = function() {
+        if (this.height > this.width) {
+          modalImage.classList.add('vertical-image');
+          modalImage.classList.remove('horizontal-image');
+        } else {
+          modalImage.classList.add('horizontal-image');
+          modalImage.classList.remove('vertical-image');
+        }
+      };
+      img.src = photos[index];
+      
+      modal.style.display = 'flex';
+      document.addEventListener('keydown', handleKeyboardNavigation);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('photo-modal');
+      modal.style.display = 'none';
+      document.removeEventListener('keydown', handleKeyboardNavigation);
+    }
+
+    function previousPhoto() {
+      currentPhotoIndex = currentPhotoIndex > 0 ? currentPhotoIndex - 1 : photos.length - 1;
+      updateModalPhoto();
+    }
+
+    function nextPhoto() {
+      currentPhotoIndex = currentPhotoIndex < photos.length - 1 ? currentPhotoIndex + 1 : 0;
+      updateModalPhoto();
+    }
+
+    function updateModalPhoto() {
+      const modalImage = document.getElementById('modalImage');
+      const photoCounter = document.getElementById('photoCounter');
+      
+      modalImage.style.opacity = '0';
+      
+      setTimeout(() => {
+        modalImage.src = photos[currentPhotoIndex];
+        photoCounter.textContent = `${currentPhotoIndex + 1} / ${photos.length}`;
+        
+        // Detectar orientación
+        const img = new Image();
+        img.onload = function() {
+          if (this.height > this.width) {
+            modalImage.classList.add('vertical-image');
+            modalImage.classList.remove('horizontal-image');
+          } else {
+            modalImage.classList.add('horizontal-image');
+            modalImage.classList.remove('vertical-image');
+          }
+          modalImage.style.opacity = '1';
+        };
+        img.src = photos[currentPhotoIndex];
+      }, 150);
+    }
+
+    function handleKeyboardNavigation(event) {
+      switch(event.key) {
+        case 'ArrowLeft':
+          previousPhoto();
+          break;
+        case 'ArrowRight':
+          nextPhoto();
+          break;
+        case 'Escape':
+          closeModal();
+          break;
+      }
+    }
+
+    function updatePhotoCounter() {
+      const counter = document.getElementById('total-photos');
+      counter.textContent = `${photos.length} recuerdos de aventuras`;
+    }
+
+    function showErrorMessage() {
+      const gallery = document.getElementById('photo-gallery');
+      gallery.innerHTML = `
+        <div class="error-message">
+          <i class="fas fa-exclamation-triangle"></i>
+          <p>Error al cargar las fotografías</p>
+        </div>
+      `;
+    }
+
+    function showNoPhotosMessage() {
+      const gallery = document.getElementById('photo-gallery');
+      gallery.innerHTML = `
+        <div class="no-photos-message">
+          <i class="fas fa-camera"></i>
+          <p>Próximamente nuevas aventuras</p>
+        </div>
+      `;
+    }
+
+    // Cerrar modal al hacer clic fuera de la imagen
+    document.getElementById('photo-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
   </script>
 </body>
 </html>
