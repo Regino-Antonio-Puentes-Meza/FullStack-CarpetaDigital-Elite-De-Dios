@@ -1,102 +1,391 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
-  <title>Nuestra Historia - Museo Élite de Dios</title>
-  <link rel="stylesheet" href="../assets/css/nuestra-historia.css" />
+  <title>Bitácora del Arca - Club Sear Jasub</title>
+  <link rel="stylesheet" href="../assets/css/historia.css" />
+  <!-- Font Awesome para iconos náuticos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Google Fonts para mejor tipografía -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"rel="stylesheet">
 </head>
-<body>
-  <header class="page-header">
-    <a href="./museum.html" class="back-link">⬅ Volver al Museo Principal</a>
-    <h1>Museo Élite de Dios</h1>
-    <h2>Exposición de Nuestra Historia</h2>
+
+<body class="fade-out">
+  <!-- Logo del Club reubicado a la derecha -->
+  <div class="club-logo-container">
+    <img src="../assets/img/LOGO-CLUB-SEAR-JASUB.png" alt="Logo Club Sear Jasub" class="club-logo">
+  </div>
+
+  <!-- Visor PDF tipo museo náutico -->
+  <div id="pdfModal" class="pdf-modal">
+    <div class="pdf-content">
+      <button class="close-pdf" onclick="cerrarPDF()">
+        <i class="fas fa-times"></i>
+      </button>
+      <iframe id="pdfViewer" src="" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Encabezado náutico de la historia -->
+  <header class="history-header">
+    <div class="header-content">
+      <h1 class="history-title">
+        <i class="fas fa-scroll"></i>
+        Bitácora del Arca
+      </h1>
+      <p class="history-subtitle">Club de Aventuras Sear Jasub</p>
+      <div class="history-motto">
+        <i class="fas fa-compass"></i>
+        <span>Navegando juntos hacia nuevos horizontes</span>
+        <i class="fas fa-anchor"></i>
+      </div>
+    </div>
   </header>
 
-  <nav class="section-nav">
-    <ul>
-      <li><a href="#quienes">¿Quiénes Somos?</a></li>
-      <li><a href="#valores">Valores</a></li>
-      <li><a href="#vision-mision">Visión y Misión</a></li>
-      <li><a href="#historia-pdf">Nuestra Historia</a></li>
+  <!-- Botón de regreso mejorado -->
+  <button class="back-button" onclick="window.location.href='pag-menu-principal.html'">
+    <i class="fas fa-arrow-left"></i>
+    <span>Regresar al Arca</span>
+  </button>
 
-    </ul>
-  </nav>
+  <!-- Contenido principal -->
+  <div class="history-content">
 
-  <main class="page-content">
-    <section id="quienes">
-      <h2>¿Quiénes Somos?</h2>
-      <p>El Club de Guías Mayores Élite de Dios, de la Universidad Adventista de Colombia (UNAC) nació en el año 2013 con el firme propósito de formar líderes apasionados por el servicio a Dios y a la humanidad. Desde nuestros inicios, hemos mantenido el ideal de colocar a Dios en primer lugar en cada desafío, aventura y misión que emprendemos. Más que un club, somos una familia comprometida con el crecimiento espiritual, el desarrollo del carácter y la preparación para el servicio, siguiendo el ejemplo de Cristo. A través de experiencias al aire libre, capacitación en liderazgo y proyectos comunitarios, buscamos impactar vidas y reflejar el amor de Dios en todo lo que hacemos.</p>
-    </section>
-
-    <section id="valores">
-      <h2>Valores que nos Guían</h2>
-      <ul>
-        <li><strong>Compromiso:</strong> Fieles al llamado de Dios.</li>
-        <li><strong>Liderazgo:</strong> Inspirar con el ejemplo.</li>
-        <li><strong>Servicio:</strong> Amar sirviendo a otros.</li>
-        <li><strong>Excelencia:</strong> Dar lo mejor en cada paso.</li>
-      </ul>
-    </section>
-
-    <section class="vision-mision-container" id="vision-mision">
-      <img src="../assets/img/logo_campamento.png" alt="Logo Museo Élite" class="logo-decorativo" />
-
-      <div class="vision-mision">
-        <div class="card">
-          <h3>Visión</h3>
-          <p>Para el año 2026, cada miembro involucrado, preparado para la segunda venida del Señor Jesús...</p>
+    <!-- Sección Misión -->
+    <section class="organizational-section">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-icon mission-icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h2 class="section-title">Nuestra Misión</h2>
         </div>
-        <div class="card">
-          <h3>Misión</h3>
-          <p>Avivar el carácter de Cristo en nuestros Guías Mayores, teniendo como principio la unión y el servicio...</p>
-        </div>
-        <div class="card">
-          <h3>Propósitos</h3>
-          <ul>
-            <li>Educar integralmente a los menores para fomentar su relación con Dios...</li>
-            <li>Alcanzar la investidura final en la eternidad junto a nuestro Señor Jesús.</li>
-          </ul>
+        <div class="section-content">
+          <p class="section-text">
+            El <span class="highlight">Club de Aventureros Sear Jasub</span> tiene como misión
+            trabajar por los niños desde la edad de preescolar hasta cuarto grado para ayudar
+            a los padres en el fortalecimiento espiritual, social y moral para que así puedan
+            crecer como seguidores de Jesús y llevar Esperanza al mundo.
+          </p>
+          <p class="section-text">
+            Esto incluye proporcionar un ambiente seguro y estimulante, promover el desarrollo
+            de habilidades para la vida, y fomentar el amor por la infancia. Además, trabajamos
+            para que el club se alinee con la misión y visión de la iglesia, asegurando que
+            todas las actividades y planes estén alineados con los objetivos de la iglesia.
+          </p>
         </div>
       </div>
     </section>
 
-    <section id="historia-pdf" class="historia-pdf-section">
-      <h2>Nuestra Historia</h2>
-      <iframe 
-        src="../assets/docs/nuestra-historia.pdf"
-        width="100%" 
-        height="700px"
-        frameborder="0"
-        allowfullscreen
-      ></iframe>
-    </section>
-    
-  </main>
+    <!-- Sección Visión -->
+    <section class="organizational-section">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-icon vision-icon">
+            <i class="fas fa-telescope"></i>
+          </div>
+          <h2 class="section-title">Nuestra Visión</h2>
+        </div>
+        <div class="section-content">
+          <p class="section-text">
+            El <span class="highlight">Club de Aventureros Sear Jasub</span> se centra en ayudar a los niños
+            a desarrollar una relación personal con Dios y a crecer en su fe de una manera divertida y emocionante,
+            tomados de la mano de Jesús seremos esos instrumentos que terminaremos la misión de Jesús y
+            con alegría salvaremos al pecador.
+          </p>
+          <div class="vision-mission-statement">
+            <h4 class="mission-statement-title">
+              <i class="fas fa-cross"></i>
+              Desarrollar niños que saben cómo:
+            </h4>
+            <div class="development-goals-professional">
+              <div class="professional-goal-item">
+                <div class="goal-number-professional">
+                  <span class="number-text">1</span>
+                  <div class="number-decoration">
+                    <i class="fas fa-search"></i>
+                  </div>
+                </div>
+                <div class="goal-content-professional">
+                  <div class="goal-text-container">
+                    <p class="goal-main-text">Descubrir verdades sobre Dios por sí mismos.</p>
+                    <div class="goal-enhancement">
+                      <i class="fas fa-lightbulb"></i>
+                      <span>Exploración espiritual autónoma</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-  <!-- Popup para tarjetas -->
-  <div class="popup-overlay" id="popup">
-    <div class="popup-content" id="popup-content">
-      <button class="popup-close" onclick="closePopup()">✖</button>
-    </div>
+              <div class="professional-goal-item">
+                <div class="goal-number-professional">
+                  <span class="number-text">2</span>
+                  <div class="number-decoration">
+                    <i class="fas fa-brain"></i>
+                  </div>
+                </div>
+                <div class="goal-content-professional">
+                  <div class="goal-text-container">
+                    <p class="goal-main-text">Pensar y lograr entender por sí mismos quién es Dios y por qué esa verdad
+                      sobre Él es buena para ellos y para el mundo.</p>
+                    <div class="goal-enhancement">
+                      <i class="fas fa-puzzle-piece"></i>
+                      <span>Comprensión reflexiva y personal</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="professional-goal-item">
+                <div class="goal-number-professional">
+                  <span class="number-text">3</span>
+                  <div class="number-decoration">
+                    <i class="fas fa-heart"></i>
+                  </div>
+                </div>
+                <div class="goal-content-professional">
+                  <div class="goal-text-container">
+                    <p class="goal-main-text">Procesar qué significa para ellos vivir diariamente con Dios en sus vidas.
+                    </p>
+                    <div class="goal-enhancement">
+                      <i class="fas fa-route"></i>
+                      <span>Aplicación práctica de la fe</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="vision-elements">
+            <div class="vision-card">
+              <div class="vision-card-icon">
+                <i class="fas fa-praying-hands"></i>
+              </div>
+              <h4>Relación Personal</h4>
+              <p>Fomentamos una conexión íntima y personal con Dios</p>
+            </div>
+            <div class="vision-card">
+              <div class="vision-card-icon">
+                <i class="fas fa-child"></i>
+              </div>
+              <h4>Crecimiento en Fe</h4>
+              <p>Desarrollo espiritual divertido y emocionante para niños</p>
+            </div>
+            <div class="vision-card">
+              <div class="vision-card-icon">
+                <i class="fas fa-hands-helping"></i>
+              </div>
+              <h4>Misión de Jesús</h4>
+              <p>Instrumentos para completar la obra salvadora de Cristo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Propósito -->
+    <section class="organizational-section">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-icon purpose-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <h2 class="section-title">Nuestro Propósito</h2>
+        </div>
+        <div class="section-content">
+          <p class="section-text">
+            El <span class="highlight">Club de Aventureros Sear Jasub</span> tiene como propósito
+            ser un faro de formación cristiana integral que guíe a los niños hacia una relación
+            profunda y significativa con Dios, transformando sus vidas y las de sus comunidades.
+          </p>
+          <div class="purpose-elements">
+            <div class="purpose-item">
+              <div class="purpose-number">1</div>
+              <div class="purpose-content">
+                <h4>Formación y Guía Espiritual</h4>
+                <p>Formar y guiar a los niños en su crecimiento espiritual y en su relación con Dios. Esto se logra a
+                  través de actividades y experiencias que fomentan la adoración, el servicio, el carácter, el
+                  evangelismo y el discipulado.</p>
+              </div>
+            </div>
+            <div class="purpose-item">
+              <div class="purpose-number">2</div>
+              <div class="purpose-content">
+                <h4>Incremento de la Formación Cristiana</h4>
+                <p>Incrementar la formación cristiana en los niños, ayudándoles a desarrollar un amor profundo por Dios
+                  y su familia.</p>
+              </div>
+            </div>
+            <div class="purpose-item">
+              <div class="purpose-number">3</div>
+              <div class="purpose-content">
+                <h4>Estilo de Vida Según la Voluntad de Dios</h4>
+                <p>Promover un estilo de vida que refleja la voluntad de Dios, y que espiritualmente unido a Él, lo que
+                  les permitirá vivir de manera significativa y eterna.</p>
+              </div>
+            </div>
+            <div class="purpose-item">
+              <div class="purpose-number">4</div>
+              <div class="purpose-content">
+                <h4>Trabajo Comunitario con Amor</h4>
+                <p>Involucrarnos en el trabajo a la Comunidad por medio de actividades sociales que impacten la vida de
+                  las personas que le servimos con amor.</p>
+              </div>
+            </div>
+            <div class="purpose-item">
+              <div class="purpose-number">5</div>
+              <div class="purpose-content">
+                <h4>Crecimiento Espiritual y Personal</h4>
+                <p>Tener un crecimiento espiritual y personal con Cristo para poder tener una relación más íntima con
+                  Dios.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Historia (PDF) -->
+    <section class="organizational-section">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="section-icon history-icon">
+            <i class="fas fa-ship"></i>
+          </div>
+          <h2 class="section-title">Nuestra Travesía</h2>
+        </div>
+        <div class="section-content">
+          <div class="history-intro">
+            <p class="section-text">
+              Descubre la <span class="highlight">fascinante historia</span> de nuestro club,
+              desde sus humildes comienzos hasta convertirse en la gran familia de aventureros
+              que somos hoy. Cada página de nuestra bitácora cuenta momentos únicos de fe,
+              amistad y crecimiento espiritual.
+            </p>
+            <p class="section-subtext">
+              Nuestra historia está escrita con lágrimas de gozo, risas compartidas y
+              la inquebrantable certeza de que Dios guía cada paso de nuestro camino.
+            </p>
+          </div>
+
+          <!-- Botón para abrir PDF de historia -->
+          <div class="history-pdf-section">
+            <button class="view-history-pdf" onclick="abrirPDF('../assets/docs/historia-club-Sear-Jasub.pdf')">
+              <div class="pdf-icon">
+                <i class="fas fa-file-alt"></i>
+              </div>
+              <div class="pdf-content-text">
+                <h4>Leer Nuestra Historia Completa</h4>
+                <p>Documento PDF con todos los detalles de nuestra travesía</p>
+              </div>
+              <div class="pdf-arrow">
+                <i class="fas fa-external-link-alt"></i>
+              </div>
+            </button>
+          </div>
+
+          <!-- Cronología visual resumida -->
+          <div class="history-timeline">
+            <h4 class="timeline-title">
+              <i class="fas fa-clock"></i>
+              Momentos Destacados
+            </h4>
+            <div class="timeline-items">
+              <div class="timeline-item">
+                <div class="timeline-marker">
+                  <i class="fas fa-seedling"></i>
+                </div>
+                <div class="timeline-content">
+                  <h5>Fundación</h5>
+                  <p>Nacimiento del club con valores cristianos sólidos</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-marker">
+                  <i class="fas fa-users"></i>
+                </div>
+                <div class="timeline-content">
+                  <h5>Crecimiento</h5>
+                  <p>Expansión de nuestra comunidad de jóvenes</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-marker">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <div class="timeline-content">
+                  <h5>Consolidación</h5>
+                  <p>Fortalecimiento de lazos y tradiciones</p>
+                </div>
+              </div>
+              <div class="timeline-item current">
+                <div class="timeline-marker">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="timeline-content">
+                  <h5>Presente</h5>
+                  <p>Líderes en formación cristiana juvenil</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Decoración náutica de fondo -->
+  <div class="background-decoration">
+    <div class="floating-icon icon-1"><i class="fas fa-anchor"></i></div>
+    <div class="floating-icon icon-2"><i class="fas fa-ship"></i></div>
+    <div class="floating-icon icon-3"><i class="fas fa-life-ring"></i></div>
+    <div class="floating-icon icon-4"><i class="fas fa-compass"></i></div>
+    <div class="floating-icon icon-5"><i class="fas fa-cross"></i></div>
+    <div class="floating-icon icon-6"><i class="fas fa-dove"></i></div>
   </div>
 
   <script>
-    const popup = document.getElementById("popup");
-    const popupContent = document.getElementById("popup-content");
+    document.addEventListener("DOMContentLoaded", () => {
+      // Animación de entrada
+      document.body.classList.remove("fade-out");
+      document.body.classList.add("fade-in");
 
-    document.querySelectorAll(".card").forEach(card => {
-      card.addEventListener("click", () => {
-        const clone = card.cloneNode(true);
-        clone.classList.remove("card");
-        popupContent.appendChild(clone);
-        popup.classList.add("visible");
+      // Animación de aparición de secciones
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+          }
+        });
+      }, observerOptions);
+
+      // Observar todas las secciones organizacionales
+      document.querySelectorAll('.organizational-section').forEach(section => {
+        observer.observe(section);
       });
     });
 
-    function closePopup() {
-      popup.classList.remove("visible");
-      popupContent.innerHTML = '<button class="popup-close" onclick="closePopup()">✖</button>';
+    function abrirPDF(ruta) {
+      const modal = document.getElementById("pdfModal");
+      const viewer = document.getElementById("pdfViewer");
+      viewer.src = ruta;
+      modal.classList.add("visible");
+    }
+
+    function cerrarPDF() {
+      const modal = document.getElementById("pdfModal");
+      const viewer = document.getElementById("pdfViewer");
+      viewer.src = "";
+      modal.classList.remove("visible");
     }
   </script>
 </body>
+
 </html>

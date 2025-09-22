@@ -1,0 +1,1935 @@
+/* =====================================================
+   RESET Y CONFIGURACIÓN BÁSICA
+   ===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* =====================================================
+   TRANSICIONES DE PÁGINA
+   ===================================================== */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out;
+}
+
+/* =====================================================
+   PANTALLA PRINCIPAL DE LA HISTORIA
+   ===================================================== */
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, 
+    #0f172a 0%, 
+    #1e293b 25%, 
+    #334155 50%, 
+    #475569 75%, 
+    #64748b 100%);
+  background-size: 400% 400%;
+  animation: historyGradient 25s ease infinite;
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 2rem;
+}
+
+@keyframes historyGradient {
+  0%, 100% { background-position: 0% 50%; }
+  33% { background-position: 50% 25%; }
+  66% { background-position: 100% 75%; }
+}
+
+/* =====================================================
+   LOGO DEL CLUB REUBICADO A LA DERECHA
+   ===================================================== */
+.club-logo-container {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1001;
+  animation: logoAppear 1s ease-out 0.5s both;
+}
+
+.club-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 8px;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(59, 130, 246, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.club-logo:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 
+    0 12px 35px rgba(59, 130, 246, 0.25),
+    0 6px 16px rgba(0, 0, 0, 0.15);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+@keyframes logoAppear {
+  0% {
+    opacity: 0;
+    transform: translateX(100px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* =====================================================
+   ENCABEZADO DE LA HISTORIA
+   ===================================================== */
+.history-header {
+  text-align: center;
+  padding: 1.5rem 1rem 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.history-title {
+  font-family: 'Cinzel', serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(255, 255, 255, 0.3);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.history-title i {
+  color: #fbbf24;
+  animation: scrollGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes scrollGlow {
+  0% { opacity: 1; transform: rotate(0deg); }
+  100% { opacity: 0.7; transform: rotate(5deg); }
+}
+
+.history-subtitle {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.history-motto {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #e2e8f0;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.history-motto i {
+  color: #fbbf24;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* =====================================================
+   BOTÓN DE REGRESO
+   ===================================================== */
+.back-button {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(251, 191, 36, 0.5);
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: #1e293b;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(30, 41, 59, 0.3);
+}
+
+.back-button i {
+  font-size: 1.2rem;
+  color: #0891b2;
+}
+
+/* =====================================================
+   CONTENIDO PRINCIPAL
+   ===================================================== */
+.history-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* =====================================================
+   SECCIONES ORGANIZACIONALES
+   ===================================================== */
+.organizational-section {
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.organizational-section.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 2.5rem;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.08);
+  border: 2px solid rgba(59, 130, 246, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8, #3730a3);
+  border-radius: 25px 25px 0 0;
+}
+
+/* =====================================================
+   ENCABEZADOS DE SECCIÓN
+   ===================================================== */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.mission-icon {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.vision-icon {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.values-icon {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.history-icon {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.objectives-icon {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.commitment-icon {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #1e293b;
+  flex: 1;
+}
+
+/* =====================================================
+   CONTENIDO DE SECCIONES
+   ===================================================== */
+.section-content {
+  position: relative;
+}
+
+.section-text {
+  font-size: 1.1rem;
+  color: #334155;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.highlight {
+  color: #0891b2;
+  font-weight: 600;
+  background: linear-gradient(135deg, #bae6fd, #7dd3fc);
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+}
+
+/* =====================================================
+   ELEMENTOS ESPECÍFICOS DE MISIÓN
+   ===================================================== */
+.mission-goals {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+  padding: 1rem 1.5rem;
+  border-radius: 15px;
+  border-left: 4px solid #ef4444;
+  transition: all 0.3s ease;
+}
+
+.goal-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(239, 68, 68, 0.1);
+}
+
+.goal-item i {
+  color: #ef4444;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.goal-item span {
+  color: #1e293b;
+  font-weight: 500;
+}
+
+/* =====================================================
+   ELEMENTOS ESPECÍFICOS DE VISIÓN
+   ===================================================== */
+.vision-elements {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.vision-card {
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  padding: 1.5rem;
+  border-radius: 15px;
+  text-align: center;
+  border: 2px solid rgba(59, 130, 246, 0.1);
+  transition: all 0.3s ease;
+}
+
+.vision-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+}
+
+.vision-card-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+}
+
+.vision-card h4 {
+  font-family: 'Cinzel', serif;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.vision-card p {
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* =====================================================
+   ELEMENTOS ESPECÍFICOS DE VISIÓN MEJORADOS
+   ===================================================== */
+.vision-mission-statement {
+  background: linear-gradient(135deg, #fef7cd, #fef3c7);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-left: 5px solid #f59e0b;
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.15);
+}
+
+.mission-statement-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.mission-statement-title i {
+  color: #f59e0b;
+  font-size: 1.2rem;
+}
+
+/* =====================================================
+   LISTA PROFESIONAL DE OBJETIVOS
+   ===================================================== */
+.development-goals-professional {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.professional-goal-item {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 2px solid rgba(59, 130, 246, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.professional-goal-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    #3b82f6 0%, 
+    #1d4ed8 50%, 
+    #1e40af 100%);
+  border-radius: 20px 20px 0 0;
+}
+
+.professional-goal-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 15px 35px rgba(59, 130, 246, 0.15),
+    0 5px 15px rgba(0, 0, 0, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* =====================================================
+   NÚMEROS PROFESIONALES CON DECORACIÓN
+   ===================================================== */
+.goal-number-professional {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border-radius: 50%;
+  box-shadow: 
+    0 8px 25px rgba(59, 130, 246, 0.3),
+    0 0 20px rgba(59, 130, 246, 0.2),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3);
+  border: 4px solid rgba(255, 255, 255, 0.9);
+}
+
+.number-text {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(255, 255, 255, 0.2);
+  z-index: 2;
+  position: relative;
+}
+
+.number-decoration {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 4px 12px rgba(251, 191, 36, 0.4),
+    0 0 15px rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+.number-decoration i {
+  font-size: 0.9rem;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* =====================================================
+   CONTENIDO PROFESIONAL DE OBJETIVOS
+   ===================================================== */
+.goal-content-professional {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.goal-text-container {
+  position: relative;
+}
+
+.goal-main-text {
+  font-size: 1.1rem;
+  color: #1e293b;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  padding-left: 1rem;
+  border-left: 3px solid rgba(59, 130, 246, 0.3);
+}
+
+.goal-enhancement {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  color: #1e40af;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+  transition: all 0.3s ease;
+}
+
+.goal-enhancement:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.goal-enhancement i {
+  font-size: 1rem;
+  color: #3b82f6;
+}
+
+/* =====================================================
+   ANIMACIONES PARA NÚMEROS PROFESIONALES
+   ===================================================== */
+.professional-goal-item:hover .goal-number-professional {
+  transform: scale(1.05) rotate(5deg);
+}
+
+.professional-goal-item:hover .number-decoration {
+  transform: scale(1.1) rotate(-10deg);
+  box-shadow: 
+    0 6px 16px rgba(251, 191, 36, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+/* =====================================================
+   EFECTOS VISUALES ADICIONALES
+   ===================================================== */
+.professional-goal-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(59, 130, 246, 0.05) 50%,
+    transparent 100%);
+  transition: left 0.6s ease;
+}
+
+.professional-goal-item:hover::after {
+  left: 100%;
+}
+
+/* Pulsación sutil para los números */
+@keyframes numberPulse {
+  0%, 100% {
+    box-shadow: 
+      0 8px 25px rgba(59, 130, 246, 0.3),
+      0 0 20px rgba(59, 130, 246, 0.2),
+      inset 0 2px 0 rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 10px 30px rgba(59, 130, 246, 0.4),
+      0 0 25px rgba(59, 130, 246, 0.3),
+      inset 0 2px 0 rgba(255, 255, 255, 0.4);
+  }
+}
+
+.goal-number-professional {
+  animation: numberPulse 3s ease-in-out infinite;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN ACTUALIZADO
+   ===================================================== */
+@media (max-width: 768px) {
+  .club-logo-container {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .club-logo {
+    width: 70px;
+    height: 70px;
+    padding: 6px;
+  }
+
+  .history-header {
+    padding: 1.25rem 1rem 1.5rem;
+  }
+
+  .history-title {
+    font-size: 2.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .history-content {
+    padding: 0 1rem;
+  }
+
+  .section-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .section-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .vision-elements {
+    grid-template-columns: 1fr;
+  }
+
+  .milestones-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .objective-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .commitment-pledge {
+    grid-template-columns: 1fr;
+  }
+
+  .back-button {
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .purpose-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .view-history-pdf {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .pdf-content-text {
+    text-align: center;
+  }
+
+  .timeline-items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .vision-mission-statement {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .mission-statement-title {
+    font-size: 1.2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .mission-components {
+    gap: 1rem;
+  }
+
+  .component-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .component-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+
+  .mission-alignment {
+    padding: 1.25rem;
+  }
+
+  .alignment-title {
+    font-size: 1.2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .goal-content h5 {
+    font-size: 1.1rem;
+  }
+
+  .goal-content p {
+    font-size: 0.9rem;
+  }
+
+  .development-goals-professional {
+    gap: 1.5rem;
+  }
+
+  .professional-goal-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .goal-number-professional {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+  }
+
+  .number-text {
+    font-size: 2rem;
+  }
+
+  .number-decoration {
+    width: 28px;
+    height: 28px;
+    top: -6px;
+    right: -6px;
+  }
+
+  .number-decoration i {
+    font-size: 0.8rem;
+  }
+
+  .goal-main-text {
+    font-size: 1rem;
+    padding-left: 0;
+    border-left: none;
+    border-top: 3px solid rgba(59, 130, 246, 0.3);
+    padding-top: 0.75rem;
+    text-align: left;
+  }
+
+  .goal-enhancement {
+    justify-content: center;
+    margin: 0 auto;
+    max-width: fit-content;
+  }
+
+  .purpose-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .history-title {
+    font-size: 2rem;
+  }
+
+  .section-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .milestones-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-goals {
+    gap: 0.75rem;
+  }
+
+  .goal-item {
+    padding: 0.75rem 1rem;
+  }
+
+  .timeline-items {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-marker {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+  }
+
+  .view-history-pdf {
+    padding: 1rem;
+  }
+
+  .pdf-icon {
+    font-size: 2rem;
+  }
+
+  .pdf-content-text h4 {
+    font-size: 1.1rem;
+  }
+
+  .pdf-content-text p {
+    font-size: 0.85rem;
+  }
+
+  .vision-mission-statement {
+    padding: 1rem;
+  }
+
+  .mission-statement-title {
+    font-size: 1.1rem;
+  }
+
+  .component-content h5 {
+    font-size: 1.1rem;
+  }
+
+  .component-content p {
+    font-size: 0.9rem;
+  }
+
+  .component-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .alignment-text {
+    font-size: 0.9rem;
+  }
+
+  .goal-content h5 {
+    font-size: 1.1rem;
+  }
+
+  .goal-content p {
+    font-size: 0.9rem;
+  }
+
+  .professional-goal-item {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .goal-number-professional {
+    width: 60px;
+    height: 60px;
+  }
+
+  .number-text {
+    font-size: 1.8rem;
+  }
+
+  .number-decoration {
+    width: 24px;
+    height: 24px;
+    top: -5px;
+    right: -5px;
+  }
+
+  .number-decoration i {
+    font-size: 0.7rem;
+  }
+
+  .goal-main-text {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .goal-enhancement {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .purpose-item {
+    padding: 1rem;
+  }
+}
+
+/* =====================================================
+   SECCIÓN PROPÓSITO ACTUALIZADA
+   ===================================================== */
+.purpose-icon {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.purpose-elements {
+  margin-top: 2rem;
+}
+
+.purpose-item {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-radius: 15px;
+  border-left: 4px solid #f59e0b;
+  transition: all 0.3s ease;
+}
+
+.purpose-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.2);
+}
+
+.purpose-number {
+  font-family: 'Cinzel', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #f59e0b;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ffffff, #fefce8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 4px 12px rgba(245, 158, 11, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(245, 158, 11, 0.3);
+}
+
+.purpose-content h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.purpose-content p {
+  color: #374151;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN ACTUALIZADO
+   ===================================================== */
+@media (max-width: 768px) {
+  .club-logo-container {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .club-logo {
+    width: 70px;
+    height: 70px;
+    padding: 6px;
+  }
+
+  .history-header {
+    padding: 1.25rem 1rem 1.5rem;
+  }
+
+  .history-title {
+    font-size: 2.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .history-content {
+    padding: 0 1rem;
+  }
+
+  .section-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .section-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .vision-elements {
+    grid-template-columns: 1fr;
+  }
+
+  .milestones-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .objective-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .commitment-pledge {
+    grid-template-columns: 1fr;
+  }
+
+  .back-button {
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .purpose-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .view-history-pdf {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .pdf-content-text {
+    text-align: center;
+  }
+
+  .timeline-items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .vision-mission-statement {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .mission-statement-title {
+    font-size: 1.2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .mission-components {
+    gap: 1rem;
+  }
+
+  .component-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .component-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+
+  .mission-alignment {
+    padding: 1.25rem;
+  }
+
+  .alignment-title {
+    font-size: 1.2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .goal-content h5 {
+    font-size: 1.1rem;
+  }
+
+  .goal-content p {
+    font-size: 0.9rem;
+  }
+
+  .development-goals-professional {
+    gap: 1.5rem;
+  }
+
+  .professional-goal-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .goal-number-professional {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+  }
+
+  .number-text {
+    font-size: 2rem;
+  }
+
+  .number-decoration {
+    width: 28px;
+    height: 28px;
+    top: -6px;
+    right: -6px;
+  }
+
+  .number-decoration i {
+    font-size: 0.8rem;
+  }
+
+  .goal-main-text {
+    font-size: 1rem;
+    padding-left: 0;
+    border-left: none;
+    border-top: 3px solid rgba(59, 130, 246, 0.3);
+    padding-top: 0.75rem;
+    text-align: left;
+  }
+
+  .goal-enhancement {
+    justify-content: center;
+    margin: 0 auto;
+    max-width: fit-content;
+  }
+
+  .purpose-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .history-title {
+    font-size: 2rem;
+  }
+
+  .section-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .milestones-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-goals {
+    gap: 0.75rem;
+  }
+
+  .goal-item {
+    padding: 0.75rem 1rem;
+  }
+
+  .timeline-items {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-marker {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+  }
+
+  .view-history-pdf {
+    padding: 1rem;
+  }
+
+  .pdf-icon {
+    font-size: 2rem;
+  }
+
+  .pdf-content-text h4 {
+    font-size: 1.1rem;
+  }
+
+  .pdf-content-text p {
+    font-size: 0.85rem;
+  }
+
+  .vision-mission-statement {
+    padding: 1rem;
+  }
+
+  .mission-statement-title {
+    font-size: 1.1rem;
+  }
+
+  .component-content h5 {
+    font-size: 1.1rem;
+  }
+
+  .component-content p {
+    font-size: 0.9rem;
+  }
+
+  .component-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .alignment-text {
+    font-size: 0.9rem;
+  }
+
+  .goal-content h5 {
+    font-size: 1.1rem;
+  }
+
+  .goal-content p {
+    font-size: 0.9rem;
+  }
+
+  .professional-goal-item {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .goal-number-professional {
+    width: 60px;
+    height: 60px;
+  }
+
+  .number-text {
+    font-size: 1.8rem;
+  }
+
+  .number-decoration {
+    width: 24px;
+    height: 24px;
+    top: -5px;
+    right: -5px;
+  }
+
+  .number-decoration i {
+    font-size: 0.7rem;
+  }
+
+  .goal-main-text {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .goal-enhancement {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .purpose-item {
+    padding: 1rem;
+  }
+}
+
+/* =====================================================
+   SECCIÓN HISTORIA CON PDF
+   ===================================================== */
+.history-intro {
+  margin-bottom: 2rem;
+}
+
+.section-subtext {
+  font-size: 1rem;
+  color: #64748b;
+  line-height: 1.5;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+.history-pdf-section {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.view-history-pdf {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 10px 30px rgba(220, 38, 38, 0.3),
+    0 5px 15px rgba(0, 0, 0, 0.1);
+  min-height: 80px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.view-history-pdf::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+  transition: left 0.6s ease;
+}
+
+.view-history-pdf:hover::before {
+  left: 100%;
+}
+
+.view-history-pdf:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 15px 40px rgba(220, 38, 38, 0.4),
+    0 8px 20px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.pdf-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.pdf-content-text {
+  flex: 1;
+  text-align: left;
+}
+
+.pdf-content-text h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.pdf-content-text p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.pdf-arrow {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.view-history-pdf:hover .pdf-arrow {
+  transform: translateX(5px);
+}
+
+/* =====================================================
+   CRONOLOGÍA VISUAL RESUMIDA
+   ===================================================== */
+.history-timeline {
+  margin-top: 3rem;
+}
+
+.timeline-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  color: #1e293b;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.timeline-title i {
+  color: #0891b2;
+}
+
+.timeline-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.timeline-item {
+  text-align: center;
+  position: relative;
+}
+
+.timeline-item.current .timeline-marker {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  animation: currentPulse 2s ease-in-out infinite;
+}
+
+.timeline-marker {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #0891b2, #0e7490);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: 
+    0 8px 25px rgba(8, 145, 178, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.9);
+}
+
+.timeline-content h5 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+@keyframes currentPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 
+      0 8px 25px rgba(239, 68, 68, 0.3),
+      0 0 20px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 
+      0 12px 35px rgba(239, 68, 68, 0.5),
+      0 0 30px rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* =====================================================
+   MODAL PDF MEJORADO
+   ===================================================== */
+.pdf-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.pdf-modal.visible {
+  display: flex;
+}
+
+.pdf-content {
+  position: relative;
+  width: 95%;
+  height: 95%;
+  max-width: 1200px;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.close-pdf {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.9);
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2001;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.close-pdf:hover {
+  background: rgba(239, 68, 68, 1);
+  transform: scale(1.1);
+}
+
+#pdfViewer {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN ACTUALIZADO
+   ===================================================== */
+@media (max-width: 768px) {
+  .club-logo-container {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .club-logo {
+    width: 70px;
+    height: 70px;
+    padding: 6px;
+  }
+
+  .history-header {
+    padding: 1.25rem 1rem 1.5rem;
+  }
+
+  .history-title {
+    font-size: 2.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .history-content {
+    padding: 0 1rem;
+  }
+
+  .section-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .section-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .vision-elements {
+    grid-template-columns: 1fr;
+  }
+
+  .milestones-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .objective-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .commitment-pledge {
+    grid-template-columns: 1fr;
+  }
+
+  .back-button {
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .purpose-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .view-history-pdf {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .pdf-content-text {
+    text-align: center;
+  }
+
+  .timeline-items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .vision-mission-statement {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .mission-statement-title {
+    font-size: 1.2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .mission-components {
+    gap: 1rem;
+  }
+
+  .component-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .component-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+
+  .mission-alignment {
+    padding: 1.25rem;
+  }
+
+  .alignment-title {
+    font-size: 1.2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .goal-content h5 {
+    font-size: 1.1rem;
+  }
+
+  .goal-content p {
+    font-size: 0.9rem;
+  }
+
+  .development-goals-professional {
+    gap: 1.5rem;
+  }
+
+  .professional-goal-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .goal-number-professional {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+  }
+
+  .number-text {
+    font-size: 2rem;
+  }
+
+  .number-decoration {
+    width: 28px;
+    height: 28px;
+    top: -6px;
+    right: -6px;
+  }
+
+  .number-decoration i {
+    font-size: 0.8rem;
+  }
+
+  .goal-main-text {
+    font-size: 1rem;
+    padding-left: 0;
+    border-left: none;
+    border-top: 3px solid rgba(59, 130, 246, 0.3);
+    padding-top: 0.75rem;
+    text-align: left;
+  }
+
+  .goal-enhancement {
+    justify-content: center;
+    margin: 0 auto;
+    max-width: fit-content;
+  }
+
+  .purpose-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .history-title {
+    font-size: 2rem;
+  }
+
+  .section-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .milestones-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-goals {
+    gap: 0.75rem;
+  }
+
+  .goal-item {
+    padding: 0.75rem 1rem;
+  }
+
+  .timeline-items {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-marker {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+  }
+
+  .view-history-pdf {
+    padding: 1rem;
+  }
+
+  .pdf-icon {
+    font-size: 2rem;
+  }
+
+  .pdf-content-text h4 {
+    font-size: 1.1rem;
+  }
+
+  .pdf-content-text p {
+    font-size: 0.85rem;
+  }
+
+  .vision-mission-statement {
+    padding: 1rem;
+  }
+
+  .mission-statement-title {
+    font-size: 1.1rem;
+  }
+
+  .component-content h5 {
+    font-size: 1.1rem;
+  }
+
+  .component-content p {
+    font-size: 0.9rem;
+  }
+
+  .component-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .alignment-text {
+    font-size: 0.9rem;
+  }
+
+  .goal-content h5 {
+    font-size: 1.1rem;
+  }
+
+  .goal-content p {
+    font-size: 0.9rem;
+  }
+
+  .professional-goal-item {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .goal-number-professional {
+    width: 60px;
+    height: 60px;
+  }
+
+  .number-text {
+    font-size: 1.8rem;
+  }
+
+  .number-decoration {
+    width: 24px;
+    height: 24px;
+    top: -5px;
+    right: -5px;
+  }
+
+  .number-decoration i {
+    font-size: 0.7rem;
+  }
+
+  .goal-main-text {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .goal-enhancement {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .purpose-item {
+    padding: 1rem;
+  }
+}
