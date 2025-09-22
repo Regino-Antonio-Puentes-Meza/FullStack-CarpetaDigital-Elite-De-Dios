@@ -1,119 +1,12 @@
-  /*
+/*
     ======================================================
     ESTILOS GENERALES
     ======================================================
   */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Georgia', serif;
-    background: url('../img/fondo_historia.png') no-repeat center center fixed;
-    background-size: cover;
-    color: #222;
-  }
-  /*
-    ======================================================
-  Estilos header
-    ======================================================
-  */
-  .page-header {
-    background: rgba(0, 0, 0, 0.85);
-    color: #fff;
-    text-align: center;
-    padding: 30px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  }
-  
-  .page-header h1 {
-    margin: 0;
-    font-size: 2.5em;
-    text-shadow: 0 2px 4px #000;
-  }
-  
-  .page-header h2 {
-    margin: 10px 0 0;
-    font-weight: 300;
-    color: #ccc;
-  }
-  
-  .back-link {
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    background: #5d4037;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.3s ease, transform 0.3s ease;
-  }
-  
-  .back-link:hover {
-    background: #7b5e4a;
-    transform: scale(1.05);
-  }
-  
-  .page-content {
-    padding: 40px;
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  .intro {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 25px;
-    border-radius: 12px;
-    margin-bottom: 40px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-  }
-  
-  .pdf-section {
-    margin-bottom: 60px;
-  }
-  
-  .pdf-section h3 {
-    font-size: 1.6em;
-    color: #5d4037;
-    text-align: center;
-    margin-bottom: 20px;
-    background: rgba(255, 255, 255, 0.7);
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  }
-  
-  .pdf-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  }
-  
-  .pdf-container iframe {
-    width: 100%;
-    height: 95vh;
-    border-radius: 10px;
-    border: 2px solid #5d4037;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-  }
-  /*
-    ======================================================
-    ESTILOS GENERALES
-    ======================================================
-*/
-body {
+body, html {
   margin: 0;
   padding: 0;
-  font-family: 'Georgia', serif;
+  font-family: 'Poppins', sans-serif;
   background: url('../img/fondo_historia.png') no-repeat center center fixed;
   background-size: cover;
   color: #222;
@@ -229,63 +122,1115 @@ body::before {
 }
 
 /* ======================================================
-   MEDIA QUERIES: AJUSTES SOLO AL HEADER Y BOTÓN "REGRESAR"
-   ======================================================
-*/
+   RESET Y CONFIGURACIÓN BÁSICA
+   ===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-/* 1) Para tablets grandes (max-width: 1024px) */
-@media (max-width: 1024px) {
-  .page-header {
-    /* Aumentamos el padding superior para separar mejor el contenido */
-    padding: 90px 20px 20px;
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* =====================================================
+   TRANSICIONES DE PÁGINA
+   ===================================================== */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out;
+}
+
+/* =====================================================
+   PANTALLA PRINCIPAL DE AVENTURAS
+   ===================================================== */
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, 
+    #0f172a 0%, 
+    #1e293b 25%, 
+    #334155 50%, 
+    #475569 75%, 
+    #64748b 100%);
+  background-size: 400% 400%;
+  animation: adventuresGradient 25s ease infinite;
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 2rem;
+}
+
+@keyframes adventuresGradient {
+  0%, 100% { background-position: 0% 50%; }
+  33% { background-position: 50% 25%; }
+  66% { background-position: 100% 75%; }
+}
+
+/* =====================================================
+   LOGO DEL CLUB REUBICADO A LA DERECHA
+   ===================================================== */
+.club-logo-container {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1001;
+  animation: logoAppear 1s ease-out 0.5s both;
+}
+
+.club-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 8px;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(59, 130, 246, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.club-logo:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 
+    0 12px 35px rgba(59, 130, 246, 0.25),
+    0 6px 16px rgba(0, 0, 0, 0.15);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+@keyframes logoAppear {
+  0% {
+    opacity: 0;
+    transform: translateX(100px) scale(0.8);
   }
-  .page-header h1 {
-    font-size: 2.2em;
-  }
-  .page-header h2 {
-    font-size: 1em;
-  }
-  .back-link {
-    /* Posicionamos el botón "Regresar" para que no se superponga */
-    top: 40px;
-    left: 20px;
-    font-size: 1em;
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
   }
 }
 
-/* 2) Para tablets medianas (max-width: 768px) */
+/* =====================================================
+   ENCABEZADO DE AVENTURAS
+   ===================================================== */
+.adventures-header {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  position: relative;
+  z-index: 10;
+}
+
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.adventures-title {
+  font-family: 'Cinzel', serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(255, 255, 255, 0.3);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.adventures-title i {
+  color: #fbbf24;
+  animation: anchorSway 3s ease-in-out infinite alternate;
+}
+
+@keyframes anchorSway {
+  0% { transform: rotate(-3deg); }
+  100% { transform: rotate(3deg); }
+}
+
+.adventures-subtitle {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.adventures-motto {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #e2e8f0;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.adventures-motto i {
+  color: #fbbf24;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* =====================================================
+   BOTÓN DE REGRESO
+   ===================================================== */
+.back-button {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(251, 191, 36, 0.5);
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: #1e293b;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(30, 41, 59, 0.3);
+}
+
+.back-button i {
+  font-size: 1.2rem;
+  color: #0891b2;
+}
+
+/* =====================================================
+   CONTENIDO PRINCIPAL
+   ===================================================== */
+.page-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* =====================================================
+   INTRODUCCIÓN DE AVENTURAS
+   ===================================================== */
+.adventures-intro {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.intro-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 2rem;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.08);
+  border: 2px solid rgba(251, 191, 36, 0.3);
+}
+
+.intro-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.intro-title i {
+  color: #0891b2;
+}
+
+.intro-text {
+  font-size: 1.1rem;
+  color: #334155;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.intro-subtext {
+  font-size: 1rem;
+  color: #64748b;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.highlight {
+  color: #0891b2;
+  font-weight: 600;
+  background: linear-gradient(135deg, #bae6fd, #7dd3fc);
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+}
+
+/* =====================================================
+   SECCIÓN CRONOGRAMA
+   ===================================================== */
+.schedule-section {
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.schedule-section.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 2.5rem;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.08);
+  border: 2px solid rgba(59, 130, 246, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8, #3730a3);
+  border-radius: 25px 25px 0 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.schedule-icon {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #1e293b;
+  flex: 1;
+}
+
+.section-text {
+  font-size: 1.1rem;
+  color: #334155;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+/* =====================================================
+   BOTONES PDF DEL CRONOGRAMA MEJORADOS
+   ===================================================== */
+.schedule-pdf-section {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.pdf-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.view-schedule-pdf {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.15),
+    0 5px 15px rgba(0, 0, 0, 0.1);
+  min-height: 80px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.view-schedule-pdf.future {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border: 2px solid rgba(59, 130, 246, 0.3);
+}
+
+.view-schedule-pdf.completed {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: 2px solid rgba(16, 185, 129, 0.3);
+}
+
+.view-schedule-pdf::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+  transition: left 0.6s ease;
+}
+
+.view-schedule-pdf:hover::before {
+  left: 100%;
+}
+
+.view-schedule-pdf:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.2),
+    0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.view-schedule-pdf.future:hover {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 
+    0 15px 40px rgba(59, 130, 246, 0.4),
+    0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.view-schedule-pdf.completed:hover {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 
+    0 15px 40px rgba(16, 185, 129, 0.4),
+    0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.pdf-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.pdf-content-text {
+  flex: 1;
+  text-align: left;
+}
+
+.pdf-content-text h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.pdf-content-text p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.pdf-arrow {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.view-schedule-pdf:hover .pdf-arrow {
+  transform: translateX(5px);
+}
+
+/* =====================================================
+   PRÓXIMAS AVENTURAS
+   ===================================================== */
+.upcoming-adventures {
+  margin-top: 3rem;
+}
+
+.upcoming-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: #1e293b;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.upcoming-title i {
+  color: #fbbf24;
+}
+
+.adventure-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.adventure-card {
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  border: 2px solid rgba(59, 130, 246, 0.1);
+  transition: all 0.3s ease;
+}
+
+.adventure-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+}
+
+.card-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.adventure-card h5 {
+  font-family: 'Cinzel', serif;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.adventure-card p {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.card-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #0891b2;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* =====================================================
+   TIPOS DE AVENTURAS
+   ===================================================== */
+.adventure-types {
+  margin: 4rem 0;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.adventure-types.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.types-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.types-title i {
+  color: #fbbf24;
+  animation: compassSpin 6s linear infinite;
+}
+
+@keyframes compassSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.types-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.type-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.08);
+  border: 2px solid;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.8s ease both;
+  position: relative;
+  overflow: hidden;
+}
+
+.type-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 20px 20px 0 0;
+}
+
+.type-card.spiritual {
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.type-card.spiritual::before {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.type-card.fellowship {
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.type-card.fellowship::before {
+  background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.type-card.service {
+  border-color: rgba(139, 92, 246, 0.2);
+}
+
+.type-card.service::before {
+  background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+}
+
+.type-card.learning {
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+.type-card.learning::before {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.type-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.type-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.type-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.spiritual .type-icon {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.fellowship .type-icon {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.service .type-icon {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.learning .type-icon {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.type-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.type-description {
+  color: #334155;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.type-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.feature {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+  color: #334155;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.feature i {
+  font-size: 0.9rem;
+  color: #3b82f6;
+}
+
+/* =====================================================
+   VALORES DE AVENTURAS
+   ===================================================== */
+.adventure-values {
+  margin: 4rem 0;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.adventure-values.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.values-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 3rem;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.08);
+  border: 2px solid rgba(251, 191, 36, 0.3);
+  text-align: center;
+}
+
+.values-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.values-title i {
+  color: #ef4444;
+  animation: heartBeat 2s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.values-text {
+  font-size: 1.1rem;
+  color: #334155;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.value-item {
+  text-align: center;
+}
+
+.value-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: white;
+  font-size: 1.8rem;
+  box-shadow: 
+    0 8px 25px rgba(251, 191, 36, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+.value-item h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.value-item p {
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* =====================================================
+   MODAL PDF
+   ===================================================== */
+.pdf-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.pdf-modal.visible {
+  display: flex;
+}
+
+.pdf-content {
+  position: relative;
+  width: 95%;
+  height: 95%;
+  max-width: 1200px;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.close-pdf {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.9);
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2001;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.close-pdf:hover {
+  background: rgba(239, 68, 68, 1);
+  transform: scale(1.1);
+}
+
+#pdfViewer {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* =====================================================
+   DECORACIÓN DE FONDO
+   ===================================================== */
+.background-decoration {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-icon {
+  position: absolute;
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.1);
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-icon.icon-1 {
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.floating-icon.icon-2 {
+  top: 40%;
+  right: 15%;
+  animation-delay: 1s;
+}
+
+.floating-icon.icon-3 {
+  bottom: 30%;
+  left: 20%;
+  animation-delay: 2s;
+}
+
+.floating-icon.icon-4 {
+  top: 60%;
+  right: 25%;
+  animation-delay: 3s;
+}
+
+.floating-icon.icon-5 {
+  bottom: 15%;
+  right: 10%;
+  animation-delay: 4s;
+}
+
+.floating-icon.icon-6 {
+  top: 80%;
+  left: 15%;
+  animation-delay: 5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+  66% {
+    transform: translateY(-10px) rotate(-3deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
 @media (max-width: 768px) {
-  .page-header {
-    padding: 50px 20px 10px;
+  .club-logo-container {
+    top: 1.5rem;
+    right: 1.5rem;
   }
-  .page-header h1 {
-    font-size: 1.8em;
+
+  .club-logo {
+    width: 70px;
+    height: 70px;
+    padding: 6px;
   }
-  .page-header h2 {
-    font-size: 0.95em;
+
+  .adventures-header {
+    padding: 1.25rem 1rem;
   }
-  .back-link {
-    top: 35px;
-    left: 15px;
-    font-size: 0.95em;
+
+  .adventures-title {
+    font-size: 2.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .page-content {
+    padding: 0 1rem;
+  }
+
+  .section-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .section-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .types-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .adventure-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .back-button {
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .view-schedule-pdf {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .pdf-content-text {
+    text-align: center;
+  }
+
+  .pdf-buttons-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 400px;
+  }
+
+  .pdf-icon {
+    font-size: 2rem;
   }
 }
 
-/* 3) Para móviles pequeños (max-width: 480px) */
 @media (max-width: 480px) {
-  .page-header {
-    padding: 40px 10px 10px;
+  .adventures-title {
+    font-size: 2rem;
   }
-  .page-header h1 {
-    font-size: 1.6em;
+
+  .section-container {
+    padding: 1.5rem 1rem;
   }
-  .page-header h2 {
-    font-size: 0.9em;
+
+  .types-title {
+    font-size: 2rem;
+    flex-direction: column;
+    gap: 0.5rem;
   }
-  .back-link {
-    top: 30px;
-    left: 10px;
-    font-size: 0.85em;
-    padding: 8px 14px;
+
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pdf-buttons-grid {
+    max-width: 350px;
+  }
+
+  .view-schedule-pdf {
+    padding: 1rem;
+  }
+
+  .pdf-icon {
+    font-size: 1.8rem;
+  }
+
+  .pdf-content-text h4 {
+    font-size: 1.1rem;
+  }
+
+  .pdf-content-text p {
+    font-size: 0.85rem;
+  }
+
+  .type-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .values-container {
+    padding: 2rem 1.5rem;
   }
 }
