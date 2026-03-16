@@ -1652,26 +1652,49 @@ body {
   text-align: center;
 }
 
+/* Contenedor de acceso a PDFs */
+.pdf-access-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+@media (min-width: 1024px) {
+  .pdf-access-section {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+
 .view-history-pdf {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.2rem;
   background: linear-gradient(135deg, var(--color-rojo-santuario), var(--color-rojo-claro));
   color: white;
   border: none;
   border-radius: 20px;
-  padding: 1.5rem 2rem;
+  padding: 1.2rem 1.5rem;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
     var(--sombra-dorada),
     0 8px 20px rgba(142, 28, 28, 0.2);
-  min-height: 80px;
+  min-height: 60px;
   width: 100%;
   max-width: 500px;
-  margin: 0 auto;
   position: relative;
   overflow: hidden;
+  flex: 1;
+}
+
+@media (min-width: 1024px) {
+  .view-history-pdf {
+    max-width: none;
+  }
 }
 
 .view-history-pdf::before {
@@ -1701,7 +1724,7 @@ body {
 }
 
 .pdf-icon {
-  font-size: 2.5rem;
+  font-size: 2rem;
   flex-shrink: 0;
 }
 
@@ -1712,25 +1735,47 @@ body {
 
 .pdf-content-text h4 {
   font-family: 'Cinzel', serif;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .pdf-content-text p {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   opacity: 0.9;
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 .pdf-arrow {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
 
 .view-history-pdf:hover .pdf-arrow {
   transform: translateX(5px);
+}
+
+/* Botón alternativo para símbolos - Color azul */
+.view-history-pdf.simbolos-btn {
+  background: linear-gradient(135deg, var(--color-azul-sacerdotal), var(--color-azul-claro));
+  box-shadow:
+    0 4px 20px rgba(30, 58, 138, 0.25),
+    0 8px 20px rgba(30, 58, 138, 0.15);
+}
+
+.view-history-pdf.simbolos-btn:hover {
+  background: linear-gradient(135deg, var(--color-azul-claro), var(--color-azul-sacerdotal));
+  box-shadow:
+    0 18px 45px rgba(30, 58, 138, 0.4),
+    0 10px 25px rgba(30, 58, 138, 0.2);
+}
+
+@media (max-width: 768px) {
+  .pdf-access-section {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
 /* =====================================================
