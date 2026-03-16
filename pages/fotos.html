@@ -1,131 +1,150 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
-  <title>Archivo Fotográfico - Archivo Digital del Santuario</title>
+  <title>Álbum Fotográfico</title>
   <link rel="stylesheet" href="../assets/css/fotos.css" />
   <!-- Font Awesome para iconos náuticos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <!-- Google Fonts para mejor tipografía -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
   <!-- Protecciones de seguridad -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <style>
     /* Protección selectiva - preserva funcionalidad UI */
-    * { 
-      -webkit-user-select: none !important; 
-      -moz-user-select: none !important; 
-      -ms-user-select: none !important; 
+    * {
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
       user-select: none !important;
       -webkit-user-drag: none !important;
       -webkit-touch-callout: none !important;
     }
+
     /* Permitir interacción en elementos funcionales */
-      /* Botón de control unificado play/pause */
-      .control-btn {
-        background: linear-gradient(135deg, rgba(230, 179, 37, 0.9), rgba(198, 152, 25, 0.9));
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 25px;
-        cursor: pointer;
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-      
-      .control-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(230, 179, 37, 0.4);
-      }
-      
-      .control-btn.playing {
-        background: linear-gradient(135deg, rgba(220, 53, 69, 0.9), rgba(176, 42, 55, 0.9));
-      }
-      
-      .control-btn.playing:hover {
-        box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
-      }
-      
-      .control-btn.paused {
-        background: linear-gradient(135deg, rgba(40, 167, 69, 0.9), rgba(32, 134, 55, 0.9));
-      }
-      
-      .control-btn.paused:hover {
-        box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
-      }
-      
-      .control-text {
-        font-weight: 600;
-        font-size: 13px;
-      }
-      
-      /* Indicador de hover activo */
-      .slideshow-container {
-        position: relative;
-        transition: all 0.3s ease;
-      }
-      
-      .slideshow-container.hover-active {
-        transform: scale(1.02);
-        box-shadow: 0 8px 30px rgba(230, 179, 37, 0.3);
-      }
-      
-      .hover-indicator {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: rgba(230, 179, 37, 0.9);
-        color: white;
-        padding: 8px 12px;
-        border-radius: 20px;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: all 0.3s ease;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-      
-      .slideshow-container.hover-active .hover-indicator {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      
-      /* Elementos interactivos */
-      button, .back-button, .control-btn, .photo-card, .photo-item, .modal-close, .modal-fullscreen, .fullscreen-exit-btn, .nav-arrow, #photo-modal { 
-        pointer-events: auto !important;
-      }
+    /* Botón de control unificado play/pause */
+    .control-btn {
+      background: linear-gradient(135deg, rgba(230, 179, 37, 0.9), rgba(198, 152, 25, 0.9));
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .control-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(230, 179, 37, 0.4);
+    }
+
+    .control-btn.playing {
+      background: linear-gradient(135deg, rgba(220, 53, 69, 0.9), rgba(176, 42, 55, 0.9));
+    }
+
+    .control-btn.playing:hover {
+      box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+    }
+
+    .control-btn.paused {
+      background: linear-gradient(135deg, rgba(40, 167, 69, 0.9), rgba(32, 134, 55, 0.9));
+    }
+
+    .control-btn.paused:hover {
+      box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+    }
+
+    .control-text {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    /* Indicador de hover activo */
+    .slideshow-container {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .slideshow-container.hover-active {
+      transform: scale(1.02);
+      box-shadow: 0 8px 30px rgba(230, 179, 37, 0.3);
+    }
+
+    .hover-indicator {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(230, 179, 37, 0.9);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .slideshow-container.hover-active .hover-indicator {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Elementos interactivos */
+    button,
+    .back-button,
+    .control-btn,
+    .photo-card,
+    .photo-item,
+    .modal-close,
+    .modal-fullscreen,
+    .fullscreen-exit-btn,
+    .nav-arrow,
+    #photo-modal {
+      pointer-events: auto !important;
+    }
+
     /* Asegurar posicionamiento correcto del logo */
-    .club-logo-container { 
+    .club-logo-container {
       position: fixed !important;
       top: 2rem !important;
       right: 2rem !important;
       z-index: 1001 !important;
     }
+
     /* Proteger solo imágenes no interactivas */
-    .club-logo { 
+    .club-logo {
       -webkit-user-drag: none !important;
-      pointer-events: auto !important; /* Mantener hover del logo */
+      pointer-events: auto !important;
+      /* Mantener hover del logo */
     }
+
     /* Proteger imágenes de la galería pero permitir clicks */
-    .photo-card img { 
+    .photo-card img {
       -webkit-user-drag: none !important;
-      pointer-events: auto !important; /* Permitir clicks para modal */
+      pointer-events: auto !important;
+      /* Permitir clicks para modal */
     }
   </style>
 </head>
+
 <body class="fade-out">
   <!-- Logo del Club reubicado a la derecha -->
   <div class="club-logo-container">
@@ -161,11 +180,11 @@
         Colección Documental Visual
       </h2>
       <p class="intro-text">
-        Explora nuestro <span class="highlight">archivo fotográfico institucional</span> que documenta 
-        los momentos más significativos de nuestra historia ministerial y ceremonias sagradas.
+        Explora nuestro <span class="highlight">álbum fotográfico</span> que recoge
+        los momentos más significativos del club, sus ceremonias y experiencias vividas en el santuario.
       </p>
       <p class="intro-subtext">
-        Cada imagen representa un testimonio visual de nuestro crecimiento espiritual 
+        Cada imagen representa un testimonio visual de nuestro crecimiento espiritual
         y los hitos importantes en el desarrollo de nuestra comunidad de fe.
       </p>
       <div class="photo-counter">
@@ -190,7 +209,7 @@
         </button>
       </div>
     </div>
-    
+
     <div class="slideshow-container" id="slideshow-container">
       <div class="slideshow-wrapper">
         <div class="slide active">
@@ -236,7 +255,7 @@
     <div class="modal-fullscreen" onclick="toggleFullscreen()" title="Pantalla completa">
       <i class="fas fa-expand"></i>
     </div>
-    
+
     <div class="modal-content">
       <div class="modal-image-container">
         <img id="modalImage" src="" alt="Foto ampliada" />
@@ -255,12 +274,12 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Botón específico para salir de pantalla completa -->
     <div class="fullscreen-exit-btn" onclick="exitCustomFullscreen()" title="Salir de pantalla completa">
       <i class="fas fa-times"></i>
     </div>
-    
+
     <div class="keyboard-hint">
       <span>← → navegar • F pantalla completa • ESC cerrar</span>
     </div>
@@ -315,7 +334,7 @@
 
     function createGallery() {
       const gallery = document.getElementById('photo-gallery');
-      
+
       if (photos.length === 0) {
         showNoPhotosMessage();
         return;
@@ -325,7 +344,7 @@
         const photoItem = document.createElement('div');
         photoItem.className = 'photo-item';
         photoItem.style.animationDelay = `${index * 0.1}s`;
-        
+
         photoItem.innerHTML = `
           <div class="photo-card" onclick="openModal(${index})">
             <div class="photo-image-container">
@@ -346,7 +365,7 @@
             </button>
           </div>
         `;
-        
+
         gallery.appendChild(photoItem);
       });
     }
@@ -356,10 +375,10 @@
 
       const slideshowImg = document.getElementById('slideshow-img');
       const indicators = document.getElementById('slideshow-indicators');
-      
+
       // Mostrar primera imagen
       slideshowImg.src = photos[0];
-      
+
       // Crear indicadores
       photos.forEach((_, index) => {
         const indicator = document.createElement('button');
@@ -367,7 +386,7 @@
         indicator.onclick = () => goToSlide(index);
         indicators.appendChild(indicator);
       });
-      
+
       // Iniciar slideshow automático
       startSlideshow();
     }
@@ -395,9 +414,9 @@
     function updateSlideshow() {
       const slideshowImg = document.getElementById('slideshow-img');
       const indicators = document.querySelectorAll('.indicator');
-      
+
       slideshowImg.src = photos[currentPhotoIndex];
-      
+
       indicators.forEach((indicator, index) => {
         indicator.classList.toggle('active', index === currentPhotoIndex);
       });
@@ -414,7 +433,7 @@
       updatePlayPauseButton();
       console.log('▶️ Slideshow reanudado manualmente');
     }
-    
+
     // Nueva función para alternar play/pause con un solo botón
     function togglePlayPause() {
       if (isPlaying) {
@@ -423,13 +442,13 @@
         playSlideshow();
       }
     }
-    
+
     // Actualizar apariencia del botón según el estado
     function updatePlayPauseButton() {
       const btn = document.getElementById('playPauseBtn');
       const icon = btn.querySelector('i');
       const text = btn.querySelector('.control-text');
-      
+
       if (isPlaying) {
         btn.classList.add('playing');
         btn.classList.remove('paused');
@@ -447,29 +466,29 @@
 
     function openModal(index) {
       console.log('🔍 openModal llamado con index:', index);
-      
+
       currentPhotoIndex = index;
       const modal = document.getElementById('photo-modal');
       const modalImage = document.getElementById('modalImage');
       const photoCounter = document.getElementById('photoCounter');
-      
+
       console.log('🔍 Modal element:', modal);
       console.log('🔍 Modal image element:', modalImage);
       console.log('🔍 Photo URL:', photos[index]);
-      
+
       // 🎬 PAUSAR SLIDESHOW AUTOMÁTICO PARA AHORRAR RECURSOS
       const wasPlaying = isPlaying;
       pauseSlideshow();
-      
+
       // Guardar el estado anterior para restaurarlo al cerrar
       modal.dataset.wasPlaying = wasPlaying;
-      
+
       modalImage.src = photos[index];
       photoCounter.textContent = `${index + 1} / ${photos.length}`;
-      
+
       // Detectar orientación de imagen
       const img = new Image();
-      img.onload = function() {
+      img.onload = function () {
         if (this.height > this.width) {
           modalImage.classList.add('vertical-image');
           modalImage.classList.remove('horizontal-image');
@@ -479,25 +498,25 @@
         }
       };
       img.src = photos[index];
-      
+
       modal.style.display = 'flex';
       console.log('🔍 Modal abierto - Slideshow automático pausado para optimización');
-      
+
       document.addEventListener('keydown', handleKeyboardNavigation);
     }
 
     function closeModal() {
       const modal = document.getElementById('photo-modal');
       const modalContent = document.querySelector('.modal-content');
-      
+
       // Salir de pantalla completa si está activa ANTES de cerrar
       if (modalContent.classList.contains('fullscreen')) {
         exitCustomFullscreen();
       }
-      
+
       modal.style.display = 'none';
       document.removeEventListener('keydown', handleKeyboardNavigation);
-      
+
       // 🎬 REANUDAR SLIDESHOW SI ESTABA ACTIVO ANTES
       const wasPlaying = modal.dataset.wasPlaying === 'true';
       if (wasPlaying) {
@@ -507,7 +526,7 @@
       } else {
         console.log('🎬 Slideshow se mantiene pausado (estaba pausado antes)');
       }
-      
+
       // Limpiar el estado guardado
       delete modal.dataset.wasPlaying;
     }
@@ -525,16 +544,16 @@
     function updateModalPhoto() {
       const modalImage = document.getElementById('modalImage');
       const photoCounter = document.getElementById('photoCounter');
-      
+
       modalImage.style.opacity = '0';
-      
+
       setTimeout(() => {
         modalImage.src = photos[currentPhotoIndex];
         photoCounter.textContent = `${currentPhotoIndex + 1} / ${photos.length}`;
-        
+
         // Detectar orientación
         const img = new Image();
-        img.onload = function() {
+        img.onload = function () {
           if (this.height > this.width) {
             modalImage.classList.add('vertical-image');
             modalImage.classList.remove('horizontal-image');
@@ -549,7 +568,7 @@
     }
 
     function handleKeyboardNavigation(event) {
-      switch(event.key) {
+      switch (event.key) {
         case 'ArrowLeft':
           previousPhoto();
           break;
@@ -603,7 +622,7 @@
       const modalContent = document.querySelector('.modal-content');
       const fullscreenBtn = document.querySelector('.modal-fullscreen i');
       const photoModal = document.getElementById('photo-modal');
-      
+
       if (modalContent.classList.contains('fullscreen')) {
         exitCustomFullscreen();
       } else {
@@ -626,22 +645,22 @@
         const modalContent = document.querySelector('.modal-content');
         const fullscreenBtn = document.querySelector('.modal-fullscreen i');
         const photoModal = document.getElementById('photo-modal');
-        
+
         if (modalContent && modalContent.classList.contains('fullscreen')) {
           modalContent.classList.remove('fullscreen');
-          
+
           if (photoModal) {
             photoModal.classList.remove('fullscreen-mode');
           }
-          
+
           if (fullscreenBtn) {
             fullscreenBtn.className = 'fas fa-expand';
             fullscreenBtn.parentElement.title = 'Pantalla completa';
           }
-          
+
           // Forzar un reflow para asegurar que los cambios se apliquen
           modalContent.offsetHeight;
-          
+
           console.log('✅ Saliendo de pantalla completa personalizada exitosamente');
           return true;
         } else {
@@ -655,9 +674,9 @@
     }
 
     // Cerrar modal al hacer clic fuera de la imagen (solo si no está en pantalla completa)
-    document.getElementById('photo-modal').addEventListener('click', function(e) {
+    document.getElementById('photo-modal').addEventListener('click', function (e) {
       const modalContent = document.querySelector('.modal-content');
-      
+
       // Solo cerrar si se hace clic fuera y NO está en pantalla completa
       if (e.target === this && !modalContent.classList.contains('fullscreen')) {
         closeModal();
@@ -665,23 +684,23 @@
     });
 
     // Añadir event listener adicional para el botón de salir de pantalla completa
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const fullscreenExitBtn = document.querySelector('.fullscreen-exit-btn');
       if (fullscreenExitBtn) {
-        fullscreenExitBtn.addEventListener('click', function(e) {
+        fullscreenExitBtn.addEventListener('click', function (e) {
           e.stopPropagation();
           console.log('Botón de salir de pantalla completa clickeado');
           exitCustomFullscreen();
         });
       }
-      
+
       // 📍 CONTROL AUTOMÁTICO POR HOVER - Solo activo cuando el cursor está sobre el slideshow
       const slideshowContainer = document.getElementById('slideshow-container');
       if (slideshowContainer) {
         let wasPlayingBeforeLeave = isPlaying;
-        
+
         // Cuando el cursor entra al contenedor del slideshow
-        slideshowContainer.addEventListener('mouseenter', function() {
+        slideshowContainer.addEventListener('mouseenter', function () {
           console.log('📍 Cursor sobre slideshow - Activando reproducción automática');
           wasPlayingBeforeLeave = isPlaying;
           if (!isPlaying) {
@@ -690,9 +709,9 @@
           }
           slideshowContainer.classList.add('hover-active');
         });
-        
+
         // Cuando el cursor sale del contenedor del slideshow
-        slideshowContainer.addEventListener('mouseleave', function() {
+        slideshowContainer.addEventListener('mouseleave', function () {
           console.log('📍 Cursor fuera del slideshow - Pausando para optimización');
           wasPlayingBeforeLeave = isPlaying;
           if (isPlaying) {
@@ -702,14 +721,15 @@
           slideshowContainer.classList.remove('hover-active');
         });
       }
-      
+
       // Actualizar botón al cargar la página
       updatePlayPauseButton();
     });
   </script>
-  
+
   <!-- Scripts de protección -->
   <script src="../assets/js/protection.js"></script>
   <script src="../assets/js/advanced-protection.js"></script>
 </body>
+
 </html>

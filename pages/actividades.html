@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8" />
     <title>Calendario Litúrgico - Archivo Digital del Santuario</title>
@@ -7,38 +8,50 @@
     <!-- Font Awesome para iconos espirituales -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- Google Fonts para mejor tipografía -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Protecciones de seguridad -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <style>
-      /* Protección selectiva - preserva funcionalidad UI */
-      * { 
-        -webkit-user-select: none !important; 
-        -moz-user-select: none !important; 
-        -ms-user-select: none !important; 
-        user-select: none !important;
-        -webkit-user-drag: none !important;
-        -webkit-touch-callout: none !important;
-      }
-      /* Permitir interacción en elementos funcionales */
-      button, .back-button, .activity-card, .download-btn, .calendar-day { 
-        pointer-events: auto !important;
-      }
-      /* Proteger solo imágenes no interactivas */
-      .club-logo { 
-        -webkit-user-drag: none !important;
-        pointer-events: auto !important; /* Mantener hover del logo */
-      }
-      /* Proteger imágenes pero permitir funcionalidad */
-      .activity-card img { 
-        -webkit-user-drag: none !important;
-        pointer-events: auto !important; /* Permitir clicks para funcionalidad */
-      }
+        /* Protección selectiva - preserva funcionalidad UI */
+        * {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            -webkit-user-drag: none !important;
+            -webkit-touch-callout: none !important;
+        }
+
+        /* Permitir interacción en elementos funcionales */
+        button,
+        .back-button,
+        .activity-card,
+        .download-btn,
+        .calendar-day {
+            pointer-events: auto !important;
+        }
+
+        /* Proteger solo imágenes no interactivas */
+        .club-logo {
+            -webkit-user-drag: none !important;
+            pointer-events: auto !important;
+            /* Mantener hover del logo */
+        }
+
+        /* Proteger imágenes pero permitir funcionalidad */
+        .activity-card img {
+            -webkit-user-drag: none !important;
+            pointer-events: auto !important;
+            /* Permitir clicks para funcionalidad */
+        }
     </style>
 </head>
+
 <body class="fade-in">
     <!-- Logo del Club reubicado a la derecha -->
     <div class="club-logo-container">
@@ -62,7 +75,6 @@
                 <i class="fas fa-dove"></i>
                 Calendario Litúrgico
             </h1>
-            <p class="adventures-subtitle">Archivo Digital del Santuario</p>
             <div class="adventures-motto">
                 <i class="fas fa-praying-hands"></i>
                 <span>Programación oficial de ceremonias y formación</span>
@@ -79,80 +91,30 @@
 
     <!-- Contenido principal -->
     <div class="page-content">
-        
-        <!-- Introducción del calendario -->
-        <div class="adventures-intro">
-            <div class="section-container">
-                <h2 class="intro-title">
-                    <i class="fas fa-scroll"></i>
-                    Archivo Ceremonial y Litúrgico
-                </h2>
-                <p class="intro-text">
-                    Consulta el <span class="highlight">registro oficial de ceremonias</span> y actividades 
-                    espirituales del santuario. Cada evento está documentado para preservar 
-                    la tradición litúrgica y fortalecer la formación ministerial.
-                </p>
-                <p class="intro-subtext">
-                    Desde ceremonias sagradas hasta encuentros de capacitación pastoral, 
-                    cada actividad contribuye al desarrollo espiritual de nuestra comunidad de fe.
-                </p>
-            </div>
-        </div>
 
         <!-- Sección Cronograma -->
         <section class="schedule-section pdf-section">
             <div class="section-container">
-                <div class="section-header">
-                    <div class="section-icon schedule-icon">
-                        <i class="fas fa-praying-hands"></i>
-                    </div>
-                    <h2 class="section-title">Cronograma Litúrgico y Ceremonial</h2>
-                </div>
                 <div class="section-content">
                     <div class="schedule-intro">
                         <p class="section-text">
-                            Mantente informado con nuestro <span class="highlight">calendario oficial</span> 
-                            de ceremonias sagradas y actividades formativas. Cada fecha representa 
-                            un momento significativo en la vida espiritual del santuario.
+                            Mantente informado con nuestro <span class="highlight">calendario oficial</span>
+                            de actividades, ceremonias y momentos especiales del club. Cada fecha representa
+                            una oportunidad para crecer juntos, fortalecer la fe y servir a Dios.
                         </p>
                     </div>
-                    
+
                     <!-- Botones para PDFs del cronograma -->
                     <div class="schedule-pdf-section">
                         <div class="pdf-buttons-grid">
-                            <button class="view-schedule-pdf future" onclick="abrirPDF('/assets/docs/CRONOGRAMA-DE-ACTIVIDADES-2025.pdf')">
+                            <button class="view-schedule-pdf future"
+                                onclick="abrirPDF('/assets/docs/CRONOGRAMA-DE-ACTIVIDADES-2025.pdf')">
                                 <div class="pdf-icon">
                                     <i class="fas fa-calendar-check"></i>
                                 </div>
                                 <div class="pdf-content-text">
-                                    <h4>Ceremonias Programadas</h4>
-                                    <p>Calendario litúrgico oficial y fechas sagradas para 2025</p>
-                                </div>
-                                <div class="pdf-arrow">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </div>
-                            </button>
-
-                            <button class="view-schedule-pdf completed" onclick="abrirPDF('/assets/docs/Registro-fotografico-de-actividades.pdf')">
-                                <div class="pdf-icon">
-                                    <i class="fas fa-archive"></i>
-                                </div>
-                                <div class="pdf-content-text">
-                                    <h4>Archivo de Ceremonias</h4>
-                                    <p>Registro histórico de celebraciones y eventos realizados</p>
-                                </div>
-                                <div class="pdf-arrow">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </div>
-                            </button>
-
-                            <button class="view-schedule-pdf certifications" onclick="abrirPDF('/assets/docs/CERTIFICACIONES-FIRMADAS.pdf')">
-                                <div class="pdf-icon">
-                                    <i class="fas fa-scroll"></i>
-                                </div>
-                                <div class="pdf-content-text">
-                                    <h4>Certificaciones Ministeriales</h4>
-                                    <p>Reconocimientos y logros en formación espiritual obtenidos</p>
+                                    <h4>Calendario del Club</h4>
+                                    <p>Fechas especiales, ceremonias y momentos de crecimiento espiritual en 2026</p>
                                 </div>
                                 <div class="pdf-arrow">
                                     <i class="fas fa-external-link-alt"></i>
@@ -163,190 +125,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Sección Tipos de Ceremonias -->
-        <section class="adventure-types pdf-section">
-            <div class="section-container">
-                <h2 class="types-title">
-                    <i class="fas fa-church"></i>
-                    Tipos de Ceremonias Litúrgicas
-                    <i class="fas fa-praying-hands"></i>
-                </h2>
-                
-                <div class="types-grid">
-                    <div class="type-card spiritual">
-                        <div class="type-header">
-                            <div class="type-icon">
-                                <i class="fas fa-cross"></i>
-                            </div>
-                            <h3 class="type-name">Ceremonias Espirituales</h3>
-                        </div>
-                        <div class="type-content">
-                            <p class="type-description">
-                                Celebraciones sagradas diseñadas para profundizar nuestra relación con Dios 
-                                y fortalecer la fe a través de la oración, adoración y reflexión espiritual.
-                            </p>
-                            <div class="type-features">
-                                <span class="feature">
-                                    <i class="fas fa-bible"></i>
-                                    Estudios Bíblicos
-                                </span>
-                                <span class="feature">
-                                    <i class="fas fa-music"></i>
-                                    Momentos de Alabanza
-                                </span>
-                                <span class="feature">
-                                    <i class="fas fa-praying-hands"></i>
-                                    Tiempo de Oración
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="type-card fellowship">
-                        <div class="type-header">
-                            <div class="type-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h3 class="type-name">Encuentros de Comunión</h3>
-                        </div>
-                        <div class="type-content">
-                            <p class="type-description">
-                                Actividades que fortalecen los lazos de hermandad cristiana 
-                                y comunidad entre los miembros del ministerio del santuario.
-                            </p>
-                            <div class="type-features">
-                                <span class="feature">
-                                    <i class="fas fa-gamepad"></i>
-                                    Dinámicas grupales
-                                </span>
-                                <span class="feature">
-                                    <i class="fas fa-utensils"></i>
-                                    Compañerismo cristiano
-                                </span>
-                                <span class="feature">
-                                    <i class="fas fa-comments"></i>
-                                    Fortalecimiento de lazos fraternales
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="type-card service">
-                        <div class="type-header">
-                            <div class="type-icon">
-                                <i class="fas fa-hands-helping"></i>
-                            </div>
-                            <h3 class="type-name">Misiones de Servicio</h3>
-                        </div>
-                        <div class="type-content">
-                            <p class="type-description">
-                                Actividades de alcance que nos permiten ser las manos y pies de Jesús, 
-                                sirviendo a la comunidad con amor y dedicación ministerial.
-                            </p>
-                            <div class="type-features">
-                                <span class="feature">
-                                    <i class="fas fa-gift"></i>
-                                    Donaciones
-                                </span>
-                                <span class="feature">
-                                    <i class="fas fa-broom"></i>
-                                    Jornadas de limpieza
-                                </span>
-                                <span class="feature">
-                                    <i class="fas fa-seedling"></i>
-                                    Proyectos misioneros
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="type-card learning">
-                        <div class="type-header">
-                            <div class="type-icon">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <h3 class="type-name">Programas de Capacitación</h3>
-                        </div>
-                        <div class="type-content">
-                            <p class="type-description">
-                                Actividades formativas que nos ayudan a crecer en conocimiento 
-                                bíblico, desarrollo ministerial y liderazgo espiritual cristiano.
-                            </p>
-                            <div class="type-features">
-                                <span class="feature">
-                                    <i class="fas fa-chalkboard-teacher"></i>
-                                    Talleres ministeriales
-                                </span>
-                                <span class="feature">
-                                    <i class="fas fa-book-open"></i>
-                                    Especialidades bíblicas
-                                </span>
-                                <span class="feature">
-                                    <i class="fas fa-crown"></i>
-                                    Formación en liderazgo
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sección Valores del Ministerio -->
-        <section class="adventure-values pdf-section">
-            <div class="values-container">
-                <h2 class="values-title">
-                    <i class="fas fa-heart"></i>
-                    Valores en Nuestras Actividades Ministeriales
-                </h2>
-                <p class="values-text">
-                    Cada ceremonia y actividad que realizamos está fundamentada en los valores cristianos 
-                    que nos guían como comunidad espiritual del Santuario de Formación.
-                </p>
-                
-                <div class="values-grid">
-                    <div class="value-item">
-                        <div class="value-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <h4>Amor</h4>
-                        <p>El amor de Cristo es el fundamento de nuestro ministerio</p>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h4>Unidad</h4>
-                        <p>Servimos juntos como una comunidad unida en Cristo</p>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon">
-                            <i class="fas fa-hands-helping"></i>
-                        </div>
-                        <h4>Servicio</h4>
-                        <p>Servimos a nuestra comunidad siguiendo el ejemplo de Jesús</p>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon">
-                            <i class="fas fa-seedling"></i>
-                        </div>
-                        <h4>Crecimiento</h4>
-                        <p>Cada actividad ministerial fortalece nuestro espíritu</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Decoración espiritual de fondo -->
-    <div class="background-decoration">
-        <div class="floating-icon icon-1"><i class="fas fa-praying-hands"></i></div>
-        <div class="floating-icon icon-2"><i class="fas fa-church"></i></div>
-        <div class="floating-icon icon-3"><i class="fas fa-bible"></i></div>
-        <div class="floating-icon icon-4"><i class="fas fa-scroll"></i></div>
-        <div class="floating-icon icon-5"><i class="fas fa-cross"></i></div>
-        <div class="floating-icon icon-6"><i class="fas fa-dove"></i></div>
     </div>
 
     <script>
@@ -355,7 +133,7 @@
             // Remover fade-out y aplicar fade-in
             document.body.classList.remove("fade-out");
             document.body.classList.add("fade-in");
-            
+
             // Forzar visibilidad inmediata de todas las secciones
             setTimeout(() => {
                 const sections = document.querySelectorAll('.pdf-section');
@@ -367,13 +145,13 @@
                     }, index * 200);
                 });
             }, 100);
-            
+
             // Configurar Intersection Observer para animaciones progresivas
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
             };
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -383,27 +161,27 @@
                     }
                 });
             }, observerOptions);
-            
+
             // Observar todas las secciones con animación
-            document.querySelectorAll('.pdf-section, .type-card, .value-item').forEach(section => {
+            document.querySelectorAll('.pdf-section').forEach(section => {
                 observer.observe(section);
             });
 
             // Asegurar que todos los elementos estén visibles después de 2 segundos
             setTimeout(() => {
-                document.querySelectorAll('.pdf-section, .type-card, .value-item').forEach(el => {
+                document.querySelectorAll('.pdf-section').forEach(el => {
                     el.style.opacity = '1';
                     el.style.transform = 'translateY(0)';
                     el.classList.add('visible');
                 });
             }, 2000);
         });
-        
+
         // Función para abrir PDFs
         function abrirPDF(pdfPath) {
             const modal = document.getElementById('pdfModal');
             const viewer = document.getElementById('pdfViewer');
-            
+
             if (modal && viewer) {
                 viewer.src = pdfPath;
                 modal.style.display = 'flex';
@@ -411,12 +189,12 @@
                 document.body.style.overflow = 'hidden';
             }
         }
-        
+
         // Función para cerrar PDFs
         function cerrarPDF() {
             const modal = document.getElementById('pdfModal');
             const viewer = document.getElementById('pdfViewer');
-            
+
             if (modal && viewer) {
                 modal.style.display = 'none';
                 modal.classList.remove('visible');
@@ -426,26 +204,27 @@
         }
 
         // Cerrar modal al hacer clic fuera del contenido
-        document.getElementById('pdfModal')?.addEventListener('click', function(e) {
+        document.getElementById('pdfModal')?.addEventListener('click', function (e) {
             if (e.target === this) {
                 cerrarPDF();
             }
         });
 
         // Manejar tecla Escape para cerrar modal
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 cerrarPDF();
             }
         });
     </script>
-        
+
     </script>
-        
+
     </script>
-    
+
     <!-- Scripts de protección -->
     <script src="../assets/js/protection.js"></script>
     <script src="../assets/js/advanced-protection.js"></script>
 </body>
+
 </html>
