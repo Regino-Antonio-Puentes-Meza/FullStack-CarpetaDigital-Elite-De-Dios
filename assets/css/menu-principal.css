@@ -89,7 +89,7 @@ body, html {
    ===================================================== */
 .ark-screen {
   min-height: 100vh;
-  background: url('../img/fondo-menu-santuario.png');
+  background: url('../img/fondo-menu-santuario.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
