@@ -172,7 +172,7 @@ body {
       rgba(230, 179, 37, 0.15) 50%,
       rgba(30, 58, 138, 0.25) 75%,
       rgba(230, 197, 123, 0.20) 100%
-  ), url('../img/fondo-menu-santuario.png');
+  ), url('../img/fondo-menu-santuario.webp');
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
