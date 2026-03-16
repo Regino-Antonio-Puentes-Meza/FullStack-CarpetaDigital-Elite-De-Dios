@@ -440,16 +440,32 @@ html {
   backdrop-filter: blur(10px);
 }
 
+@keyframes pdfContentAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
 .pdf-content {
-  background: var(--color-blanco-pureza);
-  margin: 1% auto;
-  padding: 1rem;
-  border: 3px solid var(--color-dorado-sagrado);
-  border-radius: 15px;
+  position: relative;
   width: 98%;
   height: 98%;
-  position: relative;
-  box-shadow: var(--sombra-dorada);
+  max-width: none;
+  max-height: none;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    0 10px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: pdfContentAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .close-pdf {
@@ -488,10 +504,10 @@ html {
 
 #pdfViewer {
   width: 100%;
-  height: calc(100% - 2rem);
+  height: 100%;
   border: none;
-  border-radius: 8px;
-  margin-top: 1rem;
+  border-radius: 0;
+  margin-top: 0;
 }
 
 /* =====================================================
@@ -684,20 +700,33 @@ html {
 }
 
 .section-container {
-  background: transparent;
-  backdrop-filter: none;
-  border: none;
-  border-radius: 0;
-  padding: 1.5rem 0;
-  box-shadow: none;
+  background: linear-gradient(
+    135deg,
+    rgba(250, 250, 247, 0.75) 0%,
+    rgba(255, 248, 231, 0.70) 100%
+  );
+  backdrop-filter: blur(15px);
+  border: 2px solid var(--color-azul-sacerdotal);
+  border-radius: 25px;
+  padding: 1.5rem 2rem;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.08);
   position: relative;
   overflow: hidden;
-  max-width: 100%;
+  max-width: 800px;
   margin: 0 auto;
 }
 
 .section-container::before {
-  display: none;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-azul-sacerdotal), var(--color-dorado-sagrado), var(--color-rojo-santuario));
+  border-radius: 25px 25px 0 0;
 }
 
 .section-header {
@@ -760,17 +789,17 @@ html {
 .view-schedule-pdf {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
   color: white;
   border: none;
   border-radius: 20px;
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.5rem;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
     0 10px 30px rgba(0, 0, 0, 0.15),
     0 5px 15px rgba(0, 0, 0, 0.1);
-  min-height: 80px;
+  min-height: 60px;
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -977,13 +1006,17 @@ html {
   position: relative;
   width: 98%;
   height: 98%;
-  max-width: 1400px;
-  background: white;
-  border-radius: 15px;
+  max-width: none;
+  max-height: none;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.3),
     0 10px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: pdfContentAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .close-pdf {
@@ -992,7 +1025,7 @@ html {
   right: 15px;
   width: 45px;
   height: 45px;
-  border-radius: 50%;
+  border-radius: 15px;
   background: rgba(239, 68, 68, 0.9);
   border: none;
   color: white;
@@ -1014,6 +1047,48 @@ html {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+/* =====================================================
+   INDICADOR DE CARGA DEL PDF OPTIMIZADO
+   ===================================================== */
+.pdf-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 2002;
+  backdrop-filter: blur(5px);
+  border-radius: 15px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(30, 58, 138, 0.2);
+  border-top: 4px solid #1e3a8a;
+  border-right: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.pdf-loader p {
+  font-size: 0.95rem;
+  color: #1e3a8a;
+  font-weight: 500;
+  text-align: center;
 }
 
 @keyframes pulse {
