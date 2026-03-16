@@ -442,12 +442,12 @@ html {
 
 .pdf-content {
   background: var(--color-blanco-pureza);
-  margin: 2% auto;
+  margin: 1% auto;
   padding: 1rem;
   border: 3px solid var(--color-dorado-sagrado);
   border-radius: 15px;
-  width: 95%;
-  height: 95%;
+  width: 98%;
+  height: 98%;
   position: relative;
   box-shadow: var(--sombra-dorada);
 }
@@ -684,33 +684,20 @@ html {
 }
 
 .section-container {
-  background: linear-gradient(
-    135deg,
-    rgba(250, 250, 247, 0.75) 0%,
-    rgba(255, 248, 231, 0.70) 100%
-  );
-  backdrop-filter: blur(15px);
-  border: 2px solid var(--color-azul-sacerdotal);
-  border-radius: 25px;
-  padding: 2.5rem;
-  box-shadow: 
-    0 15px 35px rgba(0, 0, 0, 0.1),
-    0 5px 15px rgba(0, 0, 0, 0.08);
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
+  border-radius: 0;
+  padding: 1.5rem 0;
+  box-shadow: none;
   position: relative;
   overflow: hidden;
-  max-width: 900px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
 .section-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-azul-sacerdotal), var(--color-dorado-sagrado), var(--color-rojo-santuario));
-  border-radius: 25px 25px 0 0;
+  display: none;
 }
 
 .section-header {
@@ -766,7 +753,7 @@ html {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -988,9 +975,9 @@ html {
 
 .pdf-content {
   position: relative;
-  width: 95%;
-  height: 95%;
-  max-width: 1200px;
+  width: 98%;
+  height: 98%;
+  max-width: 1400px;
   background: white;
   border-radius: 15px;
   overflow: hidden;
