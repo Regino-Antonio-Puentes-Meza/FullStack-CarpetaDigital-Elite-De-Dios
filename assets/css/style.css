@@ -1,3 +1,60 @@
+/* ========================================================================
+   🏛️ ELÍTE DE DIOS - ARCHIVO DIGITAL DEL SANTUARIO
+   ========================================================================
+   Concepto Visual: Santuario del Antiguo Testamento
+   Simbolismo: Presencia divina, orden sagrado, crecimiento espiritual
+   ======================================================================== */
+
+/* =====================================================
+   VARIABLES CSS DEL SANTUARIO
+   ===================================================== */
+:root {
+
+  /* 🟡 Dorados del Santuario (extraídos de la iluminación y objetos sagrados) */
+  --color-dorado-sagrado: #E6B325;
+  --color-dorado-claro: #FFD369;
+  --color-dorado-oscuro: #B8860B;
+
+  /* 🔴 Rojos Ceremoniales (techo del santuario y fondo superior) */
+  --color-rojo-santuario: #8E1C1C;
+  --color-rojo-claro: #C0392B;
+  --color-rojo-oscuro: #5C0F0F;
+
+  /* 🔵 Azul Sacerdotal (vestimenta del sacerdote) */
+  --color-azul-sacerdotal: #1E3A8A;
+  --color-azul-claro: #3B82F6;
+  --color-azul-oscuro: #142850;
+
+  /* 🟤 Arena del desierto (suelo e iluminación cálida) */
+  --color-arena-desierto: #E6C07B;
+  --color-arena-claro: #F5E6C8;
+  --color-arena-oscuro: #C9A15B;
+
+  /* ⚪ Neutros para UI */
+  --color-blanco-pureza: #FAFAF7;
+  --color-blanco-calido: #FFF8E7;
+  --color-negro-texto: #1F2937;
+
+  /* 📐 Espaciados Sagrados */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 4rem;
+
+  /* 📝 Tipografía */
+  --font-titulo-sagrado: 'Cinzel', serif;
+  --font-texto-general: 'Poppins', sans-serif;
+
+  /* 🌟 Sombras inspiradas en luz dorada */
+  --sombra-dorada: 0 4px 20px rgba(230, 179, 37, 0.35);
+  --sombra-suave: 0 2px 10px rgba(0,0,0,0.08);
+  --sombra-elevada: 0 10px 30px rgba(0,0,0,0.15);
+
+  /* 🔄 Transiciones */
+  --transicion-suave: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transicion-lenta: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
 /* =====================================================
    RESET Y CONFIGURACIÓN BÁSICA
    ===================================================== */
@@ -6,1458 +63,1073 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
 body, html {
   width: 100%;
   height: 100%;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-texto-general);
+  background-color: var(--color-arena-claro);
+  color: var(--color-negro-texto);
+  line-height: 1.6;
+  overflow-x: hidden;
 }
+
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 /* =====================================================
-   PANTALLA DE BIENVENIDA (SPLASH SCREEN)
+   TIPOGRAFÍA SAGRADA
    ===================================================== */
-/* 
-   Configuración principal del fondo animado
-   - Ajustamos para que la imagen se adapte al alto
-*/
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-titulo-sagrado);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-dorado-oscuro);
+}
+
+.titulo-principal {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--color-dorado-sagrado);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+}
+
+.subtitulo-sagrado {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: var(--color-azul-sacerdotal);
+  font-weight: 300;
+}
+
+/* =====================================================
+   ELEMENTOS BASE DEL SANTUARIO
+   ===================================================== */
+.contenedor-sagrado {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.divider-dorado {
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--color-dorado-sagrado), 
+    transparent
+  );
+  margin: var(--spacing-md) 0;
+  animation: brillo-dorado 3s ease-in-out infinite;
+}
+
+@keyframes brillo-dorado {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.boton-sagrado {
+  background: linear-gradient(135deg, 
+    var(--color-dorado-sagrado), 
+    var(--color-dorado-oscuro)
+  );
+  color: white;
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-titulo-sagrado);
+  font-size: 1.1rem;
+  border-radius: 8px;
+  box-shadow: var(--sombra-dorada);
+  transition: var(--transicion-suave);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.boton-sagrado:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(212, 160, 23, 0.4);
+}
+
+.boton-sagrado:active {
+  transform: translateY(0);
+}
+
+.boton-sagrado::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.boton-sagrado:hover::before {
+  left: 100%;
+}
+
+/* =====================================================
+   🏛️ PANTALLA DE BIENVENIDA DEL SANTUARIO
+   ===================================================== */
+/* =====================================================
+   🏛️ HERO SECTION - SECCIÓN DE INICIO PROFESIONAL
+   ===================================================== */
 .splash-screen {
   position: relative;
   width: 100%;
-  min-height: 100vh; /* Mantener en móvil */
-  height: -webkit-fill-available;
-  background: url('../img/fondo_Inicio.svg') center center no-repeat;
-  background-size: cover;
-  background-position: center;
-
-  /* Animación suave */
-  animation: backgroundFloat 12s ease-in-out infinite;
-}
-
-/* Contenedor principal con centrado */
-.splash-content {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
+  min-height: 100vh;
   height: 100vh;
+  background: url('../img/fondo-incio-santuario_carpeta.webp');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #FFFFFF;
+  overflow: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  /* background: rgba(159, 49, 49, 0.3); // opcional overlay rojizo */
+  animation: presencia-divina 12s ease-in-out infinite alternate;
+  will-change: filter;
 }
 
-/* =====================================================
-   BOTÓN DE ENTRADA PRINCIPAL
-   ===================================================== */
-/* Botón principal con diseño profesional y alta visibilidad */
-.enter-btn {
-  position: fixed;
-  width: 200px;
-  height: 280px;
-  bottom: 8%;
-  right: 8%; /* Movido a la derecha para evitar solapamiento */
-  /* Removido el transform para evitar centrado */
-  border: none;
-  cursor: pointer;
-  outline: none;
-  border-radius: 20px;
-  background: linear-gradient(145deg, 
-    rgba(255, 255, 255, 0.95) 0%, 
-    rgba(248, 250, 252, 0.98) 30%, 
-    rgba(236, 254, 255, 1) 70%, 
-    rgba(219, 234, 254, 1) 100%);
-  backdrop-filter: blur(15px);
-  box-shadow: 
-    0 0 50px rgba(255, 255, 255, 0.8),
-    0 20px 60px rgba(0, 0, 0, 0.15),
-    0 0 0 3px rgba(59, 130, 246, 0.3),
-    inset 0 2px 0 rgba(255, 255, 255, 0.8),
-    inset 0 -2px 0 rgba(59, 130, 246, 0.2);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: enhancedFloat 5s ease-in-out infinite alternate;
-  overflow: hidden;
-  border: 4px solid rgba(59, 130, 246, 0.4);
-}
-
-/* Estados del botón: hover y active */
-.enter-btn:hover {
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 
-    0 0 70px rgba(255, 255, 255, 1),
-    0 25px 80px rgba(0, 0, 0, 0.2),
-    0 0 0 5px rgba(59, 130, 246, 0.5),
-    inset 0 2px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -2px 0 rgba(59, 130, 246, 0.3);
-  background: linear-gradient(145deg, 
-    rgba(255, 255, 255, 1) 0%, 
-    rgba(252, 254, 255, 1) 30%, 
-    rgba(240, 249, 255, 1) 70%, 
-    rgba(224, 242, 254, 1) 100%);
-  border-color: rgba(59, 130, 246, 0.6);
-}
-
-.enter-btn:active {
-  transform: translateY(-4px) scale(1.02);
-  transition: all 0.15s ease;
-}
-
-/* =====================================================
-   ELEMENTOS DECORATIVOS DEL BOTÓN
-   ===================================================== */
-/* Marco del icono del barco mejorado */
-.enter-btn::before {
-  content: "";
+/* Quinta capa: efecto adicional de luz celestial */
+.splash-screen::before {
+  content: '';
   position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 120px;
-  background: url('../img/boton_inicio_arca.svg') no-repeat center center;
-  background-size: contain;
-  border: 3px solid rgba(59, 130, 246, 0.3);
-  border-radius: 20px;
+  top: -20%;
+  left: -20%;
+  right: -20%;
+  bottom: -20%;
+  background: 
+    /* Luz dorada celestial que se mueve */
+    radial-gradient(ellipse 300% 200% at 20% 30%, 
+      rgba(230, 179, 37, 0.08) 0%,
+      rgba(255, 211, 105, 0.10) 20%,
+      transparent 50%
+    ),
+    /* Resplandor azul sacerdotal sutil */
+    radial-gradient(ellipse 250% 150% at 80% 70%, 
+      rgba(30, 58, 138, 0.06) 0%,
+      rgba(59, 130, 246, 0.08) 30%,
+      transparent 60%
+    );
   z-index: 1;
   pointer-events: none;
-  filter: drop-shadow(0 6px 16px rgba(59, 130, 246, 0.3));
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(5px);
+  animation: luz-celestial 15s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
-/* Efecto de ondas de agua en la base del botón */
-.enter-btn::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: -20px;
-  width: calc(100% + 40px);
-  height: 60px;
-  background: linear-gradient(90deg, 
-    transparent 0%,
-    rgba(59, 130, 246, 0.1) 25%,
-    rgba(59, 130, 246, 0.2) 50%,
-    rgba(59, 130, 246, 0.1) 75%,
-    transparent 100%);
-  border-radius: 50%;
-  animation: waterWave 3s ease-in-out infinite;
-  z-index: 0;
-}
-
-/* Texto del botón con alta legibilidad */
-.door-text {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #1e40af;
-  text-align: center;
-  text-shadow: 
-    0 2px 4px rgba(255, 255, 255, 0.8),
-    0 0 20px rgba(255, 255, 255, 0.6);
-  letter-spacing: 1px;
-  animation: textGlow 2.5s ease-in-out infinite;
-  z-index: 2;
-  text-transform: uppercase;
-  font-family: 'Arial Black', Arial, sans-serif;
-}
-
-/* =====================================================
-   MENSAJE DE BIENVENIDA PROFESIONAL
-   ===================================================== */
-/* Contenedor principal del mensaje de bienvenida */
-.welcome-message {
-  position: fixed;
-  top: 8%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 800px;
-  text-align: center;
-  z-index: 1001;
-  animation: welcomeAppear 2s ease-out;
-}
-
-/* Encabezado del mensaje de bienvenida */
-.welcome-header {
-  margin-bottom: 2rem;
-}
-
-/* Título principal del mensaje */
-.welcome-title {
-  font-family: 'Cinzel', serif;
-  font-size: 3.2rem;
-  font-weight: 700;
-  color: #1a365d;
-  text-shadow: 
-    0 4px 8px rgba(255, 255, 255, 0.9),
-    0 0 30px rgba(255, 255, 255, 0.8),
-    0 0 50px rgba(59, 130, 246, 0.3);
-  margin-bottom: 0.5rem;
-  animation: titleGlow 3s ease-in-out infinite alternate;
-  letter-spacing: 2px;
-}
-
-/* Subtítulo del club con efectos de iluminación profesional */
-.welcome-subtitle {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 600; /* Incrementado para mayor prominencia */
-  color: #1e40af;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin-bottom: 1rem;
-  
-  /* Efectos de iluminación múltiples */
-  text-shadow: 
-    0 0 10px rgba(59, 130, 246, 0.8),
-    0 0 20px rgba(59, 130, 246, 0.6),
-    0 0 30px rgba(59, 130, 246, 0.4),
-    0 0 40px rgba(59, 130, 246, 0.3),
-    0 2px 4px rgba(255, 255, 255, 0.8),
-    0 4px 8px rgba(0, 0, 0, 0.2);
-  
-  /* Borde luminoso sutil */
-  position: relative;
-  
-  /* Animación de pulsación luminosa */
-  animation: clubGlow 4s ease-in-out infinite alternate;
-  
-  /* Borde dorado como el título principal */
-  border: 3px solid transparent;
-  background: 
-    linear-gradient(135deg, 
-      #3b82f6 0%, 
-      #1d4ed8 25%, 
-      #1e40af 50%, 
-      #3730a3 75%, 
-      #312e81 100%),
-    linear-gradient(135deg, 
-      #fbbf24 0%, 
-      #f59e0b 25%, 
-      #d9770688 50%, 
-      #806c5d6f 75%, 
-      #cbc3bf 100%);
-  background-clip: text, border-box;
-  -webkit-background-clip: text, border-box;
-  
-  /* Padding interno para que el texto no toque el borde */
-  padding: 0.5rem 1rem;
-  border-radius: 15px;
-  
-  /* Efecto de resplandor dorado en el borde */
-  box-shadow: 
-    0 0 15px rgba(251, 191, 36, 0.4),
-    0 0 30px rgba(251, 191, 36, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-/* Efecto de resplandor adicional para el subtítulo */
-.welcome-subtitle::before {
-  content: attr(data-text);
+/* Velo animado espiritual mejorado con ondas suaves */
+.splash-screen::after {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  z-index: -1;
-  
-  /* Mismo estilo base */
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  padding: 0.5rem 1rem;
-  
-  /* Efectos de resplandor de fondo */
-  background: linear-gradient(135deg, #60a5fa, #3b82f6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  
-  filter: blur(2px);
-  opacity: 0.6;
-  
-  /* Animación de resplandor de fondo */
-  animation: backgroundGlow 3s ease-in-out infinite alternate;
+  bottom: 0;
+  background: 
+    /* Degradado RGB base cambiante */
+    linear-gradient(90deg, 
+      rgba(230, 179, 37, 0.06) 0%,
+      rgba(30, 58, 138, 0.05) 20%,
+      rgba(142, 28, 28, 0.04) 40%,
+      rgba(59, 130, 246, 0.06) 60%,
+      rgba(230, 199, 123, 0.05) 80%,
+      rgba(192, 57, 43, 0.04) 100%
+    ),
+    /* Degradado circular RGB */
+    radial-gradient(circle at 40% 60%, 
+      rgba(255, 211, 105, 0.07) 0%,
+      rgba(30, 58, 138, 0.05) 35%,
+      rgba(142, 28, 28, 0.03) 70%,
+      transparent 100%
+    );
+  z-index: 2;
+  pointer-events: none;
+  animation: velo-rgb-suave 15s ease-in-out infinite;
+  will-change: opacity, transform, background;
 }
 
-/* Efecto de marco luminoso dorado alrededor del subtítulo
-.welcome-subtitle::after {
-  content: '';
+/* 🌊 Velo de colores adicional más visible */
+.velo-colores-visible {
   position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  background: linear-gradient(90deg, 
-    transparent 0%,
-    rgba(251, 191, 36, 0.3) 20%,
-    rgba(251, 191, 36, 0.6) 50%,
-    rgba(251, 191, 36, 0.3) 80%,
-    transparent 100%);
-  border-radius: 20px;
-  z-index: -2;
-  opacity: 0.7;
-  animation: frameGlowGold 5s ease-in-out infinite;
-} */
-
-/* Cuerpo del mensaje con fondo translúcido */
-.welcome-body {
-  backdrop-filter: blur(20px);
-  border-radius: 25px;
-  padding: 2rem 2.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 
-    0 0 40px rgba(144, 26, 26, 0.8),
-    0 15px 50px rgb(0, 0, 0),
-    inset 0 1px 0 rgb(255, 255, 255);
-  border: 2px solid rgba(187, 48, 5, 0.2);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    /* Degradado RGB cambiante principal */
+    linear-gradient(45deg, 
+      rgba(230, 179, 37, 0.15) 0%,
+      rgba(30, 58, 138, 0.12) 25%,
+      rgba(142, 28, 28, 0.12) 50%,
+      rgba(230, 199, 123, 0.15) 75%,
+      rgba(59, 130, 246, 0.12) 100%
+    ),
+    /* Degradado circular que se mueve */
+    radial-gradient(ellipse 150% 100%, 
+      rgba(255, 211, 105, 0.12) 0%,
+      rgba(192, 57, 43, 0.08) 30%,
+      rgba(30, 58, 138, 0.10) 60%,
+      transparent 100%
+    ),
+    /* Degradado diagonal invertido */
+    linear-gradient(-45deg, 
+      rgba(59, 130, 246, 0.08) 0%,
+      rgba(230, 179, 37, 0.12) 33%,
+      rgba(142, 28, 28, 0.08) 66%,
+      rgba(245, 230, 200, 0.12) 100%
+    );
+  z-index: 3;
+  pointer-events: none;
+  animation: degradados-rgb-cambiantes 8s ease-in-out infinite;
+  will-change: transform, opacity, background, filter;
 }
 
-/* Texto principal del mensaje */
-.welcome-text {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.25rem;
-  font-weight: 400;
-  color: #1e40af;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-}
-
-/* Texto secundario del mensaje */
-.welcome-subtext {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-  font-weight: 300;
-  color: #3730a3;
-  line-height: 1.5;
-  font-style: italic;
-  opacity: 0.9;
-}
-
-/* Texto destacado dentro del mensaje */
-.highlight {
-  font-weight: 600;
-  color: #1d4ed8;
-  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-  padding: 0.2rem 0.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
-}
-
-/* Insignia de aventura con brújula */
-.adventure-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 50px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 1.1rem;
-  box-shadow: 
-    0 8px 25px rgba(245, 158, 11, 0.4),
-    0 0 20px rgba(255, 255, 255, 0.3);
-  animation: badgePulse 2s ease-in-out infinite alternate;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-/* Icono de brújula en la insignia */
-.adventure-badge i {
-  font-size: 1.3rem;
-  animation: compassSpin 4s linear infinite;
-}
-
-/* =====================================================
-   ANIMACIONES PRINCIPALES
-   ===================================================== */
-/* Animación de flotación mejorada para el botón */
-@keyframes enhancedFloat {
-  0%   { 
-    transform: translateY(0) rotate(-0.5deg);
-    box-shadow: 
-      0 0 50px rgba(255, 255, 255, 0.8),
-      0 20px 60px rgba(0, 0, 0, 0.15);
-  }
-  100% { 
-    transform: translateY(-10px) rotate(0.5deg);
-    box-shadow: 
-      0 0 60px rgba(255, 255, 255, 0.9),
-      0 25px 70px rgba(0, 0, 0, 0.2);
-  }
-}
-
-/* Animación de brillo para el texto del botón */
-@keyframes textGlow {
-  0%, 100% {
-    text-shadow: 
-      0 2px 4px rgba(255, 255, 255, 0.8),
-      0 0 20px rgba(255, 255, 255, 0.6);
-  }
-  50% {
-    text-shadow: 
-      0 2px 4px rgba(255, 255, 255, 1),
-      0 0 30px rgba(255, 255, 255, 0.8),
-      0 0 40px rgba(59, 130, 246, 0.4);
-  }
-}
-
-/* Animación de ondas de agua */
-@keyframes waterWave {
-  0%, 100% {
+@keyframes degradados-rgb-cambiantes {
+  0% {
     opacity: 0.3;
-    transform: scaleX(1);
+    transform: rotate(0deg) scale(1);
+    background: 
+      linear-gradient(45deg, 
+        rgba(230, 179, 37, 0.15) 0%,
+        rgba(30, 58, 138, 0.12) 25%,
+        rgba(142, 28, 28, 0.12) 50%,
+        rgba(230, 199, 123, 0.15) 75%,
+        rgba(59, 130, 246, 0.12) 100%
+      ),
+      radial-gradient(ellipse at 20% 30%, 
+        rgba(255, 211, 105, 0.12) 0%,
+        rgba(192, 57, 43, 0.08) 50%,
+        transparent 100%
+      ),
+      linear-gradient(-45deg, 
+        rgba(59, 130, 246, 0.08) 0%,
+        rgba(230, 179, 37, 0.12) 50%,
+        rgba(142, 28, 28, 0.08) 100%
+      );
+  }
+  25% {
+    opacity: 0.4;
+    transform: rotate(2deg) scale(1.02);
+    background: 
+      linear-gradient(135deg, 
+        rgba(142, 28, 28, 0.15) 0%,
+        rgba(255, 211, 105, 0.14) 25%,
+        rgba(59, 130, 246, 0.12) 50%,
+        rgba(230, 179, 37, 0.15) 75%,
+        rgba(30, 58, 138, 0.12) 100%
+      ),
+      radial-gradient(ellipse at 70% 70%, 
+        rgba(192, 57, 43, 0.14) 0%,
+        rgba(230, 199, 123, 0.10) 50%,
+        transparent 100%
+      ),
+      linear-gradient(90deg, 
+        rgba(230, 179, 37, 0.10) 0%,
+        rgba(142, 28, 28, 0.12) 50%,
+        rgba(59, 130, 246, 0.10) 100%
+      );
   }
   50% {
-    opacity: 0.6;
-    transform: scaleX(1.1);
+    opacity: 0.35;
+    transform: rotate(-1deg) scale(1.01);
+    background: 
+      linear-gradient(225deg, 
+        rgba(59, 130, 246, 0.15) 0%,
+        rgba(142, 28, 28, 0.12) 25%,
+        rgba(230, 179, 37, 0.14) 50%,
+        rgba(192, 57, 43, 0.12) 75%,
+        rgba(255, 211, 105, 0.15) 100%
+      ),
+      radial-gradient(ellipse at 50% 10%, 
+        rgba(30, 58, 138, 0.12) 0%,
+        rgba(230, 179, 37, 0.10) 50%,
+        transparent 100%
+      ),
+      linear-gradient(180deg, 
+        rgba(245, 230, 200, 0.12) 0%,
+        rgba(59, 130, 246, 0.10) 50%,
+        rgba(142, 28, 28, 0.12) 100%
+      );
   }
-}
-
-/* =====================================================
-   ANIMACIONES DEL MENSAJE DE BIENVENIDA
-   ===================================================== */
-/* Aparición del mensaje de bienvenida */
-@keyframes welcomeAppear {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-30px);
+  75% {
+    opacity: 0.42;
+    transform: rotate(1.5deg) scale(1.03);
+    background: 
+      linear-gradient(315deg, 
+        rgba(230, 199, 123, 0.15) 0%,
+        rgba(59, 130, 246, 0.14) 25%,
+        rgba(230, 179, 37, 0.12) 50%,
+        rgba(30, 58, 138, 0.14) 75%,
+        rgba(192, 57, 43, 0.15) 100%
+      ),
+      radial-gradient(ellipse at 30% 90%, 
+        rgba(255, 211, 105, 0.14) 0%,
+        rgba(142, 28, 28, 0.10) 50%,
+        transparent 100%
+      ),
+      linear-gradient(270deg, 
+        rgba(30, 58, 138, 0.10) 0%,
+        rgba(230, 199, 123, 0.12) 50%,
+        rgba(230, 179, 37, 0.10) 100%
+      );
   }
   100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
+    opacity: 0.32;
+    transform: rotate(0deg) scale(1);
+    background: 
+      linear-gradient(45deg, 
+        rgba(255, 211, 105, 0.15) 0%,
+        rgba(192, 57, 43, 0.12) 25%,
+        rgba(30, 58, 138, 0.12) 50%,
+        rgba(59, 130, 246, 0.15) 75%,
+        rgba(230, 179, 37, 0.12) 100%
+      ),
+      radial-gradient(ellipse at 80% 50%, 
+        rgba(142, 28, 28, 0.12) 0%,
+        rgba(245, 230, 200, 0.08) 50%,
+        transparent 100%
+      ),
+      linear-gradient(-135deg, 
+        rgba(230, 179, 37, 0.08) 0%,
+        rgba(30, 58, 138, 0.12) 50%,
+        rgba(255, 211, 105, 0.08) 100%
+      );
   }
 }
 
-/* Brillo del título principal */
-@keyframes titleGlow {
-  0% {
-    text-shadow: 
-      0 4px 8px rgba(255, 255, 255, 0.9),
-      0 0 30px rgba(255, 255, 255, 0.8),
-      0 0 50px rgba(59, 130, 246, 0.3);
-  }
-  100% {
-    text-shadow: 
-      0 4px 8px rgba(255, 255, 255, 1),
-      0 0 40px rgba(255, 255, 255, 0.9),
-      0 0 60px rgba(59, 130, 246, 0.5);
-  }
-}
-
-/* Pulsación de la insignia de aventura */
-@keyframes badgePulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 
-      0 8px 25px rgba(245, 158, 11, 0.4),
-      0 0 20px rgba(255, 255, 255, 0.3);
-  }
-  100% {
-    transform: scale(1.05);
-    box-shadow: 
-      0 12px 35px rgba(245, 158, 11, 0.6),
-      0 0 30px rgba(255, 255, 255, 0.5);
-  }
-}
-
-/* Rotación de la brújula */
-@keyframes compassSpin {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(90deg); }
-  50% { transform: rotate(180deg); }
-  75% { transform: rotate(270deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Animación de fondo */
-@keyframes backgroundFloat {
-  0%, 100% { background-position: center; }
-  50%      { background-position: center 52%; }
-}
-
-/* =====================================================
-   ÍCONOS DE REDES SOCIALES - REUBICADOS PROFESIONALMENTE
-   ===================================================== */
-/* Contenedor de íconos sociales reubicado */
-.social-icons {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
+/* Contenedor principal responsivo */
+.splash-content {
+  position: relative;
+  z-index: 10;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  z-index: 9999;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: var(--spacing-md);
+  padding-top: calc(var(--spacing-md) * 2);
+  gap: var(--spacing-lg);
 }
 
-/* Estilos base para íconos sociales mejorados */
-.social-icon {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.95);
-  color: #333;
+/* =====================================================
+/* Animación de luz celestial que se mueve lentamente */
+@keyframes luz-celestial {
+  0% {
+    opacity: 0.3;
+    transform: rotate(0deg) scale(1) translateX(0);
+    background-position: 20% 30%, 80% 70%;
+  }
+  25% {
+    opacity: 0.4;
+    transform: rotate(2deg) scale(1.05) translateX(10px);
+    background-position: 35% 45%, 65% 55%;
+  }
+  50% {
+    opacity: 0.35;
+    transform: rotate(-1deg) scale(0.95) translateX(-5px);
+    background-position: 50% 60%, 50% 40%;
+  }
+  75% {
+    opacity: 0.42;
+    transform: rotate(1.5deg) scale(1.03) translateX(8px);
+    background-position: 65% 75%, 35% 25%;
+  }
+  100% {
+    opacity: 0.32;
+    transform: rotate(0deg) scale(1) translateX(0);
+    background-position: 80% 90%, 20% 10%;
+  }
+}
+
+/* Animación del velo espiritual suave como aurora */
+@keyframes velo-rgb-suave {
+  0% {
+    opacity: 0.2;
+    transform: translateX(0) rotate(0deg) scale(1);
+    background: 
+      linear-gradient(90deg, 
+        rgba(230, 179, 37, 0.06) 0%,
+        rgba(30, 58, 138, 0.05) 50%,
+        rgba(142, 28, 28, 0.04) 100%
+      ),
+      radial-gradient(circle at 40% 60%, 
+        rgba(255, 211, 105, 0.07) 0%,
+        transparent 70%
+      );
+  }
+  33% {
+    opacity: 0.3;
+    transform: translateX(10px) rotate(1deg) scale(1.01);
+    background: 
+      linear-gradient(120deg, 
+        rgba(59, 130, 246, 0.07) 0%,
+        rgba(142, 28, 28, 0.06) 50%,
+        rgba(230, 199, 123, 0.05) 100%
+      ),
+      radial-gradient(circle at 70% 30%, 
+        rgba(192, 57, 43, 0.06) 0%,
+        transparent 70%
+      );
+  }
+  66% {
+    opacity: 0.25;
+    transform: translateX(-5px) rotate(-0.5deg) scale(1.02);
+    background: 
+      linear-gradient(180deg, 
+        rgba(142, 28, 28, 0.06) 0%,
+        rgba(255, 211, 105, 0.05) 50%,
+        rgba(30, 58, 138, 0.05) 100%
+      ),
+      radial-gradient(circle at 30% 80%, 
+        rgba(230, 179, 37, 0.07) 0%,
+        transparent 70%
+      );
+  }
+  100% {
+    opacity: 0.22;
+    transform: translateX(0) rotate(0deg) scale(1);
+    background: 
+      linear-gradient(270deg, 
+        rgba(245, 230, 200, 0.05) 0%,
+        rgba(59, 130, 246, 0.06) 50%,
+        rgba(192, 57, 43, 0.05) 100%
+      ),
+      radial-gradient(circle at 60% 40%, 
+        rgba(30, 58, 138, 0.06) 0%,
+        transparent 70%
+      );
+  }
+}
+
+@keyframes presencia-divina {
+  0% { 
+    filter: brightness(0.9) contrast(1.1) saturate(1.1); 
+  }
+  50% {
+    filter: brightness(1.0) contrast(1.15) saturate(1.2);
+  }
+  100% { 
+    filter: brightness(1.1) contrast(1.2) saturate(1.3); 
+  }
+}
+
+@keyframes llamada-santuario {
+  0%, 100% { 
+    transform: translateY(0) scale(1);
+    box-shadow: 
+      0 4px 20px rgba(212, 160, 23, 0.4),
+      0 0 30px rgba(212, 160, 23, 0.5);
+  }
+  50% { 
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 
+      0 6px 25px rgba(212, 160, 23, 0.5),
+      0 0 40px rgba(212, 160, 23, 0.7);
+  }
+}
+
+/* =====================================================
+   🎆 OPTIMIZACIONES DE PERFORMANCE
+   ===================================================== */
+
+/* Optimización de animaciones */
+.welcome-title,
+.enter-btn {
+  will-change: transform, text-shadow, box-shadow;
+}
+
+/* Reduced motion para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .splash-screen,
+  .welcome-title,
+  .enter-btn {
+    animation: none;
+  }
+  
+  .splash-screen::before,
+  .splash-screen::after {
+    animation: none;
+    transform: none;
+    background-position: center;
+  }
+}
+
+/* =====================================================
+   📱 RESPONSIVE DESIGN SYSTEM - MOBILE FIRST
+   ===================================================== */
+
+/* =====================================================
+   📱 SISTEMA DE DISEÑO RESPONSIVO PROFESIONAL
+   ===================================================== */
+
+/* 📱 MÓVILES (320px - 767px) */
+@media (max-width: 767px) {
+  .splash-screen {
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: contain;
+    padding: var(--spacing-sm);
+  }
+  
+  /* Optimización del velo para móviles */
+  .splash-screen::before {
+    animation-duration: 20s;
+    background-size: 200% 150%, 180% 120%;
+    opacity: 0.15; /* Mucho más transparente para móviles */
+  }
+  
+  .splash-screen::after {
+    animation-duration: 15s;
+    background-size: 120% 80%, 150% 100%, 140% 90%, 130% 70%;
+    opacity: 0.2; /* Más transparente para mejor legibilidad */
+  }
+  
+  .velo-colores-visible {
+    opacity: 0.15; /* Velo adicional muy transparente */
+  }
+  
+  .splash-content {
+    padding: var(--spacing-sm);
+    gap: 0;
+    min-height: 100vh;
+    justify-content: space-between;
+    padding-top: calc(100vh * 0.05);
+    padding-bottom: calc(100vh * 0.05);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .welcome-message {
+    max-width: 100%;
+    flex: 0 0 auto;
+    align-self: center;
+  }
+  
+  .welcome-title {
+    font-size: clamp(1rem, 6vw, 1.5rem);
+    letter-spacing: 2px;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-azul-sacerdotal);
+    text-shadow: 
+      0 2px 4px rgba(255, 255, 255, 0.8),
+      0 0 10px rgba(30, 58, 138, 0.3);
+  }
+  
+  .enter-btn {
+    width: clamp(250px, 85vw, 320px);
+    height: clamp(60px, 14vw, 75px);
+    font-size: clamp(1rem, 4vw, 1.3rem);
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+    align-self: center;
+    flex: 0 0 auto;
+  }
+  
+  /* Overlay más intenso para legibilidad en móvil */
+  .splash-screen::before {
+    background: 
+      linear-gradient(180deg, 
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.4) 25%,
+        transparent 45%,
+        transparent 65%,
+        rgba(0, 0, 0, 0.3) 100%
+      ),
+      radial-gradient(ellipse at center, 
+        rgba(212, 160, 23, 0.1) 0%,
+        rgba(212, 160, 23, 0.2) 35%,
+        transparent 75%
+      );
+  }
+}
+
+/* 📟 TABLETS (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .splash-screen {
+    background-attachment: scroll;
+    background-size: contain;
+    padding: var(--spacing-md);
+  }
+  
+  .splash-content {
+    padding: var(--spacing-sm);
+    gap: 0;
+    min-height: 100vh;
+    justify-content: space-between;
+    padding-top: calc(100vh * 0.05);
+    padding-bottom: calc(100vh * 0.05);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .welcome-message {
+    max-width: 85%;
+    flex: 0 0 auto;
+    align-self: center;
+  }
+  
+  .welcome-title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    letter-spacing: 2.5px;
+    color: var(--color-azul-sacerdotal);
+    text-shadow: 
+      0 2px 4px rgba(255, 255, 255, 0.8),
+      0 0 10px rgba(30, 58, 138, 0.3);
+  }
+  
+  .enter-btn {
+    width: clamp(300px, 45vw, 380px);
+    height: clamp(70px, 10vw, 85px);
+    font-size: clamp(1.2rem, 2.8vw, 1.4rem);
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+    align-self: center;
+    flex: 0 0 auto;
+  }
+}
+
+/* 💻 LAPTOPS (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .splash-content {
+    padding: var(--spacing-lg);
+    padding-top: calc(var(--spacing-lg) * 1.5);
+    gap: var(--spacing-xl);
+    max-width: 1000px;
+    justify-content: space-between;
+    min-height: calc(100vh - 60px);
+  }
+  
+  .welcome-message {
+    max-width: 80%;
+  }
+  
+  .welcome-title {
+    font-size: clamp(1.8rem, 3vw, 2.3rem);
+    letter-spacing: 3px;
+  }
+  
+  .enter-btn {
+    width: 380px;
+    height: 85px;
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: calc(var(--spacing-lg) * 1.5);
+    align-self: center;
+  }
+}
+
+/* 🖥️ MONITORES GRANDES (1440px+) */
+@media (min-width: 1440px) {
+  .splash-content {
+    padding: var(--spacing-xl);
+    padding-top: calc(var(--spacing-xl) * 1.5);
+    gap: var(--spacing-xl);
+    max-width: 1200px;
+    justify-content: space-between;
+    min-height: calc(100vh - 80px);
+  }
+  
+  .welcome-message {
+    max-width: 75%;
+  }
+  
+  .welcome-title {
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    letter-spacing: 4px;
+  }
+  
+  .enter-btn {
+    width: 400px;
+    height: 90px;
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: calc(var(--spacing-xl) * 1.5);
+    align-self: center;
+  }
+  
+  /* Overlay optimizado para monitores grandes */
+  .splash-screen::before {
+    background: 
+      linear-gradient(180deg, 
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.2) 15%,
+        transparent 35%,
+        transparent 70%,
+        rgba(0, 0, 0, 0.15) 100%
+      ),
+      radial-gradient(ellipse at center, 
+        rgba(212, 160, 23, 0.07) 0%,
+        rgba(212, 160, 23, 0.12) 30%,
+        transparent 70%
+      );
+  }
+}
+
+/* =====================================================
+   🌌 OPTIMIZACIONES DE ACCESIBILIDAD
+   ===================================================== */
+
+/* Reducción de movimiento para usuarios sensibles */
+@media (prefers-reduced-motion: reduce) {
+  .splash-screen,
+  .welcome-title,
+  .enter-btn {
+    animation: none !important;
+  }
+  
+  .splash-screen::before {
+    transition: none;
+  }
+}
+
+/* Alto contraste para accesibilidad */
+@media (prefers-contrast: high) {
+  .welcome-title {
+    color: #FFFFFF;
+    text-shadow: 
+      0 0 10px rgba(0, 0, 0, 1),
+      2px 2px 4px rgba(0, 0, 0, 1);
+  }
+  
+  .enter-btn {
+    border: 3px solid rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* =====================================================
+   🔄 COMPATIBILIDAD CROSS-BROWSER
+   ===================================================== */
+
+/* Safari - fix para background-attachment */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .splash-screen {
+    background-attachment: scroll;
+  }
+}
+
+/* Firefox - optimizaciones */
+@-moz-document url-prefix() {
+  .splash-screen {
+    background-attachment: scroll;
+  }
+}
+
+/* Edge Legacy - fallbacks */
+@supports (-ms-ime-align: auto) {
+  .splash-content {
+    display: flex;
+  }
+}
+
+/* =====================================================
+   🌟 INTERACCIONES Y ESTADOS HOVER
+   ===================================================== */
+.enter-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 8px 30px rgba(212, 160, 23, 0.6),
+    0 0 50px rgba(212, 160, 23, 0.8),
+    inset 0 2px 0 rgba(255, 255, 255, 0.4);
+  animation: none;
+}
+
+.enter-btn:active {
+  transform: translateY(-1px) scale(0.99);
+  box-shadow: 
+    0 4px 20px rgba(212, 160, 23, 0.5),
+    0 0 30px rgba(212, 160, 23, 0.6);
+}
+
+.enter-btn:focus {
+  outline: 3px solid rgba(212, 160, 23, 0.5);
+  outline-offset: 3px;
+}
+
+/* Estados de carga y accesibilidad */
+.enter-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  animation: none;
+  transform: none;
+}
+
+/* =====================================================
+   🌐 COMPATIBILIDAD CROSS-BROWSER
+   ===================================================== */
+
+/* Safari backdrop-filter support */
+@supports (backdrop-filter: blur(10px)) {
+  .splash-screen::before {
+    backdrop-filter: blur(0.5px);
+  }
+}
+
+/* Firefox específico */
+@-moz-document url-prefix() {
+  .splash-screen {
+    background-attachment: scroll;
+  }
+}
+
+/* Edge legacy support */
+@supports (-ms-ime-align: auto) {
+  .splash-content {
+    display: -ms-grid;
+  }
+}
+
+/* =====================================================
+   🎆 MENSAJE DE BIENVENIDA OPTIMIZADO
+   ===================================================== */
+.welcome-message {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  z-index: 15;
+  margin-bottom: var(--spacing-lg);
+}
+
+.welcome-header {
+  margin-bottom: var(--spacing-md);
+}
+
+/* Título principal profesional */
+.welcome-title {
+  font-family: var(--font-titulo-sagrado);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  text-shadow: 
+    0 0 30px rgba(192, 57, 43, 1),
+    0 0 60px rgba(142, 28, 28, 0.95),
+    0 0 90px rgba(92, 15, 15, 0.8),
+    0 0 120px rgba(192, 57, 43, 0.6),
+    0 0 150px rgba(142, 28, 28, 0.4),
+    2px 2px 6px rgba(0, 0, 0, 1),
+    4px 4px 12px rgba(0, 0, 0, 0.8),
+    6px 6px 18px rgba(0, 0, 0, 0.6);
+  margin-bottom: var(--spacing-sm);
+  animation: titulo-resplandor 4s ease-in-out infinite alternate;
+  line-height: 1.1;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+/* Animación del título */
+@keyframes titulo-resplandor {
+  0% {
+    text-shadow: 
+      0 0 25px rgba(192, 57, 43, 0.9),
+      0 0 50px rgba(142, 28, 28, 0.7),
+      0 0 75px rgba(92, 15, 15, 0.5),
+      0 0 100px rgba(192, 57, 43, 0.3),
+      2px 2px 6px rgba(0, 0, 0, 1),
+      4px 4px 12px rgba(0, 0, 0, 0.8);
+  }
+  100% {
+    text-shadow: 
+      0 0 40px rgba(192, 57, 43, 1),
+      0 0 80px rgba(142, 28, 28, 0.95),
+      0 0 120px rgba(92, 15, 15, 0.8),
+      0 0 160px rgba(192, 57, 43, 0.6),
+      0 0 200px rgba(142, 28, 28, 0.4),
+      2px 2px 8px rgba(0, 0, 0, 1),
+      4px 4px 16px rgba(0, 0, 0, 0.9),
+      6px 6px 24px rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* =====================================================
+   🚪 BOTÓN PRINCIPAL RESPONSIVO  
+   ===================================================== */
+
+.welcome-body {
+  margin-bottom: var(--spacing-sm);
+}
+
+.welcome-text {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--color-blanco-pureza);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.7;
+}
+
+.welcome-subtext {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: var(--color-arena-desierto);
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.highlight {
+  color: var(--color-dorado-claro);
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(244, 208, 63, 0.4);
+}
+
+/* =====================================================
+   🚪 BOTÓN ENTRAR AL SANTUARIO
+   ===================================================== */
+/* =====================================================
+   🚪 BOTÓN PRINCIPAL - POSICIONAMIENTO ESTRATÉGICO
+   ===================================================== */
+/* =====================================================
+   🚪 BOTÓN PRINCIPAL RESPONSIVO
+   ===================================================== */
+.enter-btn {
+  position: relative;
+  width: clamp(280px, 50vw, 400px);
+  height: clamp(65px, 12vw, 85px);
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 15px;
+  background: linear-gradient(135deg, 
+    var(--color-azul-sacerdotal) 0%,
+    var(--color-azul-oscuro) 50%,
+    var(--color-azul-sacerdotal) 100%
+  );
+  color: var(--color-blanco-pureza);
+  font-family: var(--font-titulo-sagrado);
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  box-shadow: 
+    0 4px 20px rgba(30, 58, 138, 0.4),
+    0 0 30px rgba(30, 58, 138, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.2);
+  transition: var(--transicion-suave);
+  animation: boton-llamada-sacerdotal 4s ease-in-out infinite;
+  border: 2px solid rgba(30, 58, 138, 0.6);
+  z-index: 20;
+}
+
+@keyframes boton-llamada-sacerdotal {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 
+      0 4px 20px rgba(30, 58, 138, 0.4),
+      0 0 30px rgba(30, 58, 138, 0.3),
+      inset 0 2px 0 rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 
+      0 6px 25px rgba(30, 58, 138, 0.5),
+      0 0 40px rgba(59, 130, 246, 0.4),
+      inset 0 2px 0 rgba(255, 255, 255, 0.25);
+  }
+}
+
+.enter-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  background: linear-gradient(135deg, 
+    var(--color-azul-claro) 0%,
+    var(--color-azul-sacerdotal) 50%,
+    var(--color-azul-claro) 100%
+  );
+  box-shadow: 
+    0 8px 30px rgba(59, 130, 246, 0.6),
+    0 0 50px rgba(59, 130, 246, 0.5),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3);
+  animation: none;
+}
+
+.enter-btn:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.enter-btn:focus {
+  outline: 3px solid rgba(212, 160, 23, 0.5);
+  outline-offset: 3px;
+}
+
+/* Efecto de brillo divino */
+.enter-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.4), 
+    transparent
+  );
+  transition: left 0.8s;
+}
+
+.enter-btn:hover::before {
+  left: 100%;
+}
+
+/* Icono del Santuario en el botón */
+.enter-btn::after {
+  content: '🏛️';
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+.door-text {
+  margin-left: 30px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Insignia de progreso espiritual */
+.adventure-badge {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  text-decoration: none;
-  box-shadow: 
-    0 8px 25px rgba(0, 0, 0, 0.15),
-    0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  cursor: pointer;
+  gap: var(--spacing-xs);
+  background: rgba(31, 58, 95, 0.2);
   backdrop-filter: blur(10px);
-}
-
-/* Estado hover para íconos sociales mejorado */
-.social-icon:hover {
-  transform: scale(1.15) translateY(-2px);
-  box-shadow: 
-    0 12px 35px rgba(0, 0, 0, 0.25),
-    0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-/* Estilo específico para Facebook mejorado */
-.social-icon.facebook {
-  background: linear-gradient(135deg, #3b5998, #4a69ad);
-  color: #fff;
-  border-color: rgba(59, 89, 152, 0.3);
-}
-
-.social-icon.facebook:hover {
-  background: linear-gradient(135deg, #4a69ad, #5a79bd);
-  box-shadow: 
-    0 12px 35px rgba(59, 89, 152, 0.4),
-    0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-/* Estilo específico para Instagram mejorado */
-.social-icon.instagram {
-  background: radial-gradient(circle at 30% 30%, 
-    #fdf497, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-  color: #fff;
-  border-color: rgba(220, 39, 67, 0.3);
-}
-
-.social-icon.instagram:hover {
-  background: radial-gradient(circle at 30% 30%, 
-    #fff8a7, #f1a443, #e7784c, #dd3753, #cd3376, #bd2898);
-  box-shadow: 
-    0 12px 35px rgba(220, 39, 67, 0.4),
-    0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-/* Etiquetas descriptivas opcionales */
-.social-icon::after {
-  content: attr(aria-label);
-  position: absolute;
-  right: 70px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(30, 41, 59, 0.9);
-  color: white;
-  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-azul-sacerdotal);
   border-radius: 25px;
-  font-size: 0.85rem;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  font-family: 'Poppins', sans-serif;
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin-top: var(--spacing-md);
+  color: var(--color-azul-claro);
+  font-size: 0.9rem;
   font-weight: 500;
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  pointer-events: none;
+  animation: pulso-espiritual 2s ease-in-out infinite;
 }
 
-.social-icon:hover::after {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(-50%) translateX(-5px);
+@keyframes pulso-espiritual {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
 }
 
-/* =====================================================
-   RESPONSIVE PARA ÍCONOS SOCIALES REUBICADOS
-   ===================================================== */
-@media (max-width: 768px) {
-  .social-icons {
-    top: 1.5rem;
-    right: 1.5rem;
-    gap: 0.75rem;
-  }
-
-  .social-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.3rem;
-  }
-
-  /* Ocultar etiquetas en móviles para evitar problemas de espacio */
-  .social-icon::after {
-    display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .social-icons {
-    top: 1rem;
-    right: 1rem;
-    gap: 0.5rem;
-  }
-
-  .social-icon {
-    width: 45px;
-    height: 45px;
-    font-size: 1.2rem;
-  }
-}
-
-/* Modo landscape en móviles */
-@media (max-width: 768px) and (orientation: landscape) {
-  .social-icons {
-    flex-direction: row;
-    top: 1rem;
-    right: 1rem;
-    gap: 0.75rem;
-  }
-}
-
-/* =====================================================
-   AJUSTES PARA MAYOR PROFESIONALISMO
-   ===================================================== */
-/* Indicador visual sutil para las redes sociales */
-.social-icons::before {
-  content: "Síguenos";
-  position: absolute;
-  top: -2rem;
-  right: 0;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.75rem;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  opacity: 0.7;
-}
-
-/* Animación suave de entrada para los íconos */
-.social-icon {
-  animation: socialIconsAppear 0.8s ease-out;
-  animation-delay: 2s;
-  animation-fill-mode: both;
-}
-
-.social-icon.facebook {
-  animation-delay: 2.2s;
-}
-
-.social-icon.instagram {
-  animation-delay: 2.4s;
-}
-
-@keyframes socialIconsAppear {
-  0% {
-    opacity: 0;
-    transform: translateX(100px) scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
-}
-
-/* Ocultar indicador "Síguenos" en móviles */
-@media (max-width: 768px) {
-  .social-icons::before {
-    display: none;
-  }
-}
-
-/* =====================================================
-   DISEÑO RESPONSIVE - TABLETS GRANDES Y LAPTOPS
-   ===================================================== */
-/* Tablets grandes y laptops pequeñas (max 1200px) */
-@media (max-width: 1200px) {
-  /* Ajustes del botón principal */
-  .enter-btn {
-    width: 180px;
-    height: 250px;
-    bottom: 6%;
-    right: 5%;
-  }
-  .door-text {
-    font-size: 1.6rem;
-    bottom: 35px;
-  }
-  .enter-btn::before {
-    width: 100px;
-    height: 100px;
-    top: 18px;
-  }
-  
-  /* Ajustes del mensaje de bienvenida */
-  .welcome-message {
-    top: 5%;
-    width: 85%;
-    max-width: 650px; /* Reducido para dar más espacio al botón */
-  }
-  .welcome-title {
-    font-size: 2.8rem;
-  }
-  .welcome-subtitle {
-    font-size: 1.2rem;
-  }
-  .welcome-text {
-    font-size: 1.1rem;
-  }
-}
-
-/* =====================================================
-   DISEÑO RESPONSIVE - TABLETS
-   ===================================================== */
-/* Tablets (max 768px) */
-@media (max-width: 768px) {
-  /* Ajustes del botón principal */
-  .enter-btn {
-    width: 160px;
-    height: 220px;
-    bottom: 8%;
-    left: 50%;
-    right: auto; /* Reset para volver al centrado en móviles */
-    transform: translateX(-50%);
-  }
-  .door-text {
-    font-size: 1.4rem;
-    bottom: 30px;
-  }
-  .enter-btn::before {
-    width: 80px;
-    height: 80px;
-    top: 15px;
-  }
-  
-  /* Estados hover y active para tablets */
-  .enter-btn:hover {
-    transform: translateX(-50%) translateY(-6px) scale(1.03);
-  }
-  
-  .enter-btn:active {
-    transform: translateX(-50%) translateY(-3px) scale(1.01);
-  }
-  
-  /* Ajustes del mensaje de bienvenida */
-  .welcome-message {
-    top: 3%;
-    width: 90%;
-    max-width: 800px; /* Restaurar tamaño completo en móviles */
-  }
-  .welcome-title {
-    font-size: 2.2rem;
-    letter-spacing: 1px;
-  }
-  .welcome-subtitle {
-    font-size: 1rem;
-    letter-spacing: 2px;
-    padding: 0.4rem 0.8rem;
-  }
-  .welcome_body {
-    padding: 1.5rem 2rem;
-  }
-  .welcome-text {
-    font-size: 1rem;
-  }
-  .welcome-subtext {
-    font-size: 0.9rem;
-  }
-  .adventure-badge {
-    font-size: 1rem;
-    padding: 0.6rem 1.2rem;
-  }
-  
-  /* Ajustar pseudo-elementos para responsive */
-  .welcome-subtitle::before {
-    font-size: 1rem;
-    letter-spacing: 2px;
-    padding: 0.4rem 0.8rem;
-  }
-}
-
-/* =====================================================
-   DISEÑO RESPONSIVE - MÓVILES GRANDES
-   ===================================================== */
-/* Móviles grandes (max 480px) */
-@media (max-width: 480px) {
-  /* Ajustes del botón principal */
-  .enter-btn {
-    width: 200px;
-    height: 280px;
-    bottom: 12%;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-  }
-  .door-text {
-    font-size: 1.2rem;
-    bottom: 40px;
-    letter-spacing: 0.5px;
-  }
-  .enter-btn::before {
-    width: 100px;
-    height: 100px;
-    top: 20px;
-  }
-  
-  /* Ajustes del mensaje de bienvenida */
-  .welcome-message {
-    top: 2%;
-    width: 95%;
-  }
-  .welcome-title {
-    font-size: 1.8rem;
-  }
-  .welcome-subtitle {
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    padding: 0.3rem 0.6rem;
-  }
-  .welcome-body {
-    padding: 1.2rem 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .welcome-text {
-    font-size: 0.95rem;
-    margin-bottom: 0.8rem;
-  }
-  .welcome-subtext {
-    font-size: 0.85rem;
-  }
-  .adventure-badge {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-  }
-}
-
-/* =====================================================
-   DISEÑO RESPONSIVE - MÓVILES PEQUEÑOS
-   ===================================================== */
-/* Móviles pequeños (max 320px) */
-@media (max-width: 320px) {
-  /* Ajustes del botón principal */
-  .enter-btn {
-    width: 160px;
-    height: 220px;
-    bottom: 15%;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-  }
-  .door-text {
-    font-size: 1rem;
-    bottom: 30px;
-  }
-  .enter-btn::before {
-    width: 80px;
-    height: 80px;
-    top: 15px;
-  }
-  
-  /* Ajustes del mensaje de bienvenida */
-  .welcome-message {
-    top: 1%;
-  }
-  .welcome-title {
-    font-size: 1.5rem;
-  }
-  .welcome-subtitle {
-    font-size: 0.8rem;
-    letter-spacing: 0.5px;
-    padding: 0.2rem 0.4rem;
-  }
-  .welcome-body {
-    padding: 1rem;
-  }
-  .welcome-text {
-    font-size: 0.9rem;
-  }
-  .welcome-subtext {
-    font-size: 0.8rem;
-  }
-  .adventure-badge {
-    font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
-  }
-}
-
-/* Animación de brillo dorado para el subtítulo del club */
-@keyframes clubGlow {
-  0% {
-    text-shadow: 
-      0 0 10px rgba(59, 130, 246, 0.8),
-      0 0 20px rgba(59, 130, 246, 0.6),
-      0 0 30px rgba(59, 130, 246, 0.4),
-      0 2px 4px rgba(255, 255, 255, 0.8);
-    filter: brightness(1);
-    box-shadow: 
-      0 0 15px rgba(251, 191, 36, 0.4),
-      0 0 30px rgba(251, 191, 36, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  }
-  100% {
-    text-shadow: 
-      0 0 15px rgba(59, 130, 246, 1),
-      0 0 30px rgba(59, 130, 246, 0.8),
-      0 0 45px rgba(59, 130, 246, 0.6),
-      0 0 60px rgba(59, 130, 246, 0.4),
-      0 2px 4px rgba(255, 255, 255, 1),
-      0 4px 8px rgba(59, 130, 246, 0.3);
-    filter: brightness(1.2);
-    box-shadow: 
-      0 0 25px rgba(251, 191, 36, 0.6),
-      0 0 40px rgba(251, 191, 36, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  }
-}
-
-/* Animación del resplandor de fondo */
-@keyframes backgroundGlow {
-  0% {
-    opacity: 0.4;
-    filter: blur(2px);
-  }
-  100% {
-    opacity: 0.8;
-    filter: blur(1px);
-  }
-}
-
-/* Animación del marco luminoso dorado */
-@keyframes frameGlowGold {
-  0% {
-    opacity: 0.4;
-    background: linear-gradient(90deg, 
-      transparent 0%,
-      rgba(251, 191, 36, 0.3) 20%,
-      rgba(251, 191, 36, 0.6) 50%,
-      rgba(251, 191, 36, 0.3) 80%,
-      transparent 100%);
-  }
-  50% {
-    opacity: 0.9;
-    background: linear-gradient(90deg, 
-      transparent 0%,
-      rgba(251, 191, 36, 0.5) 20%,
-      rgba(251, 191, 36, 0.8) 50%,
-      rgba(251, 191, 36, 0.5) 80%,
-      transparent 100%);
-  }
-  100% {
-    opacity: 0.4;
-    background: linear-gradient(90deg, 
-      transparent 0%,
-      rgba(251, 191, 36, 0.3) 20%,
-      rgba(251, 191, 36, 0.6) 50%,
-      rgba(251, 191, 36, 0.3) 80%,
-      transparent 100%);
-  }
-}
-
-/* =====================================================
-   DISEÑO RESPONSIVE - TABLETS
-   ===================================================== */
-/* Tablets (max 768px) */
-@media (max-width: 768px) {
-  /* Ajustes del botón principal */
-  .enter-btn {
-    width: 160px;
-    height: 220px;
-    bottom: 8%;
-    left: 50%;
-    right: auto; /* Reset para volver al centrado en móviles */
-    transform: translateX(-50%);
-  }
-  .door-text {
-    font-size: 1.4rem;
-    bottom: 30px;
-  }
-  .enter-btn::before {
-    width: 80px;
-    height: 80px;
-    top: 15px;
-  }
-  
-  /* Estados hover y active para tablets */
-  .enter-btn:hover {
-    transform: translateX(-50%) translateY(-6px) scale(1.03);
-  }
-  
-  .enter-btn:active {
-    transform: translateX(-50%) translateY(-3px) scale(1.01);
-  }
-  
-  /* Ajustes del mensaje de bienvenida */
-  .welcome-message {
-    top: 3%;
-    width: 90%;
-    max-width: 800px; /* Restaurar tamaño completo en móviles */
-  }
-  .welcome-title {
-    font-size: 2.2rem;
-    letter-spacing: 1px;
-  }
-  .welcome-subtitle {
-    font-size: 1rem;
-    letter-spacing: 2px;
-    padding: 0.4rem 0.8rem;
-  }
-  .welcome_body {
-    padding: 1.5rem 2rem;
-  }
-  .welcome-text {
-    font-size: 1rem;
-  }
-  .welcome-subtext {
-    font-size: 0.9rem;
-  }
-  .adventure-badge {
-    font-size: 1rem;
-    padding: 0.6rem 1.2rem;
-  }
-}
-
-/* =====================================================
-   DISEÑO RESPONSIVE - MÓVILES GRANDES
-   ===================================================== */
-/* Móviles grandes (max 480px) */
-@media (max-width: 480px) {
-  /* Ajustes del botón principal */
-  .enter-btn {
-    width: 200px;
-    height: 280px;
-    bottom: 12%;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-  }
-  .door-text {
-    font-size: 1.2rem;
-    bottom: 40px;
-    letter-spacing: 0.5px;
-  }
-  .enter-btn::before {
-    width: 100px;
-    height: 100px;
-    top: 20px;
-  }
-  
-  /* Ajustes del mensaje de bienvenida */
-  .welcome-message {
-    top: 2%;
-    width: 95%;
-  }
-  .welcome-title {
-    font-size: 1.8rem;
-  }
-  .welcome-subtitle {
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    padding: 0.3rem 0.6rem;
-  }
-  .welcome-body {
-    padding: 1.2rem 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .welcome-text {
-    font-size: 0.95rem;
-    margin-bottom: 0.8rem;
-  }
-  .welcome-subtext {
-    font-size: 0.85rem;
-  }
-  .adventure-badge {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-  }
-}
-
-/* =====================================================
-   DISEÑO RESPONSIVE - MÓVILES PEQUEÑOS
-   ===================================================== */
-/* Móviles pequeños (max 320px) */
-@media (max-width: 320px) {
-  /* Ajustes del botón principal */
-  .enter-btn {
-    width: 160px;
-    height: 220px;
-    bottom: 15%;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-  }
-  .door-text {
-    font-size: 1rem;
-    bottom: 30px;
-  }
-  .enter-btn::before {
-    width: 80px;
-    height: 80px;
-    top: 15px;
-  }
-  
-  /* Ajustes del mensaje de bienvenida */
-  .welcome-message {
-    top: 1%;
-  }
-  .welcome-title {
-    font-size: 1.5rem;
-  }
-  .welcome-subtitle {
-    font-size: 0.8rem;
-    letter-spacing: 0.5px;
-    padding: 0.2rem 0.4rem;
-  }
-  .welcome-body {
-    padding: 1rem;
-  }
-  .welcome-text {
-    font-size: 0.9rem;
-  }
-  .welcome-subtext {
-    font-size: 0.8rem;
-  }
-  .adventure-badge {
-    font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
-  }
-}
-
-/* Animación de brillo dorado para el subtítulo del club */
-@keyframes clubGlow {
-  0% {
-    text-shadow: 
-      0 0 10px rgba(59, 130, 246, 0.8),
-      0 0 20px rgba(59, 130, 246, 0.6),
-      0 0 30px rgba(59, 130, 246, 0.4),
-      0 2px 4px rgba(255, 255, 255, 0.8);
-    filter: brightness(1);
-    box-shadow: 
-      0 0 15px rgba(251, 191, 36, 0.4),
-      0 0 30px rgba(251, 191, 36, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  }
-  100% {
-    text-shadow: 
-      0 0 15px rgba(59, 130, 246, 1),
-      0 0 30px rgba(59, 130, 246, 0.8),
-      0 0 45px rgba(59, 130, 246, 0.6),
-      0 0 60px rgba(59, 130, 246, 0.4),
-      0 2px 4px rgba(255, 255, 255, 1),
-      0 4px 8px rgba(59, 130, 246, 0.3);
-    filter: brightness(1.2);
-    box-shadow: 
-      0 0 25px rgba(251, 191, 36, 0.6),
-      0 0 40px rgba(251, 191, 36, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  }
-}
-
-/* Animación del resplandor de fondo */
-@keyframes backgroundGlow {
-  0% {
-    opacity: 0.4;
-    filter: blur(2px);
-  }
-  100% {
-    opacity: 0.8;
-    filter: blur(1px);
-  }
-}
-
-/* Animación del marco luminoso dorado */
-@keyframes frameGlowGold {
-  0% {
-    opacity: 0.4;
-    background: linear-gradient(90deg, 
-      transparent 0%,
-      rgba(251, 191, 36, 0.3) 20%,
-      rgba(251, 191, 36, 0.6) 50%,
-      rgba(251, 191, 36, 0.3) 80%,
-      transparent 100%);
-  }
-  50% {
-    opacity: 0.9;
-    background: linear-gradient(90deg, 
-      transparent 0%,
-      rgba(251, 191, 36, 0.5) 20%,
-      rgba(251, 191, 36, 0.8) 50%,
-      rgba(251, 191, 36, 0.5) 80%,
-      transparent 100%);
-  }
-  100% {
-    opacity: 0.4;
-    background: linear-gradient(90deg, 
-      transparent 0%,
-      rgba(251, 191, 36, 0.3) 20%,
-      rgba(251, 191, 36, 0.6) 50%,
-      rgba(251, 191, 36, 0.3) 80%,
-      transparent 100%);
-  }
-}
-
-/* =====================================================
-   DISEÑO RESPONSIVE - TABLETS
-   ===================================================== */
-/* Tablets (max 768px) */
-@media (max-width: 768px) {
-  /* Ajustes del botón principal */
-  .enter-btn {
-    width: 160px;
-    height: 220px;
-    bottom: 8%;
-    left: 50%;
-    right: auto; /* Reset para volver al centrado en móviles */
-    transform: translateX(-50%);
-  }
-  .door-text {
-    font-size: 1.4rem;
-    bottom: 30px;
-  }
-  .enter-btn::before {
-    width: 80px;
-    height: 80px;
-    top: 15px;
-  }
-  
-  /* Estados hover y active para tablets */
-  .enter-btn:hover {
-    transform: translateX(-50%) translateY(-6px) scale(1.03);
-  }
-  
-  .enter-btn:active {
-    transform: translateX(-50%) translateY(-3px) scale(1.01);
-  }
-  
-  /* Ajustes del mensaje de bienvenida */
-  .welcome-message {
-    top: 3%;
-    width: 90%;
-    max-width: 800px; /* Restaurar tamaño completo en móviles */
-  }
-  .welcome-title {
-    font-size: 2.2rem;
-    letter-spacing: 1px;
-  }
-  .welcome-subtitle {
-    font-size: 1rem;
-    letter-spacing: 2px;
-    padding: 0.4rem 0.8rem;
-  }
-  .welcome_body {
-    padding: 1.5rem 2rem;
-  }
-  .welcome-text {
-    font-size: 1rem;
-  }
-  .welcome-subtext {
-    font-size: 0.9rem;
-  }
-  .adventure-badge {
-    font-size: 1rem;
-    padding: 0.6rem 1.2rem;
-  }
-  
-  /* Ajustar pseudo-elementos para responsive */
-  .welcome-subtitle::before {
-    font-size: 1rem;
-    letter-spacing: 2px;
-    padding: 0.4rem 0.8rem;
-  }
-}
-
-/* =====================================================
-   DISEÑO RESPONSIVE - MÓVILES GRANDES
-   ===================================================== */
-/* Móviles grandes (max 480px) */
-@media (max-width: 480px) {
-  /* Ajustes del botón principal */
-  .enter-btn {
-    width: 200px;
-    height: 280px;
-    bottom: 12%;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-  }
-  .door-text {
-    font-size: 1.2rem;
-    bottom: 40px;
-    letter-spacing: 0.5px;
-  }
-  .enter-btn::before {
-    width: 100px;
-    height: 100px;
-    top: 20px;
-  }
-  
-  /* Ajustes del mensaje de bienvenida */
-  .welcome-message {
-    top: 2%;
-    width: 95%;
-  }
-  .welcome-title {
-    font-size: 1.8rem;
-  }
-  .welcome-subtitle {
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    padding: 0.3rem 0.6rem;
-  }
-  .welcome-body {
-    padding: 1.2rem 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .welcome-text {
-    font-size: 0.95rem;
-    margin-bottom: 0.8rem;
-  }
-  .welcome-subtext {
-    font-size: 0.85rem;
-  }
-  .adventure-badge {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-  }
-}
-
-/* =====================================================
-   DISEÑO RESPONSIVE - MÓVILES PEQUEÑOS
-   ===================================================== */
-/* Móviles pequeños (max 320px) */
-@media (max-width: 320px) {
-  /* Ajustes del botón principal */
-  .enter-btn {
-    width: 160px;
-    height: 220px;
-    bottom: 15%;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-  }
-  .door-text {
-    font-size: 1rem;
-    bottom: 30px;
-  }
-  .enter-btn::before {
-    width: 80px;
-    height: 80px;
-    top: 15px;
-  }
-  
-  /* Ajustes del mensaje de bienvenida */
-  .welcome-message {
-    top: 1%;
-  }
-  .welcome-title {
-    font-size: 1.5rem;
-  }
-  .welcome-subtitle {
-    font-size: 0.8rem;
-    letter-spacing: 0.5px;
-    padding: 0.2rem 0.4rem;
-  }
-  .welcome-body {
-    padding: 1rem;
-  }
-  .welcome-text {
-    font-size: 0.9rem;
-  }
-  .welcome-subtext {
-    font-size: 0.8rem;
-  }
-  .adventure-badge {
-    font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
-  }
-}
-
-/* Animación de brillo dorado para el subtítulo del club */
-@keyframes clubGlow {
-  0% {
-    text-shadow: 
-      0 0 10px rgba(59, 130, 246, 0.8),
-      0 0 20px rgba(59, 130, 246, 0.6),
-      0 0 30px rgba(59, 130, 246, 0.4),
-      0 2px 4px rgba(255, 255, 255, 0.8);
-    filter: brightness(1);
-    box-shadow: 
-      0 0 15px rgba(251, 191, 36, 0.4),
-      0 0 30px rgba(251, 191, 36, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  }
-  100% {
-    text-shadow: 
-      0 0 15px rgba(59, 130, 246, 1),
-      0 0 30px rgba(59, 130, 246, 0.8),
-      0 0 45px rgba(59, 130, 246, 0.6),
-      0 0 60px rgba(59, 130, 246, 0.4),
-      0 2px 4px rgba(255, 255, 255, 1),
-      0 4px 8px rgba(59, 130, 246, 0.3);
-    filter: brightness(1.2);
-    box-shadow: 
-      0 0 25px rgba(251, 191, 36, 0.6),
-      0 0 40px rgba(251, 191, 36, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  }
-}
-
-/* Animación del resplandor de fondo */
-@keyframes backgroundGlow {
-  0% {
-    opacity: 0.4;
-    filter: blur(2px);
-  }
-  100% {
-    opacity: 0.8;
-    filter: blur(1px);
-  }
-}
-
-/* Animación del marco luminoso dorado */
-@keyframes frameGlowGold {
-  0% {
-    opacity: 0.4;
-    background: linear-gradient(90deg, 
-      transparent 0%,
-      rgba(251, 191, 36, 0.3) 20%,
-      rgba(251, 191, 36, 0.6) 50%,
-      rgba(251, 191, 36, 0.3) 80%,
-      transparent 100%);
-  }
-  50% {
-    opacity: 0.9;
-    background: linear-gradient(90deg, 
-      transparent 0%,
-      rgba(251, 191, 36, 0.5) 20%,
-      rgba(251, 191, 36, 0.8) 50%,
-      rgba(251, 191, 36, 0.5) 80%,
-      transparent 100%);
-  }
-  100% {
-    opacity: 0.4;
-    background: linear-gradient(90deg, 
-      transparent 0%,
-      rgba(251, 191, 36, 0.3) 20%,
-      rgba(251, 191, 36, 0.6) 50%,
-      rgba(251, 191, 36, 0.3) 80%,
-      transparent 100%);
-  }
+.adventure-badge i {
+  font-size: 1.2rem;
+  color: var(--color-dorado-sagrado);
 }

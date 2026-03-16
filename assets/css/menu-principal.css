@@ -1,3 +1,60 @@
+/* ========================================================================
+   🏢 ARCHIVO DIGITAL DEL SANTUARIO - SISTEMA DE NAVEGACIÓN  
+   ========================================================================
+   Concepto Visual: Santuario del Antiguo Testamento
+   Propósito: Archivo digital del santuario para documentación ministerial espiritual
+   ======================================================================== */
+
+/* =====================================================
+   VARIABLES CSS DEL SANTUARIO
+   ===================================================== */
+:root {
+  /* 🟡 Dorados del Santuario (extraídos de la iluminación y objetos sagrados) */
+  --color-dorado-sagrado: #E6B325;
+  --color-dorado-claro: #FFD369;
+  --color-dorado-oscuro: #B8860B;
+
+  /* 🔴 Rojos Ceremoniales (techo del santuario y fondo superior) */
+  --color-rojo-santuario: #8E1C1C;
+  --color-rojo-claro: #C0392B;
+  --color-rojo-oscuro: #5C0F0F;
+
+  /* 🔵 Azul Sacerdotal (vestimenta del sacerdote) */
+  --color-azul-sacerdotal: #1E3A8A;
+  --color-azul-claro: #3B82F6;
+  --color-azul-oscuro: #142850;
+
+  /* 🟤 Arena del desierto (suelo e iluminación cálida) */
+  --color-arena-desierto: #E6C07B;
+  --color-arena-claro: #F5E6C8;
+  --color-arena-oscuro: #C9A15B;
+
+  /* ⚪ Neutros para UI */
+  --color-blanco-pureza: #FAFAF7;
+  --color-blanco-calido: #FFF8E7;
+  --color-negro-texto: #1F2937;
+
+  /* 📐 Espaciados Sagrados */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 4rem;
+
+  /* 📝 Tipografía */
+  --font-titulo-sagrado: 'Cinzel', serif;
+  --font-texto-general: 'Poppins', sans-serif;
+
+  /* 🌟 Sombras inspiradas en luz dorada */
+  --sombra-dorada: 0 4px 20px rgba(230, 179, 37, 0.35);
+  --sombra-suave: 0 2px 10px rgba(0,0,0,0.08);
+  --sombra-elevada: 0 10px 30px rgba(0,0,0,0.15);
+
+  /* 🔄 Transiciones */
+  --transicion-suave: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transicion-lenta: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* =====================================================
    RESET Y CONFIGURACIÓN BÁSICA
    ===================================================== */
@@ -10,7 +67,7 @@
 body, html {
   width: 100%;
   height: 100%;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-texto-general);
   overflow-x: hidden;
 }
 
@@ -28,27 +85,25 @@ body, html {
 }
 
 /* =====================================================
-   PANTALLA PRINCIPAL DEL ARCA
+   PANTALLA PRINCIPAL DEL ARCHIVO DIGITAL
    ===================================================== */
 .ark-screen {
   min-height: 100vh;
-  background: linear-gradient(135deg, 
-    #0f172a 0%, 
-    #1e293b 25%, 
-    #2563eb 50%, 
-    #3b82f6 75%, 
-    #60a5fa 100%);
-  background-size: 400% 400%;
-  animation: arkGradient 25s ease infinite;
+  background: url('../img/fondo-menu-santuario.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   position: relative;
   overflow: hidden;
   padding-bottom: 2rem;
 }
 
-@keyframes arkGradient {
-  0%, 100% { background-position: 0% 50%; }
-  33% { background-position: 50% 25%; }
-  66% { background-position: 100% 75%; }
+/* Soporte para dispositivos móviles */
+@media (max-width: 768px) {
+  .ark-screen {
+    background-attachment: scroll;
+  }
 }
 
 /* =====================================================
@@ -67,22 +122,18 @@ body, html {
   height: 80px;
   object-fit: contain;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  background: rgba(250, 250, 247, 0.95);
+  backdrop-filter: blur(15px);
   padding: 8px;
-  box-shadow: 
-    0 8px 25px rgba(0, 0, 0, 0.15),
-    0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 3px solid rgba(59, 130, 246, 0.3);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--sombra-elevada);
+  border: 3px solid rgba(230, 179, 37, 0.4);
+  transition: var(--transicion-suave);
 }
 
 .logo-image:hover {
   transform: scale(1.1) rotate(5deg);
-  box-shadow: 
-    0 12px 35px rgba(59, 130, 246, 0.25),
-    0 6px 16px rgba(0, 0, 0, 0.15);
-  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: var(--sombra-dorada);
+  border-color: var(--color-dorado-sagrado);
 }
 
 @keyframes logoAppear {
@@ -97,7 +148,7 @@ body, html {
 }
 
 /* =====================================================
-   ENCABEZADO DEL ARCA OPTIMIZADO
+   ENCABEZADO DEL ARCHIVO SAGRADO
    ===================================================== */
 .ark-header {
   text-align: center;
@@ -112,22 +163,36 @@ body, html {
 }
 
 .ark-title {
-  font-family: 'Cinzel', serif;
-  font-size: 3.5rem;
+  font-family: var(--font-titulo-sagrado);
+  font-size: rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-negro-texto);
   text-shadow: 
-    0 4px 8px rgba(0, 0, 0, 0.4),
-    0 0 30px rgba(255, 255, 255, 0.3);
-  margin-bottom: 0.5rem;
+    0 0 25px rgba(255, 255, 255, 1),
+    0 4px 10px rgba(255, 255, 255, 0.85),
+    0 6px 15px rgba(230, 179, 37, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(250, 250, 247, 0.75) 0%,
+    rgba(255, 248, 231, 0.70) 100%
+  );
+  padding: 0.75rem 1.25rem;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  border: 2px solid var(--color-azul-sacerdotal);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 .ark-icon {
-  color: #fbbf24;
+  color: var(--color-dorado-sagrado);
   animation: shipFloat 3s ease-in-out infinite;
 }
 
@@ -139,26 +204,57 @@ body, html {
 .ark-subtitle {
   font-size: 1.4rem;
   font-weight: 500;
-  color: #cbd5e1;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: var(--color-negro-texto);
+  text-shadow: 
+    0 0 20px rgba(255, 255, 255, 1),
+    0 2px 6px rgba(255, 255, 255, 0.9),
+    0 1px 3px rgba(0, 0, 0, 0.1);
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(250, 250, 247, 0.75) 0%,
+    rgba(255, 248, 231, 0.70) 100%
+  );
+  padding: 0.4rem 1.25rem;
+  border-radius: 25px;
+  backdrop-filter: blur(15px);
+  border: 2px solid var(--color-azul-sacerdotal);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 .ark-motto {
   font-size: 1.1rem;
   font-weight: 400;
-  color: #e2e8f0;
+  color: var(--color-negro-texto);
   font-style: italic;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  text-shadow: 
+    0 0 18px rgba(255, 255, 255, 0.95),
+    0 2px 6px rgba(255, 255, 255, 0.8),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(
+    135deg,
+    rgba(250, 250, 247, 0.75) 0%,
+    rgba(255, 248, 231, 0.70) 100%
+  );
+  padding: 0.6rem 1.4rem;
+  border-radius: 30px;
+  backdrop-filter: blur(15px);
+  border: 2px solid var(--color-azul-sacerdotal);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 .ark-motto i {
-  color: #fbbf24;
+  color: var(--color-dorado-sagrado);
   animation: pulse 2s ease-in-out infinite;
 }
 
@@ -177,35 +273,46 @@ body, html {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(251, 191, 36, 0.5);
+  background: linear-gradient(
+    135deg,
+    rgba(250, 250, 247, 0.75) 0%,
+    rgba(255, 248, 231, 0.70) 100%
+  );
+  backdrop-filter: blur(15px);
+  border: 2px solid var(--color-azul-sacerdotal);
   border-radius: 50px;
   padding: 0.75rem 1.5rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Poppins', sans-serif;
+  transition: var(--transicion-suave);
+  font-family: var(--font-texto-general);
   font-weight: 500;
-  color: #1e293b;
+  color: var(--color-negro-texto);
   text-decoration: none;
   z-index: 1000;
   box-shadow: 
-    0 4px 15px rgba(0, 0, 0, 0.1),
-    0 2px 8px rgba(0, 0, 0, 0.05);
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.08);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .back-button:hover {
-  background: rgba(255, 255, 255, 1);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, 
+    rgba(250, 250, 247, 0.55) 0%,
+    rgba(255, 248, 231, 0.60) 100%
+  );
+  backdrop-filter: blur(15px);
+  transform: translateY(-3px) translateX(-2px) scale(1.05);
   box-shadow: 
-    0 8px 25px rgba(30, 41, 59, 0.15),
-    0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: rgba(251, 191, 36, 0.8);
+    0 15px 40px rgba(0, 0, 0, 0.2),
+    0 8px 20px rgba(230, 179, 37, 0.3),
+    inset 0 2px 6px rgba(255, 255, 255, 0.6),
+    0 0 25px rgba(230, 179, 37, 0.2);
+  border-color: rgba(230, 179, 37, 0.8);
 }
 
 .back-button i {
   font-size: 1.2rem;
-  color: #0891b2;
+  color: var(--color-azul-sacerdotal);
 }
 
 /* =====================================================
@@ -220,53 +327,133 @@ body, html {
 .message-container {
   max-width: 700px;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
+  background: linear-gradient(
+    135deg,
+    rgba(250, 250, 247, 0.75) 0%,
+    rgba(255, 248, 231, 0.70) 100%
+  );
+  backdrop-filter: blur(15px);
   border-radius: 25px;
-  padding: 1.5rem 2rem;
+  padding: 1.75rem 2.25rem;
   box-shadow: 
     0 15px 35px rgba(0, 0, 0, 0.1),
     0 5px 15px rgba(0, 0, 0, 0.08);
-  border: 2px solid rgba(251, 191, 36, 0.3);
+  border: 2px solid var(--color-azul-sacerdotal);
 }
 
 .message-title {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-titulo-sagrado);
   font-size: 2rem;
   font-weight: 600;
-  color: #1e293b;
-  margin-bottom: 1rem;
+  color: var(--color-negro-texto);
+  margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+  text-shadow: 
+    0 0 22px rgba(255, 255, 255, 1),
+    0 3px 8px rgba(255, 255, 255, 0.8),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(
+    135deg,
+    rgba(250, 250, 247, 0.75) 0%,
+    rgba(255, 248, 231, 0.70) 100%
+  );
+  padding: 0.6rem 1.25rem;
+  border-radius: 18px;
+  backdrop-filter: blur(15px);
+  border: 2px solid var(--color-azul-sacerdotal);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 .message-title i {
-  color: #0891b2;
+  color: var(--color-azul-sacerdotal);
 }
 
 .message-text {
   font-size: 1rem;
-  color: #334155;
+  color: var(--color-negro-texto);
   line-height: 1.6;
   margin-bottom: 0.8rem;
+  text-shadow: 
+    0 0 15px rgba(255, 255, 255, 0.8),
+    0 1px 2px rgba(255, 255, 255, 0.6),
+    0 0 20px rgba(230, 179, 37, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
 }
 
 .message-subtext {
   font-size: 0.9rem;
-  color: #64748b;
+  color: var(--color-negro-texto);
   line-height: 1.5;
   font-style: italic;
   margin-bottom: 1rem;
+  text-shadow: 
+    0 0 12px rgba(255, 255, 255, 0.7),
+    0 1px 2px rgba(255, 255, 255, 0.5);
+  font-weight: 500;
 }
 
 .highlight {
-  color: #0891b2;
+  color: var(--color-blanco-pureza);
   font-weight: 600;
-  background: linear-gradient(135deg, #bae6fd, #7dd3fc);
+  background: linear-gradient(135deg, 
+    rgba(30, 58, 138, 0.9), 
+    rgba(59, 130, 246, 0.8)
+  );
   padding: 0.2rem 0.5rem;
   border-radius: 8px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.3);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+/* Clase especial para párrafos destacados con máxima visibilidad */
+.destacado {
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  text-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.9),
+    0 2px 4px rgba(255, 255, 255, 0.7),
+    0 0 25px rgba(230, 179, 37, 0.5),
+    0 1px 3px rgba(0, 0, 0, 0.4) !important;
+  background: linear-gradient(135deg, 
+    rgba(30, 58, 138, 0.8),
+    rgba(59, 130, 246, 0.7)
+  );
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  box-shadow: 
+    0 3px 12px rgba(30, 58, 138, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.destacado::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: -100%; }
 }
 
 .adventure-indicator {
@@ -274,7 +461,7 @@ body, html {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  color: #0891b2;
+  color: var(--color-azul-sacerdotal);
   font-weight: 600;
   font-size: 0.9rem;
 }
@@ -289,12 +476,12 @@ body, html {
 }
 
 /* =====================================================
-   NAVEGACIÓN DEL ARCA OPTIMIZADA PARA LAPTOP
+   SISTEMA DE NAVEGACIÓN DOCUMENTAL
    ===================================================== */
 .ark-nav {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  gap: 1.25rem;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem 2rem;
@@ -303,18 +490,22 @@ body, html {
 .nav-btn {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border: 2px solid rgba(59, 130, 246, 0.2);
-  border-radius: 20px;
-  padding: 1.5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(250, 250, 247, 0.75) 0%,
+    rgba(255, 248, 231, 0.70) 100%
+  );
+  backdrop-filter: blur(15px);
+  border: 2px solid var(--color-azul-sacerdotal);
+  border-radius: 25px;
+  padding: 1.75rem;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.1),
-    0 1px 8px rgba(0, 0, 0, 0.05);
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.08);
   animation: fadeInUp 0.6s ease;
-  min-height: 100px;
+  min-height: 90px;
   position: relative;
   overflow: hidden;
 }
@@ -338,12 +529,34 @@ body, html {
 }
 
 .nav-btn:hover {
-  transform: translateY(-8px);
-  background: rgba(255, 255, 255, 1);
-  border-color: rgba(59, 130, 246, 0.4);
+  transform: translateY(-10px) scale(1.03);
+  background: linear-gradient(135deg, 
+    rgba(250, 250, 247, 0.50) 0%,
+    rgba(255, 248, 231, 0.55) 50%,
+    rgba(230, 179, 37, 0.25) 100%
+  );
+  backdrop-filter: blur(15px);
+  border-color: rgba(230, 179, 37, 0.7);
   box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.15),
-    0 10px 25px rgba(59, 130, 246, 0.1);
+    0 30px 70px rgba(0, 0, 0, 0.2),
+    0 18px 40px rgba(230, 179, 37, 0.3),
+    inset 0 3px 6px rgba(255, 255, 255, 0.6),
+    0 0 40px rgba(230, 179, 37, 0.2);
+}
+
+.nav-btn:active {
+  transform: translateY(-4px) scale(1.01);
+  background: linear-gradient(135deg, 
+    rgba(230, 179, 37, 0.30) 0%,
+    rgba(255, 248, 231, 0.35) 50%,
+    rgba(250, 250, 247, 0.25) 100%
+  );
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.15),
+    0 8px 20px rgba(230, 179, 37, 0.2),
+    inset 0 3px 6px rgba(0, 0, 0, 0.1),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.3);
+  transition: all 0.15s ease;
 }
 
 @keyframes fadeInUp {
@@ -358,84 +571,95 @@ body, html {
 }
 
 /* =====================================================
-   ICONOS DE BOTONES MEJORADOS Y PROFESIONALES
+   INDICADORES DE SECCIÓN DOCUMENTAL
    ===================================================== */
 .btn-icon {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 1.5rem;
+  margin-right: 1.25rem;
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
   border: 3px solid;
-  box-shadow: 
-    0 8px 20px rgba(0, 0, 0, 0.1),
-    inset 0 2px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: var(--sombra-suave);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-icon i {
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: white;
   z-index: 2;
   position: relative;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
-/* Estilos específicos para cada botón */
+.nav-btn:hover .btn-icon i {
+  transform: scale(1.05);
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+/* Estilos específicos para cada botón con paleta del santuario */
 .historia-btn .btn-icon {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  border-color: rgba(245, 158, 11, 0.4);
+  background: linear-gradient(135deg, var(--color-dorado-sagrado), var(--color-dorado-oscuro));
+  border-color: var(--color-dorado-sagrado);
 }
 
 .historia-btn:hover .btn-icon {
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  background: linear-gradient(135deg, var(--color-dorado-claro), var(--color-dorado-sagrado));
   transform: scale(1.1);
   box-shadow: 
-    0 12px 30px rgba(245, 158, 11, 0.3),
-    inset 0 2px 0 rgba(255, 255, 255, 0.4);
+    var(--sombra-dorada),
+    0 0 25px rgba(230, 179, 37, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
 }
 
 .miembros-btn .btn-icon {
-  background: linear-gradient(135deg, #10b981, #059669);
-  border-color: rgba(16, 185, 129, 0.4);
+  background: linear-gradient(135deg, var(--color-azul-sacerdotal), var(--color-azul-oscuro));
+  border-color: var(--color-azul-sacerdotal);
 }
 
 .miembros-btn:hover .btn-icon {
-  background: linear-gradient(135deg, #34d399, #10b981);
+  background: linear-gradient(135deg, var(--color-azul-claro), var(--color-azul-sacerdotal));
   transform: scale(1.1);
   box-shadow: 
-    0 12px 30px rgba(16, 185, 129, 0.3),
-    inset 0 2px 0 rgba(255, 255, 255, 0.4);
+    0 12px 30px rgba(30, 58, 138, 0.3),
+    0 0 25px rgba(30, 58, 138, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
 }
 
 .fotos-btn .btn-icon {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-  border-color: rgba(139, 92, 246, 0.4);
+  background: linear-gradient(135deg, var(--color-arena-desierto), var(--color-arena-oscuro));
+  border-color: var(--color-arena-desierto);
 }
 
 .fotos-btn:hover .btn-icon {
-  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+  background: linear-gradient(135deg, var(--color-arena-claro), var(--color-arena-desierto));
   transform: scale(1.1);
   box-shadow: 
-    0 12px 30px rgba(139, 92, 246, 0.3),
-    inset 0 2px 0 rgba(255, 255, 255, 0.4);
+    0 12px 30px rgba(230, 199, 123, 0.3),
+    0 0 25px rgba(230, 199, 123, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
 }
 
 .actividades-btn .btn-icon {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  border-color: rgba(239, 68, 68, 0.4);
+  background: linear-gradient(135deg, var(--color-rojo-santuario), var(--color-rojo-oscuro));
+  border-color: var(--color-rojo-santuario);
 }
 
 .actividades-btn:hover .btn-icon {
-  background: linear-gradient(135deg, #f87171, #ef4444);
+  background: linear-gradient(135deg, var(--color-rojo-claro), var(--color-rojo-santuario));
   transform: scale(1.1);
   box-shadow: 
-    0 12px 30px rgba(239, 68, 68, 0.3),
-    inset 0 2px 0 rgba(255, 255, 255, 0.4);
+    0 12px 30px rgba(142, 28, 28, 0.3),
+    0 0 25px rgba(142, 28, 28, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
 }
 
 /* =====================================================
@@ -447,32 +671,40 @@ body, html {
 }
 
 .btn-content h3 {
-  font-family: 'Cinzel', serif;
-  font-size: 1.3rem;
+  font-family: var(--font-titulo-sagrado);
+  font-size: 1.2rem;
   font-weight: 600;
-  color: #1e293b;
-  margin-bottom: 0.5rem;
+  color: var(--color-negro-texto);
+  margin-bottom: 0.4rem;
   line-height: 1.2;
+  text-shadow: 
+    0 0 15px rgba(255, 255, 255, 1),
+    0 2px 4px rgba(255, 255, 255, 0.8),
+    0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .btn-content p {
-  font-size: 0.95rem;
-  color: #64748b;
-  line-height: 1.4;
-  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--color-negro-texto);
+  line-height: 1.3;
+  font-weight: 500;
+  margin: 0;
+  text-shadow: 
+    0 0 12px rgba(255, 255, 255, 0.7),
+    0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .btn-arrow {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(135deg, var(--color-azul-sacerdotal), var(--color-azul-oscuro));
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  transition: var(--transicion-suave);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
 }
 
 .btn-arrow i {
@@ -482,7 +714,7 @@ body, html {
 
 .nav-btn:hover .btn-arrow {
   transform: translateX(5px) scale(1.1);
-  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  background: linear-gradient(135deg, var(--color-azul-claro), var(--color-azul-sacerdotal));
   box-shadow: 0 6px 18px rgba(59, 130, 246, 0.4);
 }
 
@@ -502,7 +734,7 @@ body, html {
 .floating-icon {
   position: absolute;
   font-size: 2rem;
-  color: rgba(255, 255, 255, 0.1);
+  color: rgba(230, 179, 37, 0.15);
   animation: float 6s ease-in-out infinite;
 }
 
@@ -606,6 +838,11 @@ body, html {
 
   .btn-content p {
     font-size: 0.9rem;
+    color: var(--color-negro-texto);
+    text-shadow: 
+      0 0 12px rgba(255, 255, 255, 0.7),
+      0 1px 2px rgba(255, 255, 255, 0.5);
+    font-weight: 500;
   }
 }
 
@@ -724,6 +961,22 @@ body, html {
     font-size: 0.9rem;
   }
 
+  .message-text {
+    color: var(--color-negro-texto);
+    text-shadow: 
+      0 0 12px rgba(255, 255, 255, 0.8),
+      0 1px 2px rgba(255, 255, 255, 0.6);
+    font-weight: 600;
+  }
+
+  .message-subtext {
+    color: var(--color-negro-texto);
+    text-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.7),
+      0 1px 2px rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+  }
+
   .nav-btn {
     padding: 1rem;
     flex-direction: column;
@@ -748,6 +1001,11 @@ body, html {
 
   .btn-content p {
     font-size: 0.85rem;
+    color: var(--color-negro-texto);
+    text-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.7),
+      0 1px 2px rgba(255, 255, 255, 0.5);
+    font-weight: 500;
   }
 
   .btn-arrow {

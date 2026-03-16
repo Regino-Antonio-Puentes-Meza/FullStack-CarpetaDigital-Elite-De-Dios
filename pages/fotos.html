@@ -2,59 +2,175 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Recuerdos de Viaje - Club Sear Jasub</title>
-  <link rel="stylesheet" href="../assets/css/fotos.css" />
+  <title>Archivo Fotográfico - Archivo Digital del Santuario</title>
+  <link rel="stylesheet" href="/assets/css/fotos.css" />
   <!-- Font Awesome para iconos náuticos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <!-- Google Fonts para mejor tipografía -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Protecciones de seguridad -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <style>
+    /* Protección selectiva - preserva funcionalidad UI */
+    * { 
+      -webkit-user-select: none !important; 
+      -moz-user-select: none !important; 
+      -ms-user-select: none !important; 
+      user-select: none !important;
+      -webkit-user-drag: none !important;
+      -webkit-touch-callout: none !important;
+    }
+    /* Permitir interacción en elementos funcionales */
+      /* Botón de control unificado play/pause */
+      .control-btn {
+        background: linear-gradient(135deg, rgba(230, 179, 37, 0.9), rgba(198, 152, 25, 0.9));
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .control-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(230, 179, 37, 0.4);
+      }
+      
+      .control-btn.playing {
+        background: linear-gradient(135deg, rgba(220, 53, 69, 0.9), rgba(176, 42, 55, 0.9));
+      }
+      
+      .control-btn.playing:hover {
+        box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+      }
+      
+      .control-btn.paused {
+        background: linear-gradient(135deg, rgba(40, 167, 69, 0.9), rgba(32, 134, 55, 0.9));
+      }
+      
+      .control-btn.paused:hover {
+        box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+      }
+      
+      .control-text {
+        font-weight: 600;
+        font-size: 13px;
+      }
+      
+      /* Indicador de hover activo */
+      .slideshow-container {
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      
+      .slideshow-container.hover-active {
+        transform: scale(1.02);
+        box-shadow: 0 8px 30px rgba(230, 179, 37, 0.3);
+      }
+      
+      .hover-indicator {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(230, 179, 37, 0.9);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .slideshow-container.hover-active .hover-indicator {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* Elementos interactivos */
+      button, .back-button, .control-btn, .photo-card, .photo-item, .modal-close, .modal-fullscreen, .fullscreen-exit-btn, .nav-arrow, #photo-modal { 
+        pointer-events: auto !important;
+      }
+    /* Asegurar posicionamiento correcto del logo */
+    .club-logo-container { 
+      position: fixed !important;
+      top: 2rem !important;
+      right: 2rem !important;
+      z-index: 1001 !important;
+    }
+    /* Proteger solo imágenes no interactivas */
+    .club-logo { 
+      -webkit-user-drag: none !important;
+      pointer-events: auto !important; /* Mantener hover del logo */
+    }
+    /* Proteger imágenes de la galería pero permitir clicks */
+    .photo-card img { 
+      -webkit-user-drag: none !important;
+      pointer-events: auto !important; /* Permitir clicks para modal */
+    }
+  </style>
 </head>
 <body class="fade-out">
   <!-- Logo del Club reubicado a la derecha -->
   <div class="club-logo-container">
-    <img src="../assets/img/LOGO-CLUB-SEAR-JASUB.png" alt="Logo Club Sear Jasub" class="club-logo">
+    <img src="/assets/img/logo-club.jpeg" alt="Logo Élite De Dios" class="club-logo">
   </div>
 
-  <!-- Encabezado náutico de la galería -->
+  <!-- Encabezado profesional del archivo -->
   <header class="gallery-header">
     <div class="header-content">
       <h1 class="gallery-title">
         <i class="fas fa-camera-retro"></i>
-        Recuerdos de Viaje
+        Archivo Fotográfico
       </h1>
-      <p class="gallery-subtitle">Club de Aventureros Sear Jasub</p>
       <div class="gallery-motto">
         <i class="fas fa-images"></i>
-        <span>Momentos capturados en el mar</span>
-        <i class="fas fa-anchor"></i>
+        <span>Registro visual de eventos y ceremonias sagradas</span>
+        <i class="fas fa-praying-hands"></i>
       </div>
     </div>
   </header>
 
   <!-- Botón de regreso mejorado -->
-  <button class="back-button" onclick="window.location.href='pag-menu-principal.html'">
+  <button class="back-button" onclick="window.location.href='/pages/pag-menu-principal.html'">
     <i class="fas fa-arrow-left"></i>
-    <span>Regresar al Arca</span>
+    <span>Regresar al Archivo</span>
   </button>
 
-  <!-- Introducción de la galería -->
+  <!-- Introducción del archivo -->
   <div class="gallery-intro">
     <div class="intro-container">
       <h2 class="intro-title">
-        <i class="fas fa-map-marked-alt"></i>
-        Galería de Aventuras
+        <i class="fas fa-archive"></i>
+        Colección Documental Visual
       </h2>
       <p class="intro-text">
-        Explora nuestra <span class="highlight">colección de recuerdos</span> capturados durante 
-        nuestras emocionantes travesías y aventuras como tripulación del Arca Sear Jasub.
+        Explora nuestro <span class="highlight">archivo fotográfico institucional</span> que documenta 
+        los momentos más significativos de nuestra historia ministerial y ceremonias sagradas.
       </p>
       <p class="intro-subtext">
-        Cada fotografía cuenta una historia única de compañerismo, descubrimiento 
-        y los momentos especiales que hemos vivido juntos en el mar.
+        Cada imagen representa un testimonio visual de nuestro crecimiento espiritual 
+        y los hitos importantes en el desarrollo de nuestra comunidad de fe.
       </p>
       <div class="photo-counter">
-        <i class="fas fa-camera"></i>
-        <span id="total-photos">Cargando aventuras...</span>
+        <i class="fas fa-file-image"></i>
+        <span id="total-photos">Cargando archivo visual...</span>
       </div>
     </div>
   </div>
@@ -64,31 +180,33 @@
     <div class="slideshow-header">
       <h2 class="slideshow-title">
         <i class="fas fa-play-circle"></i>
-        Presentación de Aventuras
+        Presentación Espiritual del Santuario
       </h2>
-      <p class="slideshow-subtitle">Disfruta de nuestros mejores momentos</p>
+      <p class="slideshow-subtitle">Disfruta de nuestros momentos más sagrados</p>
       <div class="slideshow-controls">
-        <button class="control-btn" onclick="pauseSlideshow()">
+        <button id="playPauseBtn" class="control-btn playing" onclick="togglePlayPause()" title="Pausar presentación">
           <i class="fas fa-pause"></i>
-        </button>
-        <button class="control-btn" onclick="playSlideshow()">
-          <i class="fas fa-play"></i>
+          <span class="control-text">Pausar</span>
         </button>
       </div>
     </div>
     
-    <div class="slideshow-container">
+    <div class="slideshow-container" id="slideshow-container">
       <div class="slideshow-wrapper">
         <div class="slide active">
-          <img id="slideshow-img" src="" alt="Aventura" />
+          <img id="slideshow-img" src="" alt="Ceremonia Sagrada" />
         </div>
       </div>
       <div class="slideshow-indicators" id="slideshow-indicators">
         <!-- Indicadores generados dinámicamente -->
       </div>
       <div class="slideshow-info">
-        <h4 id="slideshow-title">Aventura del Arca</h4>
-        <p id="slideshow-description">Momentos especiales de nuestra tripulación</p>
+        <h4 id="slideshow-title">Encuentro Espiritual en el Santuario</h4>
+        <p id="slideshow-description">Momentos de adoración, fe y consagración.</p>
+      </div>
+      <div class="hover-indicator">
+        <i class="fas fa-eye"></i>
+        <span>Presentación activa</span>
       </div>
     </div>
   </div>
@@ -97,7 +215,7 @@
   <div class="gallery-section">
     <h2 class="gallery-section-title">
       <i class="fas fa-images"></i>
-      Colección de Recuerdos
+      Galería de Testimonios Sagrados
     </h2>
     <div class="photo-gallery" id="photo-gallery">
       <!-- Fotos cargadas dinámicamente -->
@@ -115,18 +233,21 @@
     <div class="modal-close" onclick="closeModal()">
       <i class="fas fa-times"></i>
     </div>
+    <div class="modal-fullscreen" onclick="toggleFullscreen()" title="Pantalla completa">
+      <i class="fas fa-expand"></i>
+    </div>
     
     <div class="modal-content">
       <div class="modal-image-container">
         <img id="modalImage" src="" alt="Foto ampliada" />
       </div>
       <div class="modal-info">
-        <h3 id="modalTitle">Recuerdo de Aventura</h3>
-        <p id="modalDescription">Momento especial capturado durante nuestras travesías</p>
+        <h3 id="modalTitle">Encuentro en el Santuario</h3>
+        <p id="modalDescription">Momento de fe, adoración y consagración espiritual</p>
         <div class="modal-meta">
           <div id="modalDate">
-            <i class="fas fa-calendar"></i>
-            <span>Aventura memorable</span>
+            <i class="fas fa-cross"></i>
+            <span>Testimonio Sagrado</span>
           </div>
           <div class="photo-counter-simple">
             <span id="photoCounter">1 / 1</span>
@@ -135,8 +256,13 @@
       </div>
     </div>
     
+    <!-- Botón específico para salir de pantalla completa -->
+    <div class="fullscreen-exit-btn" onclick="exitCustomFullscreen()" title="Salir de pantalla completa">
+      <i class="fas fa-times"></i>
+    </div>
+    
     <div class="keyboard-hint">
-      <span>Usa ← → para navegar, ESC para cerrar</span>
+      <span>← → navegar • F pantalla completa • ESC cerrar</span>
     </div>
   </div>
 
@@ -157,6 +283,7 @@
     let isPlaying = true;
 
     document.addEventListener("DOMContentLoaded", () => {
+      console.log('📋 DOM cargado - iniciando aplicación');
       // Animación de entrada
       document.body.classList.remove("fade-out");
       document.body.classList.add("fade-in");
@@ -165,8 +292,15 @@
     });
 
     function loadPhotos() {
-      fetch('../assets/data/fotos.json')
-        .then(res => res.json())
+      console.log('📷 Iniciando carga de fotos...');
+      fetch('/assets/data/fotos.json')
+        .then(res => {
+          console.log('📷 Respuesta fetch recibida:', res.status);
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
+          return res.json();
+        })
         .then(data => {
           photos = data;
           createGallery();
@@ -195,14 +329,14 @@
         photoItem.innerHTML = `
           <div class="photo-card" onclick="openModal(${index})">
             <div class="photo-image-container">
-              <img src="${photo}" alt="Recuerdo ${index + 1}" loading="lazy" />
-              <div class="photo-overlay">
-                <div class="photo-info">
-                  <h3>Aventura Memorable</h3>
-                  <p>Momento especial de nuestra tripulación</p>
-                  <div class="photo-date">
-                    <i class="fas fa-calendar"></i>
-                    <span>Recuerdo del Arca</span>
+              <img src=\"${photo}\" alt=\"Memoria del Santuario ${index + 1}\" loading=\"lazy\" />
+              <div class=\"photo-overlay\">
+                <div class=\"photo-info\">
+                  <h3>Encuentro en el Santuario</h3>
+                  <p>Instante de fe, adoración y consagración espiritual</p>
+                  <div class=\"photo-date\">
+                    <i class=\"fas fa-cross\"></i>
+                    <span>Testimonio Sagrado</span>
                   </div>
                 </div>
               </div>
@@ -239,6 +373,7 @@
     }
 
     function startSlideshow() {
+      console.log('🎬 Iniciando slideshow automático con', photos.length, 'fotos');
       slideshowInterval = setInterval(() => {
         if (isPlaying) {
           nextSlide();
@@ -248,6 +383,7 @@
 
     function nextSlide() {
       currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+      console.log('🎬 Cambiando a foto', currentPhotoIndex);
       updateSlideshow();
     }
 
@@ -269,17 +405,64 @@
 
     function pauseSlideshow() {
       isPlaying = false;
+      updatePlayPauseButton();
+      console.log('⏸️ Slideshow pausado manualmente');
     }
 
     function playSlideshow() {
       isPlaying = true;
+      updatePlayPauseButton();
+      console.log('▶️ Slideshow reanudado manualmente');
+    }
+    
+    // Nueva función para alternar play/pause con un solo botón
+    function togglePlayPause() {
+      if (isPlaying) {
+        pauseSlideshow();
+      } else {
+        playSlideshow();
+      }
+    }
+    
+    // Actualizar apariencia del botón según el estado
+    function updatePlayPauseButton() {
+      const btn = document.getElementById('playPauseBtn');
+      const icon = btn.querySelector('i');
+      const text = btn.querySelector('.control-text');
+      
+      if (isPlaying) {
+        btn.classList.add('playing');
+        btn.classList.remove('paused');
+        icon.className = 'fas fa-pause';
+        text.textContent = 'Pausar';
+        btn.title = 'Pausar presentación';
+      } else {
+        btn.classList.add('paused');
+        btn.classList.remove('playing');
+        icon.className = 'fas fa-play';
+        text.textContent = 'Reproducir';
+        btn.title = 'Reproducir presentación';
+      }
     }
 
     function openModal(index) {
+      console.log('🔍 openModal llamado con index:', index);
+      
       currentPhotoIndex = index;
       const modal = document.getElementById('photo-modal');
       const modalImage = document.getElementById('modalImage');
       const photoCounter = document.getElementById('photoCounter');
+      
+      console.log('🔍 Modal element:', modal);
+      console.log('🔍 Modal image element:', modalImage);
+      console.log('🔍 Photo URL:', photos[index]);
+      
+      // 🎬 PAUSAR SLIDESHOW AUTOMÁTICO PARA AHORRAR RECURSOS
+      const wasPlaying = isPlaying;
+      pauseSlideshow();
+      
+      // Guardar el estado anterior para restaurarlo al cerrar
+      modal.dataset.wasPlaying = wasPlaying;
       
       modalImage.src = photos[index];
       photoCounter.textContent = `${index + 1} / ${photos.length}`;
@@ -298,13 +481,35 @@
       img.src = photos[index];
       
       modal.style.display = 'flex';
+      console.log('🔍 Modal abierto - Slideshow automático pausado para optimización');
+      
       document.addEventListener('keydown', handleKeyboardNavigation);
     }
 
     function closeModal() {
       const modal = document.getElementById('photo-modal');
+      const modalContent = document.querySelector('.modal-content');
+      
+      // Salir de pantalla completa si está activa ANTES de cerrar
+      if (modalContent.classList.contains('fullscreen')) {
+        exitCustomFullscreen();
+      }
+      
       modal.style.display = 'none';
       document.removeEventListener('keydown', handleKeyboardNavigation);
+      
+      // 🎬 REANUDAR SLIDESHOW SI ESTABA ACTIVO ANTES
+      const wasPlaying = modal.dataset.wasPlaying === 'true';
+      if (wasPlaying) {
+        isPlaying = true;
+        updatePlayPauseButton();
+        console.log('🎬 Slideshow reanudado tras cerrar modal');
+      } else {
+        console.log('🎬 Slideshow se mantiene pausado (estaba pausado antes)');
+      }
+      
+      // Limpiar el estado guardado
+      delete modal.dataset.wasPlaying;
     }
 
     function previousPhoto() {
@@ -352,14 +557,25 @@
           nextPhoto();
           break;
         case 'Escape':
-          closeModal();
+          // Si está en pantalla completa, solo salir de pantalla completa
+          const modalContent = document.querySelector('.modal-content');
+          if (modalContent && modalContent.classList.contains('fullscreen')) {
+            exitCustomFullscreen();
+          } else {
+            // Si no está en pantalla completa, cerrar modal completamente
+            closeModal();
+          }
+          break;
+        case 'f':
+        case 'F':
+          toggleFullscreen();
           break;
       }
     }
 
     function updatePhotoCounter() {
       const counter = document.getElementById('total-photos');
-      counter.textContent = `${photos.length} recuerdos de aventuras`;
+      counter.textContent = `${photos.length} testimonios sagrados del santuario`;
     }
 
     function showErrorMessage() {
@@ -382,12 +598,118 @@
       `;
     }
 
-    // Cerrar modal al hacer clic fuera de la imagen
+    // Función para alternar pantalla completa
+    function toggleFullscreen() {
+      const modalContent = document.querySelector('.modal-content');
+      const fullscreenBtn = document.querySelector('.modal-fullscreen i');
+      const photoModal = document.getElementById('photo-modal');
+      
+      if (modalContent.classList.contains('fullscreen')) {
+        exitCustomFullscreen();
+      } else {
+        // Entrar en pantalla completa
+        modalContent.classList.add('fullscreen');
+        if (photoModal) {
+          photoModal.classList.add('fullscreen-mode');
+        }
+        if (fullscreenBtn) {
+          fullscreenBtn.className = 'fas fa-compress';
+          fullscreenBtn.parentElement.title = 'Salir de pantalla completa';
+        }
+        console.log('Entrando en pantalla completa');
+      }
+    }
+
+    // Función específica para salir de pantalla completa (renombrada para evitar conflicto con API nativa)
+    function exitCustomFullscreen() {
+      try {
+        const modalContent = document.querySelector('.modal-content');
+        const fullscreenBtn = document.querySelector('.modal-fullscreen i');
+        const photoModal = document.getElementById('photo-modal');
+        
+        if (modalContent && modalContent.classList.contains('fullscreen')) {
+          modalContent.classList.remove('fullscreen');
+          
+          if (photoModal) {
+            photoModal.classList.remove('fullscreen-mode');
+          }
+          
+          if (fullscreenBtn) {
+            fullscreenBtn.className = 'fas fa-expand';
+            fullscreenBtn.parentElement.title = 'Pantalla completa';
+          }
+          
+          // Forzar un reflow para asegurar que los cambios se apliquen
+          modalContent.offsetHeight;
+          
+          console.log('✅ Saliendo de pantalla completa personalizada exitosamente');
+          return true;
+        } else {
+          console.log('⚠️ No está en modo pantalla completa');
+          return false;
+        }
+      } catch (error) {
+        console.error('❌ Error al salir de pantalla completa:', error);
+        return false;
+      }
+    }
+
+    // Cerrar modal al hacer clic fuera de la imagen (solo si no está en pantalla completa)
     document.getElementById('photo-modal').addEventListener('click', function(e) {
-      if (e.target === this) {
+      const modalContent = document.querySelector('.modal-content');
+      
+      // Solo cerrar si se hace clic fuera y NO está en pantalla completa
+      if (e.target === this && !modalContent.classList.contains('fullscreen')) {
         closeModal();
       }
     });
+
+    // Añadir event listener adicional para el botón de salir de pantalla completa
+    document.addEventListener('DOMContentLoaded', function() {
+      const fullscreenExitBtn = document.querySelector('.fullscreen-exit-btn');
+      if (fullscreenExitBtn) {
+        fullscreenExitBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          console.log('Botón de salir de pantalla completa clickeado');
+          exitCustomFullscreen();
+        });
+      }
+      
+      // 📍 CONTROL AUTOMÁTICO POR HOVER - Solo activo cuando el cursor está sobre el slideshow
+      const slideshowContainer = document.getElementById('slideshow-container');
+      if (slideshowContainer) {
+        let wasPlayingBeforeLeave = isPlaying;
+        
+        // Cuando el cursor entra al contenedor del slideshow
+        slideshowContainer.addEventListener('mouseenter', function() {
+          console.log('📍 Cursor sobre slideshow - Activando reproducción automática');
+          wasPlayingBeforeLeave = isPlaying;
+          if (!isPlaying) {
+            isPlaying = true;
+            updatePlayPauseButton();
+          }
+          slideshowContainer.classList.add('hover-active');
+        });
+        
+        // Cuando el cursor sale del contenedor del slideshow
+        slideshowContainer.addEventListener('mouseleave', function() {
+          console.log('📍 Cursor fuera del slideshow - Pausando para optimización');
+          wasPlayingBeforeLeave = isPlaying;
+          if (isPlaying) {
+            isPlaying = false;
+            updatePlayPauseButton();
+          }
+          slideshowContainer.classList.remove('hover-active');
+        });
+      }
+      
+      // Actualizar botón al cargar la página
+      updatePlayPauseButton();
+    });
   </script>
+  
+  <!-- Scripts de protección -->
+  <script src="/assets/js/protection.js"></script>
+  <script src="/assets/js/advanced-protection.js"></script>
 </body>
 </html>

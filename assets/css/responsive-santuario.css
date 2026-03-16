@@ -1,0 +1,73 @@
+/* =====================================================
+   📱 RESPONSIVE DESIGN - SANTUARIO
+   ===================================================== */
+
+/* Tablets y pantallas medianas */
+@media (max-height: 800px) {
+  .splash-content {
+    padding-top: 5vh !important;
+  }
+  
+  .welcome-message {
+    padding: var(--spacing-sm) !important;
+    margin-top: 2vh !important;
+  }
+  
+  .enter-btn {
+    width: 280px !important;
+    height: 80px !important;
+    font-size: 1.2rem !important;
+    margin-top: var(--spacing-sm) !important;
+  }
+}
+
+/* Dispositivos móviles */
+@media (max-height: 600px) {
+  .splash-content {
+    padding-top: 3vh !important;
+    justify-content: flex-start !important;
+  }
+  
+  .welcome-message {
+    padding: var(--spacing-xs) !important;
+    margin-top: 1vh !important;
+    margin-bottom: var(--spacing-xs) !important;
+  }
+  
+  .welcome-body {
+    margin-bottom: var(--spacing-xs) !important;
+  }
+  
+  .enter-btn {
+    width: 260px !important;
+    height: 70px !important;
+    font-size: 1.1rem !important;
+    margin-top: var(--spacing-xs) !important;
+    margin-bottom: var(--spacing-xs) !important;
+  }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-height: 500px) {
+  .splash-content {
+    padding-top: 1vh !important;
+  }
+  
+  .welcome-title {
+    font-size: clamp(1.5rem, 4vw, 2.2rem) !important;
+  }
+  
+  .welcome-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.2rem) !important;
+  }
+  
+  .welcome-text {
+    font-size: clamp(0.8rem, 2vw, 1rem) !important;
+  }
+  
+  .enter-btn {
+    width: 240px !important;
+    height: 60px !important;
+    font-size: 1rem !important;
+  }
+}

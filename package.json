@@ -1,0 +1,71 @@
+{
+  "name": "carpeta-digital-guias-mayores-santuario",
+  "version": "2.0.0",
+  "description": "Elíte de Dios - Archivo Digital del Santuario - Sistema de formación espiritual basado en el concepto del Santuario del Antiguo Testamento",
+  "main": "server.js",
+  "keywords": [
+    "guias-mayores",
+    "santuario",
+    "formacion-espiritual",
+    "liderazgo",
+    "crecimiento-personal",
+    "desarrollo-espiritual",
+    "educacion-cristiana",
+    "plataforma-educativa"
+  ],
+  "author": {
+    "name": "Regino Puentes",
+    "email": "reginopm0897@gmail.com",
+    "description": "Desarrolladores especializados en aplicaciones educativas y espirituales"
+  },
+  "license": "ISC",
+  "scripts": {
+    "start": "node server.js",
+    "start-encrypted": "node server-encrypted.js",
+    "start-portable": "node server-portable.js",
+    "encrypt": "node encrypt.js",
+    "dev": "node server.js",
+    "build-portable": "npm run encrypt && pkg server-portable.js --targets node18-win-x64 --output Carpeta_Guias_Mayores_Santuario_Portable.exe --options experimental-modules,no-warnings --compress Brotli",
+    "build": "pkg server.js --targets node18-win-x64 --output Carpeta_Guias_Mayores_Santuario.exe --compress Brotli",
+    "build-secure": "pkg server-secure.js --targets node18-win-x64 --output Carpeta_Guias_Mayores_Santuario_Secure.exe --compress Brotli",
+    "build-encrypted": "npm run encrypt && pkg server-encrypted.js --targets node18-win-x64 --output Carpeta_Guias_Mayores_Santuario_Encrypted.exe --compress Brotli",
+    "build-ultra": "npm run encrypt && pkg server-encrypted.js --targets node18-win-x64 --output Carpeta_Guias_Mayores_Santuario_Ultra.exe --compress Brotli --no-bytecode --public-packages '*'",
+    "build-all": "npm run build && npm run build-secure && npm run build-encrypted && npm run build-ultra"
+  },
+  "repository": {
+    "type": "GitHub",
+    "url": "https://github.com/Regino-Antonio-Puentes-Meza/FullStack-CarpetaDigital-Elite-De-Dios.git"
+  },
+  "pkg": {
+    "assets": [
+      "assets/**/*",
+      "pages/**/*",
+      "encrypted/**/*",
+      "index.html",
+      "*.html.enc",
+      "**/*.css.enc",
+      "**/*.js.enc"
+    ],
+    "scripts": [
+      "server.js",
+      "server-secure.js",
+      "server-encrypted.js",
+      "encrypt.js"
+    ],
+    "targets": [
+      "node18-win-x64"
+    ]
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "config": {
+    "theme": "santuario",
+    "conceptualDesign": "Santuario del Antiguo Testamento",
+    "applicationPurpose": "Formación espiritual y desarrollo de liderazgo"
+  }
+}
