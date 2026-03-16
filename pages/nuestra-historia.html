@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Registro Histórico - Archivo Digital del Santuario</title>
+  <title>Identidad e historia</title>
+  <link rel="icon" href="../assets/img/logo-club.jpeg" type="image/jpeg">
   <link rel="stylesheet" href="../assets/css/historia.css" />
   <!-- Font Awesome para iconos náuticos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -43,6 +44,7 @@
     .club-logo {
       -webkit-user-drag: none !important;
       pointer-events: auto !important;
+      border-radius: 50% !important;
       /* Mantener hover del logo */
     }
 
@@ -195,11 +197,11 @@
     <div class="header-content">
       <h1 class="history-title">
         <i class="fas fa-scroll"></i>
-        Registro Histórico
+        Identidad e historia
       </h1>
       <div class="history-motto">
         <i class="fas fa-book-open"></i>
-        <span>Documentos fundacionales e hitos ministeriales</span>
+        <span>Historia, misión, visión, valores y símbolos</span>
         <i class="fas fa-praying-hands"></i>
       </div>
       <!-- Menú de navegación -->
@@ -245,23 +247,18 @@
           <div class="section-icon history-icon">
             <i class="fas fa-scroll"></i>
           </div>
-          <h2 class="section-title">Nuestra Historia</h2>
+          <h2 class="section-title">Historia y Símbolos</h2>
         </div>
         <div class="section-content">
           <div class="history-intro">
             <p class="section-text">
-              Descubre la <span class="highlight">historia que Dios ha escrito</span> en nuestro club,
-              un camino que comenzó con pequeños pasos de fe y que, con el tiempo, se ha convertido
-              en un lugar donde generaciones de aventureros han aprendido a caminar más cerca de Cristo.
+              Una <span class="highlight">travesía de fe</span> que comenzó con pequeños pasos y se convirtió en un lugar donde generaciones han aprendido a caminar más cerca de Cristo. Cada campamento, cada actividad y cada experiencia vivida forman parte de nuestra historia.
             </p>
             <p class="section-text">
-              Cada campamento, cada actividad y cada experiencia vivida forman parte de esta historia.
-              Hoy continuamos ese recorrido recordando que, así como el <span class="highlight">Santuario</span>
-              enseñaba el camino hacia la presencia de Dios, nuestro club busca guiar a cada niño
-              y joven a descubrir Su amor, Su perdón y Su propósito para sus vidas.
+              Hoy continuamos con misión clara: guiar a nuestros jóvenes a descubrir el amor de Dios. Nuestros <span class="highlight">símbolos y valores</span> reflejan ese compromiso sagrado de formar líderes integrales comprometidos con Cristo.
             </p>
           </div>
-          <!-- Botón para abrir PDF de historia -->
+          <!-- Botones para abrir PDFs de historia y símbolos -->
           <div class="pdf-access-section">
             <button class="view-history-pdf" onclick="abrirPDF('../assets/docs/historia-club.pdf')">
               <div class="pdf-icon">
@@ -270,6 +267,18 @@
               <div class="pdf-content-text">
                 <h4>Leer Nuestra Historia Completa</h4>
                 <p>Documento PDF con todos los detalles de nuestra travesía</p>
+              </div>
+              <div class="pdf-arrow">
+                <i class="fas fa-external-link-alt"></i>
+              </div>
+            </button>
+            <button class="view-history-pdf simbolos-btn" onclick="abrirPDF('../assets/docs/simbolos-club.pdf')">
+              <div class="pdf-icon">
+                <i class="fas fa-flag"></i>
+              </div>
+              <div class="pdf-content-text">
+                <h4>Ver Símbolos del Club</h4>
+                <p>Banderas, insignias y símbolos</p>
               </div>
               <div class="pdf-arrow">
                 <i class="fas fa-external-link-alt"></i>
