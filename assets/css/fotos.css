@@ -323,29 +323,31 @@ body {
    ===================================================== */
 .back-button {
   position: fixed;
-  top: 1.5rem;
-  left: 1.5rem;
-  z-index: 1002;
+  top: 2rem;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   background: linear-gradient(
     135deg,
     rgba(250, 250, 247, 0.75) 0%,
     rgba(255, 248, 231, 0.70) 100%
   );
-  color: var(--color-negro-texto);
+  backdrop-filter: blur(15px);
   border: 2px solid var(--color-azul-sacerdotal);
-  padding: 0.8rem 1.2rem;
-  border-radius: 12px;
-  font-family: var(--font-texto-general);
-  font-weight: 600;
-  font-size: 0.9rem;
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-  box-shadow: var(--sombra-dorada);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  font-family: var(--font-texto-general);
+  font-weight: 500;
+  color: var(--color-negro-texto);
   text-decoration: none;
+  z-index: 1000;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.08);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .back-button:hover {
