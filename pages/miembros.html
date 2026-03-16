@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Directorio de Miembros - Archivo Digital del Santuario</title>
@@ -7,38 +8,50 @@
     <!-- Font Awesome para iconos náuticos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- Google Fonts para mejor tipografía -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Protecciones de seguridad -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <style>
-      /* Protección selectiva - preserva funcionalidad UI */
-      * { 
-        -webkit-user-select: none !important; 
-        -moz-user-select: none !important; 
-        -ms-user-select: none !important; 
-        user-select: none !important;
-        -webkit-user-drag: none !important;
-        -webkit-touch-callout: none !important;
-      }
-      /* Permitir interacción en elementos funcionales */
-      button, .back-button, .crew-member, .member-card, .download-btn { 
-        pointer-events: auto !important;
-      }
-      /* Proteger solo imágenes no interactivas */
-      .club-logo { 
-        -webkit-user-drag: none !important;
-        pointer-events: auto !important; /* Mantener hover del logo */
-      }
-      /* Proteger imágenes pero permitir clicks en miembros */
-      .crew-member img { 
-        -webkit-user-drag: none !important;
-        pointer-events: auto !important; /* Permitir clicks para funcionalidad */
-      }
+        /* Protección selectiva - preserva funcionalidad UI */
+        * {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            -webkit-user-drag: none !important;
+            -webkit-touch-callout: none !important;
+        }
+
+        /* Permitir interacción en elementos funcionales */
+        button,
+        .back-button,
+        .crew-member,
+        .member-card,
+        .download-btn {
+            pointer-events: auto !important;
+        }
+
+        /* Proteger solo imágenes no interactivas */
+        .club-logo {
+            -webkit-user-drag: none !important;
+            pointer-events: auto !important;
+            /* Mantener hover del logo */
+        }
+
+        /* Proteger imágenes pero permitir clicks en miembros */
+        .crew-member img {
+            -webkit-user-drag: none !important;
+            pointer-events: auto !important;
+            /* Permitir clicks para funcionalidad */
+        }
     </style>
 </head>
+
 <body class="fade-out">
     <!-- Logo del Club reubicado a la derecha -->
     <div class="club-logo-container">
@@ -62,7 +75,6 @@
                 <i class="fas fa-users"></i>
                 Directorio de Miembros
             </h1>
-            <p class="crew-subtitle">Archivo Digital del Santuario</p>
             <div class="crew-motto">
                 <i class="fas fa-user-tie"></i>
                 <span>Perfiles y trayectorias de liderazgo ministerial</span>
@@ -82,28 +94,15 @@
         <!-- Introducción profesional -->
         <div class="crew-intro">
             <div class="intro-container">
-                <h2 class="intro-title">
-                    <i class="fas fa-address-book"></i>
-                    Registro de Líderes Ministeriales
-                </h2>
                 <p class="intro-text">
-                    Consulta el <span class="highlight">directorio oficial de miembros</span> que integran 
-                    nuestro equipo ministerial, desde la directiva ejecutiva hasta cada valioso 
-                    colaborador de nuestra organización espiritual.
+                    Consulta el <span class="highlight">directorio oficial de miembros</span> que forman parte
+                    de la familia Élite de Dios, desde la directiva hasta cada valioso integrante que
+                    contribuye con su servicio y compromiso a la misión, guiados por los
+                    principios de Dios.
                 </p>
-                <p class="intro-subtext">
-                    Cada miembro aporta su experiencia y dedicación al ministerio del santuario, 
-                    trabajando unidos en la formación espiritual y el crecimiento de nuestra comunidad de fe.
-                </p>
-                
-                <!-- Botón para visualizar biografías -->
-                <button class="view-bios" onclick="abrirPDF('/assets/pdfs/HOJAS-DE-VIDA-DIRECTIVOS-Y-AVENTUREROS-2025.pdf')">
-                    <i class="fas fa-book-open"></i>
-                    <span>Bitácoras Personales</span>
-                </button>
             </div>
         </div>
-        
+
         <!-- Buscador náutico -->
         <div class="search-container">
             <div class="search-wrapper">
@@ -113,12 +112,13 @@
             <div class="crew-counter">
                 <i class="fas fa-users"></i>
                 <span id="contador-miembros">Cargando miembros...</span>
-            </div>              
+            </div>
         </div>
-        
+
         <!-- Sección Liderazgo Ministerial (Directiva) -->
         <section class="crew-section">
-            <h2 class="section-title officers" style="background: linear-gradient(135deg, rgba(230, 179, 37, 0.15) 0%, rgba(255, 248, 231, 0.20) 50%, rgba(230, 179, 37, 0.15) 100%); backdrop-filter: blur(15px); padding: 1.5rem 2rem; border-radius: 20px; border: 2px solid var(--color-dorado-sagrado); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.08); margin-bottom: 2rem;">
+            <h2 class="section-title officers"
+                style="background: linear-gradient(135deg, rgba(230, 179, 37, 0.15) 0%, rgba(255, 248, 231, 0.20) 50%, rgba(230, 179, 37, 0.15) 100%); backdrop-filter: blur(15px); padding: 1.5rem 2rem; border-radius: 20px; border: 2px solid var(--color-dorado-sagrado); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.08); margin-bottom: 2rem;">
                 <i class="fas fa-crown"></i>
                 Liderazgo Ministerial
                 <i class="fas fa-praying-hands"></i>
@@ -128,7 +128,8 @@
 
         <!-- Sección Ministerio General -->
         <section class="crew-section">
-            <h2 class="section-title crew" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.15) 0%, rgba(255, 248, 231, 0.20) 50%, rgba(30, 58, 138, 0.15) 100%); backdrop-filter: blur(15px); padding: 1.5rem 2rem; border-radius: 20px; border: 2px solid var(--color-azul-sacerdotal); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.08); margin-bottom: 2rem;">
+            <h2 class="section-title crew"
+                style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.15) 0%, rgba(255, 248, 231, 0.20) 50%, rgba(30, 58, 138, 0.15) 100%); backdrop-filter: blur(15px); padding: 1.5rem 2rem; border-radius: 20px; border: 2px solid var(--color-azul-sacerdotal); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.08); margin-bottom: 2rem;">
                 <i class="fas fa-dove"></i>
                 Ministerio General
                 <i class="fas fa-hands-pray"></i>
@@ -145,7 +146,7 @@
         <div class="floating-icon icon-4"><i class="fas fa-heart"></i></div>
         <div class="floating-icon icon-5"><i class="fas fa-star"></i></div>
     </div>
-    
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             // Animación de entrada
@@ -158,14 +159,14 @@
                     const directiva = document.getElementById('directiva-container');
                     const club = document.getElementById('club-container');
                     let rolDirectiva = "DIRECTIVA";
-                    
+
                     data.forEach(persona => {
                         const div = document.createElement('div');
                         div.classList.add('crew-card');
                         if (persona.rol.toLocaleUpperCase() === rolDirectiva) {
                             div.classList.add('officer');
                         }
-                        
+
                         div.innerHTML = `
                             <div class="card-header">
                                 <div class="member-avatar">
@@ -177,27 +178,27 @@
                             </div>
                             <div class="card-content">
                                 <h3 class="member-name">${persona.nombre.replaceAll('_', ' ')}</h3>
-                                <p class="member-role">${persona.rol.toLocaleUpperCase() === rolDirectiva ? 'Líder Ministerial' : 'Miembro del Ministerio'}</p>
+                                <p class="member-role">${persona.rol.toLocaleUpperCase() === rolDirectiva ? `${persona.rol + '-'+ persona.cargo}` : 'Integrante'}</p>
                                 <button class="view-profile" onclick="abrirPDF('/assets/pdfs/${persona.nombre}.pdf')">
                                     <i class="fas fa-scroll"></i>
                                     <span>Ver Perfil</span>
                                 </button>
                             </div>
                         `;
-                        
+
                         if (persona.rol.toLocaleUpperCase() === rolDirectiva) {
                             directiva.appendChild(div);
                         } else {
                             club.appendChild(div);
                         }
-                        
+
                         // Efecto especial para Sara (directora)
                         let nombrePersona = persona.nombre.replaceAll('_', ' ');
                         if (nombrePersona.includes("Acosta")) {
                             div.classList.add('captain');
                         }
                     });
-                    
+
                     // Establecer el total después de procesar todos los miembros
                     totalMiembros = data.length;
                     actualizarContador();
@@ -228,7 +229,7 @@
             function actualizarContador() {
                 const visibles = document.querySelectorAll(".crew-card:not([style*='display: none'])");
                 const filtro = filtroInput.value.toLowerCase();
-                
+
                 if (filtro.trim() === "") {
                     // Sin filtro: mostrar solo el total
                     contador.textContent = `Total: ${totalMiembros} miembro${totalMiembros === 1 ? '' : 's'}`;
@@ -242,18 +243,18 @@
                 // Verificar Liderazgo Ministerial
                 const directivaCards = document.querySelectorAll("#directiva-container .crew-card:not([style*='display: none'])");
                 const liderazgoSection = document.querySelector("#directiva-container").closest('.crew-section');
-                
+
                 // Verificar Ministerio General  
                 const clubCards = document.querySelectorAll("#club-container .crew-card:not([style*='display: none'])");
                 const ministerioSection = document.querySelector("#club-container").closest('.crew-section');
-                
+
                 // Mostrar/ocultar secciones según tengan resultados
                 if (directivaCards.length > 0) {
                     liderazgoSection.style.display = "block";
                 } else {
                     liderazgoSection.style.display = "none";
                 }
-                
+
                 if (clubCards.length > 0) {
                     ministerioSection.style.display = "block";
                 } else {
@@ -276,9 +277,10 @@
             modal.classList.remove("visible");
         }
     </script>
-    
+
     <!-- Scripts de protección -->
     <script src="../assets/js/protection.js"></script>
     <script src="../assets/js/advanced-protection.js"></script>
 </body>
+
 </html>
