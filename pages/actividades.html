@@ -64,6 +64,11 @@
             <button class="close-pdf" onclick="cerrarPDF()">
                 <i class="fas fa-times"></i>
             </button>
+            <!-- Indicador de carga -->
+            <div id="pdfLoader" class="pdf-loader">
+                <div class="spinner"></div>
+                <p>Cargando documento...</p>
+            </div>
             <iframe id="pdfViewer" src="" allowfullscreen></iframe>
         </div>
     </div>
@@ -128,6 +133,25 @@
     </div>
 
     <script>
+        // Variable para rastrear PDF actual en caché
+        let currentPdfUrl = '';
+        
+        // Registro de Service Worker para caching optimizado
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('../assets/js/service-worker.js')
+                    .then((registration) => {
+                        console.log('✅ Service Worker registrado:', registration);
+                    })
+                    .catch((error) => {
+                        console.log('⚠️ Service Worker no disponible:', error);
+                    });
+            });
+        }
+
+        // Cache en memoria para PDFs durante la sesión
+        const pdfCache = {};
+
         // Animación de entrada de página mejorada
         document.addEventListener("DOMContentLoaded", () => {
             // Remover fade-out y aplicar fade-in
@@ -177,29 +201,57 @@
             }, 2000);
         });
 
-        // Función para abrir PDFs
-        function abrirPDF(pdfPath) {
+        // Función para abrir PDFs - Patrón probado de nuestra-historia.html
+        function abrirPDF(ruta) {
+            console.log('📄 Abriendo PDF:', ruta);
             const modal = document.getElementById('pdfModal');
             const viewer = document.getElementById('pdfViewer');
-
-            if (modal && viewer) {
-                viewer.src = pdfPath;
-                modal.style.display = 'flex';
-                modal.classList.add('visible');
-                document.body.style.overflow = 'hidden';
+            const loader = document.getElementById('pdfLoader');
+            
+            if (!modal || !viewer) return;
+            
+            // Mostrar modal inmediatamente
+            modal.style.display = 'flex';
+            modal.classList.add('visible');
+            document.body.style.overflow = 'hidden';
+            
+            // Si es el mismo PDF y ya está cargado, no recargar
+            if (currentPdfUrl === ruta && viewer.src) {
+                console.log('⚡ PDF en caché, apertura instantánea');
+                if (loader) loader.style.display = 'none';
+                viewer.style.opacity = '1';
+                return;
             }
+            
+            // Mostrar loader solo para PDFs nuevos
+            if (loader && currentPdfUrl !== ruta) {
+                loader.style.display = 'flex';
+            }
+            
+            // Configurar eventos de carga
+            viewer.onload = () => {
+                if (loader) loader.style.display = 'none';
+                viewer.style.opacity = '1';
+                currentPdfUrl = ruta;
+                console.log('✅ PDF cargado y cacheado');
+            };
+            
+            // Cargar PDF
+            viewer.src = ruta;
         }
 
         // Función para cerrar PDFs
         function cerrarPDF() {
             const modal = document.getElementById('pdfModal');
             const viewer = document.getElementById('pdfViewer');
+            const loader = document.getElementById('pdfLoader');
 
             if (modal && viewer) {
                 modal.style.display = 'none';
                 modal.classList.remove('visible');
-                viewer.src = '';
+                viewer.style.opacity = '1';
                 document.body.style.overflow = 'auto';
+                // No limpiar src para mantener caché en memoria
             }
         }
 
