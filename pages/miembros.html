@@ -64,6 +64,11 @@
             <button class="close-pdf" onclick="cerrarPDF()">
                 <i class="fas fa-times"></i>
             </button>
+            <!-- Indicador de carga -->
+            <div id="pdfLoader" class="pdf-loader">
+                <div class="spinner"></div>
+                <p>Cargando perfil...</p>
+            </div>
             <iframe id="pdfViewer" src="" allowfullscreen></iframe>
         </div>
     </div>
@@ -148,6 +153,22 @@
     </div>
 
     <script>
+        // Variable para rastrear PDF actual en caché
+        let currentPdfUrl = '';
+        
+        // Registro de Service Worker para caching optimizado
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('../assets/js/service-worker.js')
+                    .then((registration) => {
+                        console.log('✅ Service Worker registrado:', registration);
+                    })
+                    .catch((error) => {
+                        console.log('⚠️ Service Worker no disponible:', error);
+                    });
+            });
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             // Animación de entrada
             document.body.classList.remove("fade-out");
@@ -264,17 +285,50 @@
         });
 
         function abrirPDF(ruta) {
-            const modal = document.getElementById("pdfModal");
-            const viewer = document.getElementById("pdfViewer");
+            console.log('📄 Abriendo perfil PDF:', ruta);
+            const modal = document.getElementById('pdfModal');
+            const viewer = document.getElementById('pdfViewer');
+            const loader = document.getElementById('pdfLoader');
+            
+            if (!modal || !viewer) return;
+            
+            // Mostrar modal inmediatamente
+            modal.classList.add('visible');
+            
+            // Si es el mismo PDF y ya está cargado, no recargar
+            if (currentPdfUrl === ruta && viewer.src) {
+                console.log('⚡ PDF en caché, apertura instantánea');
+                if (loader) loader.style.display = 'none';
+                viewer.style.opacity = '1';
+                return;
+            }
+            
+            // Mostrar loader solo para PDFs nuevos
+            if (loader && currentPdfUrl !== ruta) {
+                loader.style.display = 'flex';
+            }
+            
+            // Configurar evento de carga
+            viewer.onload = () => {
+                if (loader) loader.style.display = 'none';
+                viewer.style.opacity = '1';
+                currentPdfUrl = ruta;
+                console.log('✅ Perfil cargado y cacheado');
+            };
+            
+            // Cargar PDF
             viewer.src = ruta;
-            modal.classList.add("visible");
         }
 
         function cerrarPDF() {
-            const modal = document.getElementById("pdfModal");
-            const viewer = document.getElementById("pdfViewer");
-            viewer.src = "";
-            modal.classList.remove("visible");
+            const modal = document.getElementById('pdfModal');
+            const viewer = document.getElementById('pdfViewer');
+
+            if (modal && viewer) {
+                modal.classList.remove('visible');
+                viewer.style.opacity = '1';
+                // No limpiar src para mantener caché en memoria
+            }
         }
     </script>
 

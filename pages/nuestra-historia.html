@@ -176,6 +176,10 @@
   <!-- Visor PDF tipo museo náutico -->
   <div id="pdfModal" class="pdf-modal">
     <div class="pdf-content">
+      <div id="pdfLoader" class="pdf-loader">
+        <div class="spinner"></div>
+        <p>Cargando documento...</p>
+      </div>
       <button class="close-pdf" onclick="cerrarPDF()" title="Cerrar PDF">
         <i class="fas fa-times"></i>
       </button>
@@ -374,6 +378,22 @@
   </div>
 
   <script>
+    // ⚡ Optimización de caché para PDFs
+    let currentPdfUrl = null;
+
+    // Registrar Service Worker para caché estratégico
+    window.addEventListener('load', () => {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('../assets/js/service-worker.js')
+          .then(registration => {
+            console.log('✅ Service Worker registrado:', registration);
+          })
+          .catch(error => {
+            console.warn('⚠️ Service Worker no registrado:', error);
+          });
+      }
+    });
+
     document.addEventListener("DOMContentLoaded", () => {
       // Animación de entrada
       document.body.classList.remove("fade-out");
@@ -567,59 +587,40 @@
 
     // Cache para PDFs ya cargados
     let pdfCache = new Map();
-    let currentPdfUrl = null;
-
     function abrirPDF(ruta) {
       console.log('📄 Abriendo PDF:', ruta);
-      const modal = document.getElementById("pdfModal");
-      const viewer = document.getElementById("pdfViewer");
+      const modal = document.getElementById('pdfModal');
+      const viewer = document.getElementById('pdfViewer');
+      const loader = document.getElementById('pdfLoader');
+      
+      if (!modal || !viewer) return;
       
       // Mostrar modal inmediatamente
-      modal.classList.add("visible");
+      modal.classList.add('visible');
       
       // Si es el mismo PDF y ya está cargado, no recargar
       if (currentPdfUrl === ruta && viewer.src) {
-        console.log('⚡ PDF en cache, apertura instantánea');
+        console.log('⚡ PDF en caché, apertura instantánea');
+        if (loader) loader.style.display = 'none';
         viewer.style.opacity = '1';
-        viewer.style.filter = 'none';
         return;
       }
       
-      // Preparar loading visual solo para PDFs nuevos
-      if (currentPdfUrl !== ruta) {
-        viewer.style.opacity = '0.6';
-        viewer.style.filter = 'blur(1px)';
-        viewer.style.transition = 'all 0.3s ease';
+      // Mostrar loader solo para PDFs nuevos
+      if (loader && currentPdfUrl !== ruta) {
+        loader.style.display = 'flex';
       }
       
-      // URL optimizada con herramientas esenciales
-      const pdfUrl = ruta + '#toolbar=1&navpanes=1&scrollbar=1&zoom=FitH&view=FitH';
-      
-      // Cargar PDF
-      const loadPDF = () => {
-        viewer.src = pdfUrl;
+      // Configurar evento de carga
+      viewer.onload = () => {
+        if (loader) loader.style.display = 'none';
+        viewer.style.opacity = '1';
         currentPdfUrl = ruta;
-        
-        viewer.onload = () => {
-          console.log('✅ PDF cargado:', ruta);
-          viewer.style.opacity = '1';
-          viewer.style.filter = 'none';
-          pdfCache.set(ruta, true);
-        };
-        
-        viewer.onerror = () => {
-          console.error('❌ Error al cargar PDF:', ruta);
-          viewer.style.opacity = '1';
-          viewer.style.filter = 'none';
-        };
+        console.log('✅ Documento histórico cargado y cacheado');
       };
       
-      // Cargar inmediatamente si es del cache o con delay mínimo para nuevos
-      if (pdfCache.has(ruta)) {
-        loadPDF();
-      } else {
-        setTimeout(loadPDF, 50);
-      }
+      // Cargar PDF
+      viewer.src = ruta;
     }
 
     function descargarPDF() {
@@ -637,29 +638,14 @@
 
     function cerrarPDF() {
       console.log('📤 Cerrando PDF');
-      const modal = document.getElementById("pdfModal");
-      const viewer = document.getElementById("pdfViewer");
+      const modal = document.getElementById('pdfModal');
+      const viewer = document.getElementById('pdfViewer');
       
-      // Animación de cierre suave
-      modal.style.animation = 'modalBackdropDisappear 0.3s ease';
-      
-      setTimeout(() => {
-        modal.classList.remove("visible");
-        
-        // NO limpiar src para permitir reapertura rápida
-        // Solo ocultar el viewer
-        viewer.style.opacity = '0';
-        modal.style.animation = '';
-        
-        // Resetear estilos después de la animación
-        setTimeout(() => {
-          if (!modal.classList.contains('visible')) {
-            viewer.style.opacity = '';
-            viewer.style.filter = '';
-            viewer.style.transition = '';
-          }
-        }, 100);
-      }, 300);
+      if (modal && viewer) {
+        modal.classList.remove('visible');
+        viewer.style.opacity = '1';
+        // No limpiar src para mantener caché en memoria
+      }
     }
 
     // Función de navegación mejorada
