@@ -1,27 +1,140 @@
 [
-  { "nombre": "Dulce_Maria_Baldovino", "rol": "club" },
-  { "nombre": "Eileen_Gomez", "rol": "club" },
-  { "nombre": "Dominik_Garcia", "rol": "club" },
-  { "nombre": "Luis_Felipe_Morales", "rol": "club" },
-  { "nombre": "Miguel_Angel_Florez", "rol": "club" },
-  { "nombre": "Elias_Quintero", "rol": "club" },
-  { "nombre": "Josue_Arriola", "rol": "club" },
-  { "nombre": "Benjamin_De_La_Ossa", "rol": "club" },
-  { "nombre": "Amelia_Diaz", "rol": "club" },
-  { "nombre": "Mariana_Castillo", "rol": "club" },
-  { "nombre": "Nael_Garcia", "rol": "club" },
-  { "nombre": "Samuel_Tapias", "rol": "club" },
-  { "nombre": "Josue_Garcia", "rol": "club" },
-
-  { "nombre": "Eliabeth_Pereira", "rol": "directiva", "cargo": "Director" },
-  { "nombre": "Marinela_Acosta", "rol": "directiva" },
-  { "nombre": "Jhan_Carlos", "rol": "directiva" },
-  { "nombre": "Wendy_Castillo", "rol": "directiva" },
-  { "nombre": "Yeidis_Castillo", "rol": "directiva" },
-  { "nombre": "Carolina_Arias", "rol": "directiva" },
-  { "nombre": "Enith_Erazo", "rol": "directiva" },
-  { "nombre": "Manuel_Puello", "rol": "directiva" },
-  { "nombre": "Isaac_Llerena", "rol": "directiva" },
-  { "nombre": "Natalia_Acosta", "rol": "directiva" }
+  {
+    "nombre": "Ana_Alejandra_Lopez_Tordecilla",
+    "rol": "directiva",
+    "cargo": "directora"
+  },
+  {
+    "nombre": "Dairo_Luis_Rosario_Liñan",
+    "rol": "directiva",
+    "cargo": "subdirector"
+  },
+  {
+    "nombre": "Jorge_Ivan_Tapia_Macea",
+    "rol": "directiva",
+    "cargo": "subdirector"
+  },
+  {
+    "nombre": "Natalia_Canoles_Rivera",
+    "rol": "directiva",
+    "cargo": "secretaria"
+  },
+  {
+    "nombre": "Mariana_Esther_Canoles_Rivera",
+    "rol": "directiva",
+    "cargo": "secretaria"
+  },
+  {
+    "nombre": "Andres_Felipe_Diaz_Andrade",
+    "rol": "directiva",
+    "cargo": "tesorero"
+  },
+  {
+    "nombre": "Mathew_Gutierrez_Vasquez",
+    "rol": "club"
+  },
+  {
+    "nombre": "Eimmy_Karina_Sierra_Velez",
+    "rol": "club"
+  },
+  {
+    "nombre": "Valery_Jean_Rosales_Parra",
+    "rol": "club"
+  },
+  {
+    "nombre": "Luisa_Fernanda_Hincapie_Martinez",
+    "rol": "club"
+  },
+  {
+    "nombre": "Kenny_Yiseth_Cuesta_Asprilla",
+    "rol": "club"
+  },
+  {
+    "nombre": "Kehidy_Yazuri_Cuesta_Asprilla",
+    "rol": "club"
+  },
+  {
+    "nombre": "Aly_Mariana_Ruiz_Usuga",
+    "rol": "club"
+  },
+  {
+    "nombre": "Aura_Cristina_Pantoja_Lopez",
+    "rol": "club"
+  },
+  {
+    "nombre": "Andres_Felipe_Lobo_Hernandez",
+    "rol": "club"
+  },
+  {
+    "nombre": "Angel_Stiven_Rey_Sanchez",
+    "rol": "club"
+  },
+  {
+    "nombre": "Juan_Daniel_Diaz_Andrade",
+    "rol": "club"
+  },
+  {
+    "nombre": "Sara_Lizeth_Artunduaga_Torres",
+    "rol": "club"
+  },
+  {
+    "nombre": "Cristian_David_Cuadrado_Beltran",
+    "rol": "club"
+  },
+  {
+    "nombre": "Jhoneidys_Hurtado",
+    "rol": "club"
+  },
+  {
+    "nombre": "Laura_Stephany_Chala_Mosquera",
+    "rol": "club"
+  },
+  {
+    "nombre": "Evoni_Maday_Angulo_Castillo",
+    "rol": "club"
+  },
+  {
+    "nombre": "Robert_David_Ruiz_Usuga",
+    "rol": "club"
+  },
+  {
+    "nombre": "Juan_Carlos_Perez_Jaramillo",
+    "rol": "club"
+  },
+  {
+    "nombre": "Jhan_Carlos_Suarez_Jaramillo",
+    "rol": "club"
+  },
+  {
+    "nombre": "Yirlis_Mercado_Acuna",
+    "rol": "club"
+  },
+  {
+    "nombre": "Danellys_Regino_Borja",
+    "rol": "club"
+  },
+  {
+    "nombre": "Kevin_Andres_Barrios_Silgado",
+    "rol": "club"
+  },
+  {
+    "nombre": "Alejandra_Michell_Torres_Alvis",
+    "rol": "club"
+  },
+  {
+    "nombre": "Cielo_Esperanza_Norena_Penaloza",
+    "rol": "club"
+  },
+  {
+    "nombre": "Fabian_Andres_Vertel_Yanes",
+    "rol": "club"
+  },
+  {
+    "nombre": "Ana_Victoria_Artunduaga_Suaza",
+    "rol": "club"
+  },
+  {
+    "nombre": "Maria_Antonia_Machado_Vaca",
+    "rol": "club"
+  }
 ]
-  
