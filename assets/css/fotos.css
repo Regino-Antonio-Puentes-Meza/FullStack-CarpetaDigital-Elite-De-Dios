@@ -395,22 +395,6 @@ body {
   animation: fadeInUp 0.8s ease;
 }
 
-.intro-title {
-  font-family: var(--font-titulo-sagrado);
-  font-size: 2rem;
-  color: var(--color-azul-sacerdotal);
-  margin-bottom: 1.5rem;
-  text-shadow: 0 2px 4px rgba(30, 58, 138, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.intro-title i {
-  color: var(--color-dorado-sagrado);
-}
-
 .intro-text {
   font-size: 1.1rem;
   line-height: 1.7;
