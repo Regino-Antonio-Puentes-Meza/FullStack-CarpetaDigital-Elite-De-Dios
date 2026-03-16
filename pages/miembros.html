@@ -179,7 +179,7 @@
                             <div class="card-content">
                                 <h3 class="member-name">${persona.nombre.replaceAll('_', ' ')}</h3>
                                 <p class="member-role">${persona.rol.toLocaleUpperCase() === rolDirectiva ? `${persona.rol + '-'+ persona.cargo}` : 'Integrante'}</p>
-                                <button class="view-profile" onclick="abrirPDF('/assets/pdfs-miembros/${persona.nombre}.pdf')">
+                                <button class="view-profile" onclick="abrirPDF('/assets/pdfs/${persona.nombre}.pdf')">
                                     <i class="fas fa-scroll"></i>
                                     <span>Ver Perfil</span>
                                 </button>
