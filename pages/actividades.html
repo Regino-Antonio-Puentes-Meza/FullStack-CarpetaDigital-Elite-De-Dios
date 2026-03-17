@@ -112,6 +112,20 @@
                         </p>
                     </div>
 
+                    <!-- Calendario Dinámico -->
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <button id="prevMonth" class="nav-button">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <h2 id="monthTitle"></h2>
+                            <button id="nextMonth" class="nav-button">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div id="calendarEvents"></div>
+                    </div>
+
                     <!-- Botones para PDFs del cronograma -->
                     <div class="schedule-pdf-section">
                         <div class="pdf-buttons-grid">
@@ -121,7 +135,7 @@
                                     <i class="fas fa-calendar-check"></i>
                                 </div>
                                 <div class="pdf-content-text">
-                                    <h4>Calendario del Club</h4>
+                                    <h4>Cronograma de actividades en PDF</h4>
                                     <p>Fechas especiales, ceremonias y momentos de crecimiento espiritual en 2026</p>
                                 </div>
                                 <div class="pdf-arrow">
@@ -135,6 +149,7 @@
         </section>
     </div>
 
+    <script src="../assets/js/calendario-actividades.js"></script>
     <script>
         // Variable para rastrear PDF actual en caché
         let currentPdfUrl = '';
