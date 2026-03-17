@@ -1236,3 +1236,517 @@ html {
     padding: 2rem 1.5rem;
   }
 }
+
+/* =====================================================
+   ESTILOS DEL CALENDARIO DINÁMICO
+   ===================================================== */
+.calendar-container {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,248,255,0.9) 100%);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 30px 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(70, 130, 180, 0.2);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.calendar-header h2 {
+    font-size: 1.8rem;
+    color: #1a3a52;
+    font-family: 'Cinzel', serif;
+    margin: 0;
+}
+
+.nav-button {
+    background: linear-gradient(135deg, #4682b4 0%, #36648b 100%);
+    border: none;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(70, 130, 180, 0.3);
+}
+
+.nav-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(70, 130, 180, 0.4);
+}
+
+.nav-button:active {
+    transform: scale(0.95);
+}
+
+.calendar-grid {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.calendar-header-day {
+    background: linear-gradient(135deg, #36648b 0%, #4682b4 100%);
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 8px 8px 0 0;
+}
+
+.calendar-day {
+    border: 1px solid #e0e5eb;
+    padding: 12px;
+    height: 100px;
+    vertical-align: top;
+    background: #fafbfc;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.calendar-day:hover:not(.calendar-empty) {
+    background: #f0f5fa;
+    border-color: #4682b4;
+}
+
+.calendar-day.today {
+    background: linear-gradient(135deg, rgba(70, 130, 180, 0.1) 0%, rgba(100, 149, 237, 0.1) 100%);
+    border: 2px solid #4682b4;
+    border-radius: 8px;
+}
+
+.calendar-day.has-range-event {
+    background: linear-gradient(135deg, rgba(155, 155, 155, 0.05) 0%, rgba(200, 200, 200, 0.08) 100%);
+    border: 1px dashed rgba(100, 130, 160, 0.3);
+}
+
+.calendar-day.has-event {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 248, 255, 0.95) 100%);
+    cursor: pointer;
+}
+
+.calendar-day.has-event:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(70, 130, 180, 0.2);
+}
+
+.day-number {
+    display: block;
+    font-weight: 600;
+    color: #1a3a52;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+/* Eventos puntuales */
+.event-badge-punctual {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    padding: 4px 6px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #8b7355 0%, #a0826d 100%);
+    color: white;
+    font-weight: 500;
+    margin-top: 3px;
+    border-left: 3px solid #654321;
+}
+
+.event-badge-punctual i {
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.event-badge-punctual .event-title {
+    display: block;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.2;
+}
+
+/* Eventos de rango */
+.event-badge-range {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.68rem;
+    padding: 3px 5px;
+    border-radius: 3px;
+    background: linear-gradient(135deg, rgba(155, 100, 100, 0.8) 0%, rgba(180, 120, 120, 0.8) 100%);
+    color: white;
+    font-weight: 500;
+    margin-top: 2px;
+    border-bottom: 2px solid rgba(100, 50, 50, 0.5);
+    opacity: 0.9;
+}
+
+.event-badge-range .range-indicator {
+    font-weight: bold;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+}
+
+.event-badge-range .event-title {
+    display: block;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.1;
+}
+
+/* Colores específicos para eventos de rango */
+.calendar-day.tipo-liturgia.has-range-event {
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.08) 0%, rgba(205, 92, 92, 0.08) 100%);
+    border-color: rgba(139, 0, 0, 0.15);
+}
+
+.calendar-day.tipo-espiritual.has-range-event {
+    background: linear-gradient(135deg, rgba(75, 0, 130, 0.08) 0%, rgba(132, 112, 218, 0.08) 100%);
+    border-color: rgba(75, 0, 130, 0.15);
+}
+
+.calendar-day.tipo-comunidad.has-range-event {
+    background: linear-gradient(135deg, rgba(34, 139, 34, 0.08) 0%, rgba(60, 179, 113, 0.08) 100%);
+    border-color: rgba(34, 139, 34, 0.15);
+}
+
+.calendar-day.tipo-formacion.has-range-event {
+    background: linear-gradient(135deg, rgba(26, 84, 144, 0.08) 0%, rgba(46, 139, 192, 0.08) 100%);
+    border-color: rgba(26, 84, 144, 0.15);
+}
+
+.calendar-day.tipo-preparacion.has-range-event {
+    background: linear-gradient(135deg, rgba(217, 119, 6, 0.08) 0%, rgba(245, 158, 11, 0.08) 100%);
+    border-color: rgba(217, 119, 6, 0.15);
+}
+
+.calendar-day.tipo-evento.has-range-event {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(167, 139, 250, 0.08) 100%);
+    border-color: rgba(124, 58, 237, 0.15);
+}
+
+.calendar-day.tipo-misionero.has-range-event {
+    background: linear-gradient(135deg, rgba(3, 105, 161, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+    border-color: rgba(3, 105, 161, 0.15);
+}
+
+.calendar-day.tipo-deportes.has-range-event {
+    background: linear-gradient(135deg, rgba(234, 88, 12, 0.08) 0%, rgba(249, 115, 22, 0.08) 100%);
+    border-color: rgba(234, 88, 12, 0.15);
+}
+
+.calendar-day.tipo-descanso.has-range-event {
+    background: linear-gradient(135deg, rgba(107, 114, 128, 0.08) 0%, rgba(156, 163, 175, 0.08) 100%);
+    border-color: rgba(107, 114, 128, 0.15);
+}
+
+/* Colores específicos para badges de rango */
+.calendar-day.tipo-liturgia .event-badge-range {
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.7) 0%, rgba(205, 92, 92, 0.7) 100%);
+}
+
+.calendar-day.tipo-espiritual .event-badge-range {
+    background: linear-gradient(135deg, rgba(75, 0, 130, 0.7) 0%, rgba(132, 112, 218, 0.7) 100%);
+}
+
+.calendar-day.tipo-comunidad .event-badge-range {
+    background: linear-gradient(135deg, rgba(34, 139, 34, 0.7) 0%, rgba(60, 179, 113, 0.7) 100%);
+}
+
+.calendar-day.tipo-formacion .event-badge-range {
+    background: linear-gradient(135deg, rgba(26, 84, 144, 0.7) 0%, rgba(46, 139, 192, 0.7) 100%);
+}
+
+.calendar-day.tipo-preparacion .event-badge-range {
+    background: linear-gradient(135deg, rgba(217, 119, 6, 0.7) 0%, rgba(245, 158, 11, 0.7) 100%);
+}
+
+.calendar-day.tipo-evento .event-badge-range {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.7) 0%, rgba(167, 139, 250, 0.7) 100%);
+}
+
+.calendar-day.tipo-misionero .event-badge-range {
+    background: linear-gradient(135deg, rgba(3, 105, 161, 0.7) 0%, rgba(6, 182, 212, 0.7) 100%);
+}
+
+.calendar-day.tipo-deportes .event-badge-range {
+    background: linear-gradient(135deg, rgba(234, 88, 12, 0.7) 0%, rgba(249, 115, 22, 0.7) 100%);
+}
+
+.calendar-day.tipo-descanso .event-badge-range {
+    background: linear-gradient(135deg, rgba(107, 114, 128, 0.7) 0%, rgba(156, 163, 175, 0.7) 100%);
+}
+
+.calendar-day.tipo-liturgia .event-badge {
+    background: linear-gradient(135deg, #8b0000 0%, #cd5c5c 100%);
+}
+
+.calendar-day.tipo-espiritual .event-badge {
+    background: linear-gradient(135deg, #4b0082 0%, #8470da 100%);
+}
+
+.calendar-day.tipo-comunidad .event-badge {
+    background: linear-gradient(135deg, #228b22 0%, #3cb371 100%);
+}
+
+.calendar-day.tipo-formacion .event-badge {
+    background: linear-gradient(135deg, #1a5490 0%, #2e8bc0 100%);
+}
+
+.calendar-day.tipo-preparacion .event-badge {
+    background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+}
+
+.calendar-day.tipo-evento .event-badge {
+    background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+}
+
+.calendar-day.tipo-misionero .event-badge {
+    background: linear-gradient(135deg, #0369a1 0%, #06b6d4 100%);
+}
+
+.calendar-day.tipo-deportes .event-badge {
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+}
+
+.calendar-day.tipo-descanso .event-badge {
+    background: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%);
+}
+
+.calendar-empty {
+    background: #f5f5f5;
+    border: 1px solid #e8e8e8;
+}
+
+/* Modal de evento */
+.event-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.event-modal-content {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: slideUp 0.3s ease;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.event-item {
+    border-left: 5px solid #4682b4;
+    padding: 15px;
+    border-radius: 8px;
+    background: #f9fafb;
+}
+
+.event-item.evento-puntual {
+    border-left-color: #8b7355;
+}
+
+.event-item.evento-rango {
+    border-left-color: #8b5a5a;
+    background: linear-gradient(135deg, rgba(200, 150, 150, 0.05) 0%, rgba(220, 180, 180, 0.08) 100%);
+}
+
+.event-item .event-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.event-item .event-header i {
+    font-size: 1.5rem;
+}
+
+.event-item .event-header h4 {
+    margin: 0;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.event-item .event-details {
+    margin: 0;
+}
+
+.event-item .event-details p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.close-event-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #f0f0f0;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+}
+
+.close-event-modal:hover {
+    background: #e0e0e0;
+    transform: rotate(90deg);
+}
+
+.event-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.event-header i {
+    font-size: 2rem;
+}
+
+.event-header h3 {
+    margin: 0;
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+}
+
+/* Colores para headers de eventos */
+.event-header.tipo-liturgia,
+.event-item .event-header.tipo-liturgia {
+    background: linear-gradient(135deg, #8b0000 0%, #cd5c5c 100%);
+}
+
+.event-header.tipo-espiritual,
+.event-item .event-header.tipo-espiritual {
+    background: linear-gradient(135deg, #4b0082 0%, #8470da 100%);
+}
+
+.event-header.tipo-comunidad,
+.event-item .event-header.tipo-comunidad {
+    background: linear-gradient(135deg, #228b22 0%, #3cb371 100%);
+}
+
+.event-header.tipo-formacion,
+.event-item .event-header.tipo-formacion {
+    background: linear-gradient(135deg, #1a5490 0%, #2e8bc0 100%);
+}
+
+.event-header.tipo-preparacion,
+.event-item .event-header.tipo-preparacion {
+    background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+}
+
+.event-header.tipo-evento,
+.event-item .event-header.tipo-evento {
+    background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+}
+
+.event-header.tipo-misionero,
+.event-item .event-header.tipo-misionero {
+    background: linear-gradient(135deg, #0369a1 0%, #06b6d4 100%);
+}
+
+.event-header.tipo-deportes,
+.event-item .event-header.tipo-deportes {
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+}
+
+.event-header.tipo-descanso,
+.event-item .event-header.tipo-descanso {
+    background: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%);
+}
+
+.event-details {
+    spacing: 15px;
+}
+
+.event-details p {
+    margin: 12px 0;
+    line-height: 1.6;
+    color: #333;
+}
+
+.badge-tipo {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    background: #f0f0f0;
+    color: #1a3a52;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsivo - Calendario */
+@media (max-width: 768px) {
+    .calendar-container {
+        padding: 15px;
+    }
+
+    .calendar-day {
+        height: 80px;
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .calendar-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .event-modal-content {
+        padding: 20px;
+    }
+    
+    .nav-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
