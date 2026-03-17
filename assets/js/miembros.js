@@ -1,6 +1,9 @@
 // Variable para rastrear PDF actual en caché
 let currentPdfUrl = '';
 
+// Caché para fotos de perfil ya buscadas
+const cacheFotos = new Map();
+
 // Registro de Service Worker para caching optimizado
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -14,8 +17,8 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// Array de extensiones de imagen a intentar
-const extensionesImagen = ['jpg', 'jpeg', 'png', 'webp'];
+// Array de extensiones de imagen a intentar (reducido para mejor rendimiento)
+const extensionesImagen = ['jpg', 'jpeg'];
 
 /**
  * Intenta cargar una foto de perfil desde la carpeta img/perfiles
@@ -24,20 +27,34 @@ const extensionesImagen = ['jpg', 'jpeg', 'png', 'webp'];
  */
 async function obtenerFotoPerfil(nombreMiembro) {
     try {
-        // Normalizar el nombre para el archivo (reemplazar espacios por guiones)
+        // Verificar si ya está en caché
+        if (cacheFotos.has(nombreMiembro)) {
+            return cacheFotos.get(nombreMiembro);
+        }
+        
+        // Normalizar el nombre para el archivo
         const nombreArchivo = nombreMiembro.replace(/_/g, '_');
         
         for (const ext of extensionesImagen) {
             try {
                 const rutaImagen = `../assets/img/perfiles/${nombreArchivo}.${ext}`;
+                
+                // Usar GET en lugar de HEAD con timeout corto
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 2000); // 2 segundos timeout
+                
                 const response = await fetch(rutaImagen, { 
-                    method: 'HEAD',
+                    method: 'GET',
                     cache: 'default',
-                    mode: 'no-cors'
+                    mode: 'no-cors',
+                    signal: controller.signal
                 });
                 
-                if (response.ok || response.type === 'opaque') {
-                    console.log(`✅ Foto encontrada: ${rutaImagen}`);
+                clearTimeout(timeoutId);
+                
+                if (response.ok || response.status === 0) {
+                    console.log(`✅ Foto encontrada: ${nombreArchivo}.${ext}`);
+                    cacheFotos.set(nombreMiembro, rutaImagen);
                     return rutaImagen;
                 }
             } catch (error) {
@@ -46,10 +63,12 @@ async function obtenerFotoPerfil(nombreMiembro) {
             }
         }
         
-        console.log(`⚠️ Foto no encontrada para: ${nombreMiembro}`);
+        // Guardar en caché que no hay foto
+        cacheFotos.set(nombreMiembro, undefined);
         return undefined;
     } catch (error) {
         console.error(`❌ Error al obtener foto de ${nombreMiembro}:`, error);
+        cacheFotos.set(nombreMiembro, undefined);
         return undefined;
     }
 }
@@ -139,25 +158,31 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
         
         let rolDirectiva = "DIRECTIVA";
-        let totalMiembros = 0;
-
-        // Procesar cada miembro
-        for (const persona of data) {
+        
+        // Cargar todas las fotos en paralelo (OPTIMIZACIÓN)
+        console.log('🖼️ Cargando fotos en paralelo...');
+        const fotosPromesas = data.map(persona => 
+            obtenerFotoPerfil(persona.nombre)
+                .catch(err => {
+                    console.warn(`⚠️ Error al cargar foto de ${persona.nombre}:`, err);
+                    return undefined;
+                })
+        );
+        
+        const fotos = await Promise.all(fotosPromesas);
+        console.log('✅ Todas las fotos cargadas');
+        
+        // Ahora renderizar todos los miembros
+        for (let i = 0; i < data.length; i++) {
             try {
+                const persona = data[i];
+                const fotoUrl = fotos[i];
+                
                 const div = document.createElement('div');
                 div.classList.add('crew-card');
                 
                 if (persona.rol.toLocaleUpperCase() === rolDirectiva) {
                     div.classList.add('officer');
-                }
-
-                // Obtener foto de perfil si existe
-                let fotoUrl;
-                try {
-                    fotoUrl = await obtenerFotoPerfil(persona.nombre);
-                } catch (photoError) {
-                    console.warn(`⚠️ Error al cargar foto de ${persona.nombre}:`, photoError);
-                    fotoUrl = undefined;
                 }
                 
                 const avatarHTML = crearAvatarHTML(persona, rolDirectiva, fotoUrl);
@@ -187,20 +212,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // Aplicar efectos especiales según cargo
                 aplicarEfectosEspeciales(div, persona);
-
-                totalMiembros++;
-                console.log(`✅ Miembro cargado: ${persona.nombre}`);
                 
             } catch (personError) {
-                console.error(`❌ Error al procesar miembro:`, personError, persona);
-                continue; // Continuar con el siguiente miembro si uno falla
+                console.error(`❌ Error al procesar miembro:`, personError, data[i]);
+                continue;
             }
         }
 
-        console.log(`✨ Total de miembros cargados: ${totalMiembros}`);
+        console.log(`✨ Total de miembros renderizados: ${data.length}`);
         
         // Configurar buscador después de cargar todos los miembros
-        configurarBuscador(totalMiembros);
+        configurarBuscador(data.length);
         
         // Configurar expansión de fotos al hacer clic
         configurarExpansionFotos();
