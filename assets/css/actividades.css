@@ -1687,11 +1687,6 @@ html {
 .event-item .event-header.tipo-descanso {
     background: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%);
 }
-
-.event-details {
-    spacing: 15px;
-}
-
 .event-details p {
     margin: 12px 0;
     line-height: 1.6;
