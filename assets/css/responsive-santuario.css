@@ -71,3 +71,63 @@
     font-size: 1rem !important;
   }
 }
+
+/* =====================================================
+   🌥️ RESPONSIVE NUBES ANIMADAS
+   ===================================================== */
+
+/* Monitores grandes (Desktop 1920px+) */
+@media (min-width: 1920px) {
+  .animated-clouds {
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+}
+
+/* Monitores estándar (Desktop 1366px - 1919px) */
+@media (min-width: 1366px) and (max-width: 1919px) {
+  .animated-clouds {
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+}
+
+/* Laptops (1024px - 1365px) */
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .animated-clouds {
+    height: 70% !important;
+    object-fit: cover !important;
+  }
+}
+
+/* Tablets horizontales (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .animated-clouds {
+    height: 65% !important;
+    object-fit: cover !important;
+  }
+}
+
+/* Tablets verticales (600px - 767px) */
+@media (min-width: 600px) and (max-width: 767px) {
+  .animated-clouds {
+    height: 60% !important;
+    object-fit: cover !important;
+  }
+}
+
+/* Smartphones medianos (481px - 599px) */
+@media (min-width: 481px) and (max-width: 599px) {
+  .animated-clouds {
+    height: 55% !important;
+    object-fit: cover !important;
+  }
+}
+
+/* Smartphones pequeños (320px - 480px) */
+@media (max-width: 480px) {
+  .animated-clouds {
+    height: 50% !important;
+    object-fit: cover !important;
+  }
+}
