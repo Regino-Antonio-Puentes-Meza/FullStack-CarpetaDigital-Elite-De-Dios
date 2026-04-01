@@ -34,6 +34,9 @@
     body { 
       -webkit-touch-callout: none !important;
       -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
       pointer-events: auto !important;
     }
     /* Permitir interacción en elementos funcionales */
@@ -54,6 +57,17 @@
   </style>
 </head>
 <body>
+
+  <!-- ⏳ Indicador de Carga Inicial -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loader-container">
+      <div class="spinner"></div>
+      <p class="loading-text">Cargando Santuario...</p>
+    </div>
+  </div>
+
+  <!-- 🖼️ Precargar imagen de fondo (invisible) -->
+  <img src="assets/img/fondo-incio-santuario_carpeta.webp" alt="" style="display: none; visibility: hidden;" class="preload-background">
 
   <!-- 🌥️ Nubes Animadas de Fondo (Como imagen visible) -->
   <img src="assets/img/animated-cloud.svg" alt="Nubes animadas" class="animated-clouds">
@@ -85,6 +99,78 @@
   </div>
 
   <!-- 📜 Scripts del Santuario -->
+  <script>
+    // Variables globales para el control del loader
+    let imagesLoaded = false;
+    let minTimeElapsed = false;
+    const MIN_LOADING_TIME = 1500; // Mostrar loader mínimo 1.5 segundos
+
+    // Ocultar pantalla de carga cuando todo está listo
+    function hideLoadingScreen() {
+      const loadingScreen = document.getElementById('loading-screen');
+      if (loadingScreen && !loadingScreen.classList.contains('hidden')) {
+        loadingScreen.classList.add('hidden');
+      }
+    }
+
+    // Verificar si puede ocultarse el loader
+    function checkCanHide() {
+      if (imagesLoaded && minTimeElapsed) {
+        hideLoadingScreen();
+      }
+    }
+
+    // Esperar a que todas las imágenes se carguen
+    function waitForImages() {
+      const images = document.querySelectorAll('img');
+      let loadedImages = 0;
+      const totalImages = images.length;
+
+      if (totalImages === 0) {
+        imagesLoaded = true;
+        checkCanHide();
+        return;
+      }
+
+      images.forEach((img) => {
+        const onImageLoad = () => {
+          loadedImages++;
+          if (loadedImages === totalImages) {
+            imagesLoaded = true;
+            checkCanHide();
+          }
+        };
+
+        // Si la imagen ya está en caché
+        if (img.complete) {
+          onImageLoad();
+        } else {
+          img.addEventListener('load', onImageLoad);
+          img.addEventListener('error', onImageLoad); // Contar errores también
+        }
+      });
+    }
+
+    // Establecer tiempo mínimo de visualización
+    setTimeout(() => {
+      minTimeElapsed = true;
+      checkCanHide();
+    }, MIN_LOADING_TIME);
+
+    // Ejecutar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', waitForImages);
+    } else {
+      waitForImages();
+    }
+
+    // Timeout de seguridad (máximo 5 segundos mostrando el loader)
+    setTimeout(() => {
+      imagesLoaded = true;
+      minTimeElapsed = true;
+      hideLoadingScreen();
+    }, 5000);
+  </script>
   <script src="assets/js/protection.js"></script>
   <script src="assets/js/advanced-protection.js"></script>
   <script src="assets/js/script.js"></script>

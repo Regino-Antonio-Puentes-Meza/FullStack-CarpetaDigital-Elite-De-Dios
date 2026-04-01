@@ -120,7 +120,7 @@
         type="translate"
         from="0 0"
         to="-1600 0"
-        dur="65s"
+        dur="20s"
         repeatCount="indefinite"/>
 
     </g>
