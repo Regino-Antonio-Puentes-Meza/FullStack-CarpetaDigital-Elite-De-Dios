@@ -99,6 +99,123 @@ body, html {
    ESTILOS PROFESIONALES DEL SANTUARIO
    ===================================================== */
 
+/* Indicador de Conexión Lenta */
+.connection-warning {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.95), rgba(255, 152, 0, 0.95));
+  color: #1f2937;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+  animation: slideInDown 0.4s ease-out;
+  border-left: 4px solid #ff6f00;
+}
+
+.connection-warning i {
+  font-size: 18px;
+  animation: pulse 2s infinite;
+}
+
+/* Badge de Progreso de Cache */
+.cache-progress-badge {
+  position: relative;
+  width: 45%;
+  height: 24px;
+  background: rgba(30, 58, 138, 0.65);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  box-sizing: border-box;
+  border: 2px solid var(--color-rojo-santuario);
+  border-radius: 9px;
+  margin: 12px auto;
+  overflow: hidden;
+  animation: slideInDown 0.4s ease-out;
+  box-shadow: 0 0 12px rgba(142, 28, 28, 0.4);
+  backdrop-filter: blur(12px);
+}
+
+.cache-progress-badge[data-complete="true"]::after {
+  content: '';
+  display: none;
+}
+
+.cache-progress-container {
+  display: none;
+}
+
+.cache-progress-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #5B7FBE 0%, #3B82F6 100%);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 0 10px rgba(91, 127, 190, 0.4), 0 0 8px rgba(59, 130, 246, 0.5);
+  display: block;
+  z-index: 1;
+}
+
+.cache-progress-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+  font-size: 13px;
+  color: var(--color-blanco-pureza);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 10px rgba(142, 28, 28, 1), 0 0 6px rgba(255, 255, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes scaleIn {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
 /* Clase especial para párrafos destacados con máxima visibilidad */
 .destacado {
   color: #FFFFFF !important;
