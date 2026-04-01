@@ -1123,13 +1123,16 @@ html {
   }
 
   .adventures-header {
-    padding: 1.25rem 1rem;
+    padding: 4rem 0.5rem 1rem 0.5rem;
+    margin: 0.5rem auto 0.5rem;
+    max-width: 85%;
+    border-radius: 15px;
   }
 
   .adventures-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.3rem;
   }
 
   .page-content {
