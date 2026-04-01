@@ -89,6 +89,66 @@ body, html {
 }
 
 /* =====================================================
+   ⏳ PANTALLA DE CARGA INICIAL
+   ===================================================== */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    #F5E6C8 0%,
+    #fff8e7 50%,
+    #E6C07B 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.loading-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.spinner {
+  width: 80px;
+  height: 80px;
+  border: 6px solid rgba(30, 58, 138, 0.2);
+  border-top: 6px solid #1E3A8A;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  color: #1E3A8A;
+  letter-spacing: 1px;
+  animation: pulse-text 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-text {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* =============================================
    TIPOGRAFÍA SAGRADA
    ===================================================== */
 h1, h2, h3, h4, h5, h6 {
@@ -191,22 +251,22 @@ h1, h2, h3, h4, h5, h6 {
    ===================================================== */
 .splash-screen {
   position: relative;
+  z-index: 1;
   width: 100%;
   min-height: 100vh;
   height: 100vh;
+
   background: url('../img/fondo-incio-santuario_carpeta.webp');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-color: #FFFFFF;
+
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  animation: presencia-divina 12s ease-in-out infinite alternate;
-  will-change: filter;
 }
 
 /* Quinta capa: efecto adicional de luz celestial */
@@ -220,14 +280,14 @@ h1, h2, h3, h4, h5, h6 {
   background: 
     /* Luz dorada celestial que se mueve */
     radial-gradient(ellipse 300% 200% at 20% 30%, 
-      rgba(230, 179, 37, 0.08) 0%,
-      rgba(255, 211, 105, 0.10) 20%,
+      rgba(230, 179, 37, 0.01) 0%,
+      rgba(255, 211, 105, 0.01) 20%,
       transparent 50%
     ),
     /* Resplandor azul sacerdotal sutil */
     radial-gradient(ellipse 250% 150% at 80% 70%, 
-      rgba(30, 58, 138, 0.06) 0%,
-      rgba(59, 130, 246, 0.08) 30%,
+      rgba(30, 58, 138, 0.01) 0%,
+      rgba(59, 130, 246, 0.01) 30%,
       transparent 60%
     );
   z-index: 1;
@@ -247,18 +307,18 @@ h1, h2, h3, h4, h5, h6 {
   background: 
     /* Degradado RGB base cambiante */
     linear-gradient(90deg, 
-      rgba(230, 179, 37, 0.06) 0%,
-      rgba(30, 58, 138, 0.05) 20%,
-      rgba(142, 28, 28, 0.04) 40%,
-      rgba(59, 130, 246, 0.06) 60%,
-      rgba(230, 199, 123, 0.05) 80%,
-      rgba(192, 57, 43, 0.04) 100%
+      rgba(230, 179, 37, 0.01) 0%,
+      rgba(30, 58, 138, 0.01) 20%,
+      rgba(142, 28, 28, 0.01) 40%,
+      rgba(59, 130, 246, 0.01) 60%,
+      rgba(230, 199, 123, 0.01) 80%,
+      rgba(192, 57, 43, 0.01) 100%
     ),
     /* Degradado circular RGB */
     radial-gradient(circle at 40% 60%, 
-      rgba(255, 211, 105, 0.07) 0%,
-      rgba(30, 58, 138, 0.05) 35%,
-      rgba(142, 28, 28, 0.03) 70%,
+      rgba(255, 211, 105, 0.01) 0%,
+      rgba(30, 58, 138, 0.01) 35%,
+      rgba(142, 28, 28, 0.01) 70%,
       transparent 100%
     );
   z-index: 2;
@@ -277,25 +337,25 @@ h1, h2, h3, h4, h5, h6 {
   background: 
     /* Degradado RGB cambiante principal */
     linear-gradient(45deg, 
-      rgba(230, 179, 37, 0.15) 0%,
-      rgba(30, 58, 138, 0.12) 25%,
-      rgba(142, 28, 28, 0.12) 50%,
-      rgba(230, 199, 123, 0.15) 75%,
-      rgba(59, 130, 246, 0.12) 100%
+      rgba(230, 179, 37, 0.01) 0%,
+      rgba(30, 58, 138, 0.01) 25%,
+      rgba(142, 28, 28, 0.01) 50%,
+      rgba(230, 199, 123, 0.01) 75%,
+      rgba(59, 130, 246, 0.01) 100%
     ),
     /* Degradado circular que se mueve */
     radial-gradient(ellipse 150% 100%, 
-      rgba(255, 211, 105, 0.12) 0%,
-      rgba(192, 57, 43, 0.08) 30%,
-      rgba(30, 58, 138, 0.10) 60%,
+      rgba(255, 211, 105, 0.01) 0%,
+      rgba(192, 57, 43, 0.01) 30%,
+      rgba(30, 58, 138, 0.01) 60%,
       transparent 100%
     ),
     /* Degradado diagonal invertido */
     linear-gradient(-45deg, 
-      rgba(59, 130, 246, 0.08) 0%,
-      rgba(230, 179, 37, 0.12) 33%,
-      rgba(142, 28, 28, 0.08) 66%,
-      rgba(245, 230, 200, 0.12) 100%
+      rgba(59, 130, 246, 0.01) 0%,
+      rgba(230, 179, 37, 0.01) 33%,
+      rgba(142, 28, 28, 0.01) 66%,
+      rgba(245, 230, 200, 0.01) 100%
     );
   z-index: 3;
   pointer-events: none;
@@ -305,7 +365,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @keyframes degradados-rgb-cambiantes {
   0% {
-    opacity: 0.3;
+    opacity: 0.02;
     transform: rotate(0deg) scale(1);
     background: 
       linear-gradient(45deg, 
@@ -327,7 +387,7 @@ h1, h2, h3, h4, h5, h6 {
       );
   }
   25% {
-    opacity: 0.4;
+    opacity: 0.03;
     transform: rotate(2deg) scale(1.02);
     background: 
       linear-gradient(135deg, 
@@ -349,7 +409,7 @@ h1, h2, h3, h4, h5, h6 {
       );
   }
   50% {
-    opacity: 0.35;
+    opacity: 0.02;
     transform: rotate(-1deg) scale(1.01);
     background: 
       linear-gradient(225deg, 
@@ -371,7 +431,7 @@ h1, h2, h3, h4, h5, h6 {
       );
   }
   75% {
-    opacity: 0.42;
+    opacity: 0.03;
     transform: rotate(1.5deg) scale(1.03);
     background: 
       linear-gradient(315deg, 
@@ -393,7 +453,7 @@ h1, h2, h3, h4, h5, h6 {
       );
   }
   100% {
-    opacity: 0.32;
+    opacity: 0.01;
     transform: rotate(0deg) scale(1);
     background: 
       linear-gradient(45deg, 
@@ -416,6 +476,21 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* 🌥️ NUBES ANIMADAS - Visible de fondo */
+.animated-clouds {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.8;
+  display: block;
+}
+
 /* Contenedor principal responsivo */
 .splash-content {
   position: relative;
@@ -423,13 +498,14 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   text-align: center;
   width: 100%;
   max-width: 1200px;
   padding: var(--spacing-md);
   padding-top: calc(var(--spacing-md) * 2);
   gap: var(--spacing-lg);
+  height: calc(100vh - 200px);
 }
 
 /* =====================================================
@@ -1009,9 +1085,9 @@ h1, h2, h3, h4, h5, h6 {
   outline: none;
   border-radius: 15px;
   background: linear-gradient(135deg, 
-    var(--color-azul-sacerdotal) 0%,
-    var(--color-azul-oscuro) 50%,
-    var(--color-azul-sacerdotal) 100%
+    rgba(30, 58, 138, 0.4) 0%,
+    rgba(20, 40, 80, 0.4) 50%,
+    rgba(30, 58, 138, 0.4) 100%
   );
   color: var(--color-blanco-pureza);
   font-family: var(--font-titulo-sagrado);
@@ -1027,6 +1103,12 @@ h1, h2, h3, h4, h5, h6 {
   animation: boton-llamada-sacerdotal 4s ease-in-out infinite;
   border: 2px solid rgba(30, 58, 138, 0.6);
   z-index: 20;
+  opacity: 0.75;
+  backdrop-filter: blur(10px);
+  background-color: rgba(30, 58, 138, 0.3);
+  align-self: flex-start;
+  margin-bottom: 2rem;
+  margin-left: 10rem;
 }
 
 @keyframes boton-llamada-sacerdotal {
@@ -1049,14 +1131,14 @@ h1, h2, h3, h4, h5, h6 {
 .enter-btn:hover {
   transform: translateY(-3px) scale(1.02);
   background: linear-gradient(135deg, 
-    var(--color-azul-claro) 0%,
-    var(--color-azul-sacerdotal) 50%,
-    var(--color-azul-claro) 100%
+    rgba(59, 130, 246, 0.5) 0%,
+    rgba(30, 58, 138, 0.5) 50%,
+    rgba(59, 130, 246, 0.5) 100%
   );
   box-shadow: 
     0 8px 30px rgba(59, 130, 246, 0.6),
     0 0 50px rgba(59, 130, 246, 0.5),
-    inset 0 2px 0 rgba(255, 255, 255, 0.3);
+    inset 0 2px 0 rgba(255, 255, 255, 0.2);
   animation: none;
 }
 
@@ -1082,11 +1164,11 @@ h1, h2, h3, h4, h5, h6 {
     rgba(255, 255, 255, 0.4), 
     transparent
   );
-  transition: left 0.8s;
+  display: none;
 }
 
 .enter-btn:hover::before {
-  left: 100%;
+  display: none;
 }
 
 /* Icono del Santuario en el botón */
