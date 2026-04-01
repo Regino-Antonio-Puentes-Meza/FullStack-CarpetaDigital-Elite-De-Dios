@@ -717,9 +717,11 @@ h1, h2, h3, h4, h5, h6 {
     width: clamp(250px, 85vw, 320px);
     height: clamp(60px, 14vw, 75px);
     font-size: clamp(1rem, 4vw, 1.3rem);
-    margin-top: 0;
-    margin-bottom: var(--spacing-sm);
-    align-self: center;
+    margin-top: 0 !important;
+    margin-bottom: var(--spacing-sm) !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    align-self: center !important;
     flex: 0 0 auto;
   }
   
