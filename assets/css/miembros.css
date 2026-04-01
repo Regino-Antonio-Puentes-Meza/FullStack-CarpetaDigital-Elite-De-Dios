@@ -561,7 +561,7 @@ body {
   );
   backdrop-filter: blur(15px);
   border-radius: 20px;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 
     0 15px 35px rgba(0, 0, 0, 0.1),
     0 5px 15px rgba(0, 0, 0, 0.08);
@@ -867,6 +867,44 @@ body {
     inset 0 0 0 3px rgba(255, 255, 255, 0.5);
   padding: 0;
   overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Loader para fotos en carga */
+.member-avatar.avatar-foto .photo-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(230, 179, 37, 0.25);
+  border-top-color: #E6B325;
+  border-right-color: rgba(230, 179, 37, 0.6);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  z-index: 10;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 0 15px rgba(230, 179, 37, 0.4);
+  padding: 0;
+}
+
+/* Cuando la foto carga, ocultar loader */
+.member-avatar.avatar-foto.photo-loaded .photo-loader {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .member-avatar.avatar-foto .member-photo {
@@ -875,8 +913,20 @@ body {
   object-fit: cover;
   object-position: center;
   border-radius: 50%;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease, cursor 0.3s ease;
   cursor: pointer;
+  opacity: 0;
+}
+
+/* Mientras cargando: no permitir clicks */
+.member-avatar.avatar-foto:not(.photo-loaded) .member-photo {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Cuando la foto carga, mostrarla */
+.member-avatar.avatar-foto.photo-loaded .member-photo {
+  opacity: 1;
 }
 
 .member-avatar.avatar-foto .member-photo:hover {
@@ -928,7 +978,6 @@ body {
 
 /* Oscurece la card cuando la foto está expandida */
 .crew-card.photo-expanded {
-  background: rgba(0, 0, 0, 0.1);
   z-index: 150;
 }
 
@@ -1275,4 +1324,79 @@ body {
   .crew-card {
     margin: 0 0.5rem;
   }
+}
+
+/* =====================================================
+   LAZY LOADING STYLES PARA IMÁGENES DE PERFIL
+   ===================================================== */
+
+/* Clase para imágenes que se cargarán de forma lazy */
+.lazy-image {
+  background: linear-gradient(
+    90deg,
+    rgba(200, 220, 255, 0.3),
+    rgba(230, 179, 37, 0.2),
+    rgba(200, 220, 255, 0.3)
+  );
+  background-size: 200% 100%;
+  animation: shimmer-loading 2s infinite;
+  opacity: 0.8;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+/* Animación de "shimmer" mientras se carga */
+@keyframes shimmer-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Estado cuando la imagen se ha cargado */
+.lazy-image.loaded {
+  animation: none;
+  opacity: 1;
+  background: none;
+}
+
+/* Efecto fade-in suave cuando la imagen se carga */
+@keyframes fade-in-image {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lazy-image.loaded {
+  animation: fade-in-image 0.5s ease-in-out;
+}
+
+/* Placeholder mientras se carga (para navegadores sin soporte de data-src) */
+.lazy-image:not([src]), 
+.lazy-image[src=""] {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 138, 0.3),
+    rgba(59, 130, 246, 0.2)
+  );
+  display: block;
+}
+
+/* Estilos especiales para iframes o elementos lazy */
+iframe.lazy-image {
+  background: linear-gradient(
+    90deg,
+    rgba(200, 220, 255, 0.3),
+    rgba(230, 179, 37, 0.2),
+    rgba(200, 220, 255, 0.3)
+  );
+  background-size: 200% 100%;
+  animation: shimmer-loading 2s infinite;
 }
