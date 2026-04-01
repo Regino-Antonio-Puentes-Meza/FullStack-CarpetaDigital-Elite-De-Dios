@@ -909,7 +909,7 @@ body {
   }
 
   .history-header {
-    padding: 1.25rem 1rem 1.5rem;
+    padding: 5rem 1rem 1.5rem;
   }
 
   .history-title {
@@ -1318,13 +1318,16 @@ body {
   }
 
   .history-header {
-    padding: 1.25rem 1rem 1.5rem;
+    padding: 4rem 0.5rem 1rem 0.5rem;
+    margin: 0.5rem auto 0.5rem;
+    max-width: 85%;
+    border-radius: 15px;
   }
 
   .history-title {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.3rem;
   }
 
   .history-content {
